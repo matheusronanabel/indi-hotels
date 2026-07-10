@@ -1,31 +1,33 @@
 @import "tailwindcss";
 
 /* =========================================================
-   INDI — Design tokens (source of truth: style guide v2.0)
-   Monochrome spine + sparing accents. Clay/warm leads.
-   Ocean + palm: very sparing (small icons/details only).
+   INDI — Design tokens (source of truth: colour palette "Airy Blue")
+   Neutral spine (near-black, paper, grey) does ~90% of the work.
+   Azure is the single signature accent — no second accent hue.
    ========================================================= */
 @theme {
-  /* monochrome spine */
-  --color-ink: #1A1B1D;
-  --color-paper: #F4F4F2;
-  --color-linen: #F4EEE1;
+  /* neutral spine */
+  --color-ink: #0E1116;
+  --color-paper: #FFFFFF;
   --color-white: #FFFFFF;
-  --color-ash: #ECECE9;
-  --color-grey: #6F7173;
-  --color-stone: #8C8070;
-  --color-line: #E2E2DF;
+  --color-mist-grey: #F6F7F9;
+  --color-ash: #ECECEA;
+  --color-grey: #6B7280;
+  --color-slate: #4A4C50;
+  --color-line: #E6E8EC;
 
-  /* accents — used sparingly, ocean leads */
-  --color-ocean: #2E6E74;
-  --color-clay: #A9684A;
-  --color-teak: #C08B47;
-  --color-palm: #5E6B4C;
+  /* signature — azure only */
+  --color-azure: #1466E0;
+  --color-azure-deep: #0E52BC;
+  --color-mist: #E7F0FD;
+  --color-sky: #EEF4FE;
+  --color-mist-line: #E1E9F6;
 
   /* type families */
   --font-disp: "Fraunces", Georgia, serif;
-  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+  --font-body: "Poppins", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-wordmark: "Space Grotesk", system-ui, sans-serif;
 }
 
 /* ---------- Base ---------- */
@@ -59,17 +61,20 @@ body {
   color: var(--color-grey);
 }
 
+/* Using sans (Poppins) for all display/heading type for now.
+   --font-disp (Fraunces) stays defined and loaded in case it's wanted later. */
 .display {
-  font-family: var(--font-disp);
+  font-family: var(--font-body);
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.02;
 }
 
+/* No italic type anywhere on the site, upright only. */
 .serif-italic {
-  font-family: var(--font-disp);
-  font-style: italic;
+  font-family: var(--font-body);
   font-weight: 300;
+  letter-spacing: -0.01em;
 }
 
 /* ---------- Buttons ---------- */
@@ -90,11 +95,8 @@ body {
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 
-.btn-clay { background: var(--color-clay); color: #fff; }
-.btn-clay:hover { background: #8F5639; box-shadow: 0 10px 24px -10px rgba(169,104,74,0.65); }
-
-.btn-ocean { background: var(--color-ocean); color: #fff; }
-.btn-ocean:hover { box-shadow: 0 10px 24px -10px rgba(46,110,116,0.7); }
+.btn-azure { background: var(--color-azure); color: #fff; }
+.btn-azure:hover { background: var(--color-azure-deep); box-shadow: 0 10px 24px -10px rgba(20,102,224,0.55); }
 
 .btn-ink { background: var(--color-ink); color: var(--color-paper); }
 .btn-ink:hover { box-shadow: 0 10px 24px -12px rgba(26,27,29,0.55); }
@@ -121,11 +123,11 @@ body {
   border-bottom: 1px solid transparent;
   transition: gap 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
-.tlink:hover { gap: 0.7rem; color: var(--color-ocean); }
+.tlink:hover { gap: 0.7rem; color: var(--color-azure); }
 
-/* clay underline accent — colour as a whisper */
+/* azure underline accent — colour as a whisper */
 .under-accent {
-  border-bottom: 2px solid var(--color-clay);
+  border-bottom: 2px solid var(--color-azure);
   padding-bottom: 1px;
 }
 
@@ -135,7 +137,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid var(--color-ocean);
+  outline: 2px solid var(--color-azure);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -159,8 +161,8 @@ select:focus-visible {
   border-radius: 16px;
 }
 
-/* barely-there ocean wash */
-.tint-ocean { background: #EAF1F1; }
+/* barely-there azure wash */
+.tint-azure { background: var(--color-mist); }
 
 /* ---------- Testimonials swiper ---------- */
 .testimonial-swiper .swiper-slide {
@@ -197,7 +199,7 @@ select:focus-visible {
   margin: 0 !important;
 }
 .testimonial-pagination .swiper-pagination-bullet-active {
-  background: var(--color-clay);
+  background: var(--color-azure);
 }
 
 /* ---------- AOS: respect reduced motion ---------- */

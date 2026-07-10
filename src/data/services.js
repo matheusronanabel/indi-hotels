@@ -3,7 +3,7 @@ export const SERVICE_PAGES = {
   distribution: {
     label: 'Electronic Distribution',
     icon: 'lan',
-    accent: 'var(--color-ocean)',
+    accent: 'var(--color-azure)',
     seoTitle: 'Electronic distribution & channel management for hotels',
     seoDesc:
       'Indi sets up and manages your hotel distribution: OTA optimisation, channel management and clean connectivity, so you stay bookable everywhere without losing control of your rates.',
@@ -28,7 +28,7 @@ export const SERVICE_PAGES = {
   'revenue-management': {
     label: 'Revenue Management',
     icon: 'monitoring',
-    accent: 'var(--color-clay)',
+    accent: 'var(--color-azure)',
     seoTitle: 'Hotel revenue management & dynamic pricing services Australia',
     seoDesc:
       'Best-practice hotel revenue management from Indi: dynamic pricing, rate plans and segmentation that move with demand to capture the revenue static rates leave on the table.',
@@ -53,7 +53,7 @@ export const SERVICE_PAGES = {
   'digital-marketing': {
     label: 'Digital Marketing',
     icon: 'campaign',
-    accent: 'var(--color-palm)',
+    accent: 'var(--color-azure)',
     seoTitle: 'Hotel digital marketing, websites & direct booking campaigns',
     seoDesc:
       'A booking-ready website, professional photography and direct-booking campaigns from Indi, so guests find you, choose you, and book direct.',

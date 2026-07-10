@@ -5,8 +5,6 @@ import SectionHead from '../../components/SectionHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
 import { SERVICES } from '../../data/site.js';
-
-const accentVar = { ocean: 'var(--color-ocean)', clay: 'var(--color-clay)', palm: 'var(--color-palm)' };
 ---
 
 <BaseLayout
@@ -25,7 +23,7 @@ const accentVar = { ocean: 'var(--color-ocean)', clay: 'var(--color-clay)', palm
       <div class="grid gap-4 md:grid-cols-3">
         {SERVICES.map((s, i) => (
           <a href={`/services/${s.slug}`} class="card p-8 group flex flex-col hover:-translate-y-1 hover:shadow-[0_22px_44px_-26px_rgba(0,0,0,0.32)] transition-all" data-aos="fade-up" data-aos-delay={i * 80}>
-            <span class="w-12 h-12 rounded-xl flex items-center justify-center" style={`background:${accentVar[s.accent]}`}>
+            <span class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:var(--color-azure)">
               <Icon name={s.icon} size={24} class="text-white" />
             </span>
             <h2 class="display text-[25px] mt-6">{s.label}</h2>

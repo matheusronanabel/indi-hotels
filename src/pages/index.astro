@@ -6,13 +6,11 @@ import CtaBand from '../components/CtaBand.astro';
 import PhotoBlock from '../components/PhotoBlock.astro';
 import { CTA, SERVICES, JOURNEY, TIERS, SITE, TESTIMONIALS } from '../data/site.js';
 
-const accentVar: Record<string, string> = { ocean: 'var(--color-ocean)', clay: 'var(--color-clay)', palm: 'var(--color-palm)' };
-
 const opportunities = [
-  { icon: 'trending_up', title: 'Smarter acquisition', body: 'Keep more of every booking working for you.' },
-  { icon: 'monitoring', title: 'Pricing that moves with the market', body: 'Capture demand as it happens, day to day.' },
-  { icon: 'hub', title: 'One team, pulling together', body: 'Distribution, marketing and web working as one.' },
-  { icon: 'insights', title: 'Clarity on your upside', body: 'See exactly where the growth is, and go after it.' },
+  { icon: 'acquisition', title: 'Smarter acquisition', body: 'Keep more of every booking working for you.' },
+  { icon: 'price_trend', title: 'Pricing that moves with the market', body: 'Capture demand as it happens, day to day.' },
+  { icon: 'team_pull', title: 'One team, pulling together', body: 'Distribution, marketing and web working as one.' },
+  { icon: 'clarity', title: 'Clarity on your upside', body: 'See exactly where the growth is, and go after it.' },
 ];
 ---
 
@@ -23,8 +21,8 @@ const opportunities = [
   schema="organization"
 >
   <!-- HERO -->
-  <section class="bg-white relative overflow-hidden">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 min-h-screen sm:min-h-auto md:pt-36 md:pb-32 relative grid gap-12 lg:grid-cols-[1.15fr_0.85fr] items-center">
+  <section class="bg-sky/30 relative overflow-hidden">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 min-h-screen sm:min-h-auto md:pt-20 md:pb-32 relative grid gap-12 lg:grid-cols-[1.15fr_0.85fr] items-center">
       <div>
         <span class="eyebrow block mb-5" data-aos="fade-up">
           Commercial services for independent hotels
@@ -36,8 +34,8 @@ const opportunities = [
           Indi is the expert team behind your distribution, revenue management and digital marketing, working to grow your revenue, build direct market share and reduce your cost of guest acquisition.
         </p>
         <div class="flex flex-col sm:flex-row flex-w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto items-center gap-x-7 gap-y-4 mt-11" data-aos="fade-up" data-aos-delay="140">
-          <a href={CTA.href} class="btn block w-fit btn-clay text-[15px]">{CTA.label}</a>
-          <a href="/how-we-work" class="link text-[var(--color-ink)] hover:text-[var(--color-clay)]">
+          <a href={CTA.href} class="btn block w-fit btn-azure text-[15px]">{CTA.label}</a>
+          <a href="/how-we-work" class="link text-[var(--color-ink)] hover:text-[var(--color-azure)]">
             See how we work
             <Icon name="arrow_forward" size={17} />
           </a>
@@ -54,7 +52,7 @@ const opportunities = [
   </section>
 
   <!-- THE OPPORTUNITY -->
-  <section class="py-20 md:py-28 bg-paper">
+  <section class="py-20 md:py-28">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <SectionHead
         eyebrow="The opportunity"
@@ -74,7 +72,7 @@ const opportunities = [
   </section>
 
   <!-- WHAT WE DO -->
-  <section class="py-20 md:py-28 bg-[var(--color-ash)]">
+  <section class="py-20 md:py-28 bg-[var(--color-mist-grey)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <SectionHead
         eyebrow="What we do"
@@ -91,7 +89,7 @@ const opportunities = [
           >
             <span
               class="w-11 h-11 rounded-[10px] flex items-center justify-center"
-              style={`background:${accentVar[s.accent]}`}
+              style="background:var(--color-azure)"
             >
               <Icon name={s.icon} size={22} class="text-white" />
             </span>
@@ -117,7 +115,7 @@ const opportunities = [
       <div class="grid gap-x-8 gap-y-10 sm:grid-cols-3 mt-14">
         {JOURNEY.map((step, i) => (
           <div class="relative" data-aos="fade-up" data-aos-delay={i * 70}>
-            <span class="font-mono text-[13px] tracking-[0.1em] text-[var(--color-clay)]">{step.n}</span>
+            <span class="font-mono text-[13px] tracking-[0.1em] text-[var(--color-azure)]">{step.n}</span>
             <div class="h-px bg-[var(--color-line)] mt-3 mb-5"></div>
             <h3 class="font-semibold text-[18px]">{step.title}</h3>
             <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed">{step.body}</p>
@@ -154,7 +152,7 @@ const opportunities = [
             data-aos-delay={i * 80}
           >
             {t.popular && (
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-clay)] text-white font-mono text-[10px] tracking-[0.14em] uppercase px-3 py-1 rounded-full">
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-azure)] text-white font-mono text-[10px] tracking-[0.14em] uppercase px-3 py-1 rounded-full">
                 Most popular
               </span>
             )}
@@ -180,15 +178,15 @@ const opportunities = [
   </section>
 
   <!-- TESTIMONIAL -->
-  <section class="py-20 md:py-28 bg-ash">
+  <section class="py-20 md:py-28 bg-[var(--color-mist-grey)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <SectionHead
         eyebrow="In their words"
         heading="Owners, talking about Indi."
       />
       <div class="grid gap-4 md:grid-cols-3 mt-12">
-        <div class="tint-ocean rounded-2xl p-8 md:col-span-2 flex flex-col justify-center" data-aos="fade-up">
-          <p class="serif-italic text-[clamp(18px,2.2vw,24px)] text-[#23423f] leading-snug">
+        <div class="tint-azure rounded-2xl p-8 md:col-span-2 flex flex-col justify-center" data-aos="fade-up">
+          <p class="serif-italic text-[clamp(18px,2.2vw,24px)] text-[var(--color-azure-deep)] leading-snug">
             "{TESTIMONIALS[1].quote}"
           </p>
           <p class="font-mono text-[11.5px] tracking-[0.12em] uppercase text-[var(--color-grey)] mt-6">

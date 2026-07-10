@@ -57,7 +57,6 @@ export const SERVICES = [
     slug: 'distribution',
     label: 'Electronic Distribution',
     icon: 'lan', // material symbol
-    accent: 'ocean',
     tile:
       "Your channels and OTAs set up and optimised, connected cleanly to your systems, so you're visible everywhere that matters, without the chaos.",
   },
@@ -65,7 +64,6 @@ export const SERVICES = [
     slug: 'revenue-management',
     label: 'Revenue Management',
     icon: 'monitoring',
-    accent: 'clay',
     tile:
       'Best-practice pricing, rate plans and segmentation that move with demand, capturing revenue your fixed rates leave on the table.',
   },
@@ -73,7 +71,6 @@ export const SERVICES = [
     slug: 'digital-marketing',
     label: 'Digital Marketing',
     icon: 'campaign',
-    accent: 'palm',
     tile:
       'A booking-ready website, professional photography and direct-booking campaigns that turn lookers into direct bookings.',
   },

@@ -36,7 +36,7 @@ const what = [
         <ul class="mt-6 space-y-4">
           {what.map((w) => (
             <li class="flex gap-3 items-start">
-              <Icon name="check_circle" size={22} class="text-[var(--color-ocean)] shrink-0 mt-0.5" fill={1} />
+              <Icon name="check_circle" size={22} class="text-[var(--color-azure)] shrink-0 mt-0.5" fill={1} />
               <span class="text-[16px] text-[#3a3b3d] leading-relaxed">{w}</span>
             </li>
           ))}
@@ -99,7 +99,7 @@ const what = [
             <textarea id="message" name="message" rows="4" class="field resize-y" placeholder="Distribution, pricing, a new website, whatever's top of mind."></textarea>
           </div>
 
-          <button type="submit" id="submit-btn" class="btn block w-full btn-clay justify-center text-[15px]">
+          <button type="submit" id="submit-btn" class="btn block w-full btn-azure justify-center text-[15px]">
             Start my free discovery
           </button>
           <p id="form-status" class="text-[14px] text-center" role="status" aria-live="polite"></p>
@@ -126,8 +126,8 @@ const what = [
   }
   .field:focus {
     outline: none;
-    border-color: var(--color-ocean);
-    box-shadow: 0 0 0 3px rgba(46, 110, 116, 0.12);
+    border-color: var(--color-azure);
+    box-shadow: 0 0 0 3px rgba(20, 102, 224, 0.14);
   }
   .field::placeholder { color: #9a9c9e; }
 </style>
@@ -157,7 +157,7 @@ const what = [
     // Pretend success without actually submitting, so the bot doesn't know to adapt.
     if (form.querySelector('[name="botcheck"]').checked) {
       form.reset();
-      status.style.color = 'var(--color-ocean)';
+      status.style.color = 'var(--color-azure)';
       status.textContent = "Thanks, your discovery request is in. We'll be in touch shortly.";
       btn.textContent = 'Request received';
       return;
@@ -183,11 +183,11 @@ const what = [
         body: payload,
       });
       form.reset();
-      status.style.color = 'var(--color-ocean)';
+      status.style.color = 'var(--color-azure)';
       status.textContent = "Thanks, your discovery request is in. We'll be in touch shortly.";
       btn.textContent = 'Request received';
     } catch (err) {
-      status.style.color = 'var(--color-clay)';
+      status.style.color = 'var(--color-azure)';
       status.textContent = 'Sorry, that didn\u2019t send. Please email us directly and we\u2019ll sort it.';
       btn.disabled = false;
       btn.textContent = 'Start my free discovery';

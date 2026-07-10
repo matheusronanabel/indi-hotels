@@ -34,7 +34,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
       <div class="grid gap-x-8 gap-y-10 sm:grid-cols-3 mt-14">
         {journeyDetail.map((s, i) => (
           <div data-aos="fade-up" data-aos-delay={i * 70}>
-            <span class="font-mono text-[13px] tracking-[0.1em] text-[var(--color-clay)]">{s.n}</span>
+            <span class="font-mono text-[13px] tracking-[0.1em] text-[var(--color-azure)]">{s.n}</span>
             <div class="h-px bg-[var(--color-line)] mt-3 mb-5"></div>
             <h3 class="font-semibold text-[18px]">{s.title}</h3>
             <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed">{s.note}</p>
@@ -45,7 +45,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
   </section>
 
   <!-- ONBOARDING FOUNDATION -->
-  <section class="py-20 md:py-28 bg-[var(--color-ash)]">
+  <section class="py-20 md:py-28 bg-[var(--color-mist-grey)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-12 lg:grid-cols-[1fr_1fr] items-start">
       <SectionHead
         eyebrow="Onboarding"
@@ -82,7 +82,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
         {TIERS.map((t, i) => (
           <div class="card p-7 flex flex-col relative" data-aos="fade-up" data-aos-delay={i * 80}>
             {t.popular && (
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-clay)] text-white font-mono text-[10px] tracking-[0.14em] uppercase px-3 py-1 rounded-full">
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-azure)] text-white font-mono text-[10px] tracking-[0.14em] uppercase px-3 py-1 rounded-full">
                 Most popular
               </span>
             )}
@@ -109,7 +109,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
       </div>
 
       <!-- mandatory honesty note -->
-      <div class="mt-6 rounded-xl border-l-2 border-[var(--color-clay)] bg-[var(--color-ash)] p-6" data-aos="fade-up">
+      <div class="mt-6 rounded-xl border-l-2 border-[var(--color-azure)] bg-[var(--color-ash)] p-6" data-aos="fade-up">
         <p class="text-[15px] text-[#4a4b4d] leading-relaxed max-w-[70ch]">
           <strong class="text-[var(--color-ink)] font-semibold">About Quarterly:</strong> this is strategic oversight, not active yield management. It keeps your distribution, marketing and pricing strategy on track, but in markets where rates move week to week, quarterly reviews can't capture that movement. The more of the execution you hand to Indi (Monthly or Weekly), the more RevPAR upside you're positioned to capture.
         </p>
@@ -118,7 +118,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
         All partnerships run on a minimum 12-month term.
       </p>
       <div class="mt-8" data-aos="fade-up">
-        <a href={CTA.href} class="btn block w-fit btn-clay">{CTA.label}</a>
+        <a href={CTA.href} class="btn block w-fit btn-azure">{CTA.label}</a>
       </div>
     </div>
   </section>
@@ -142,7 +142,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
   </section>
 
   <!-- ROUTING SELECTOR -->
-  <section class="py-20 md:py-28">
+  <section class="py-20 md:py-28 bg-[var(--color-mist-grey)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <SectionHead
         eyebrow="Where do you fit?"

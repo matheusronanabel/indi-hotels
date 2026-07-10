@@ -1,6 +1,7 @@
 ---
-// Indi logo — sun over a horizon + Fraunces wordmark.
-// Mono by default. Clay sun is an occasional accent only.
+// Indi logo — Lockup 5b: Ascent mark (three ascending bars + beacon, reading as
+// a lowercase "i") + "Indi" wordmark in Space Grotesk 700.
+// Ink by default. Azure is for favicons, tiles and brand moments, not every lockup.
 interface Props {
   variant?: 'mono' | 'reversed' | 'accent';
   size?: number; // mark height in px
@@ -9,14 +10,19 @@ interface Props {
 }
 const { variant = 'accent', size = 30, wordmark = true, class: klass = '' } = Astro.props;
 
-const sun =
-  variant === 'reversed' ? '#F4F4F2' : variant === 'accent' ? '#A9684A' : '#1A1B1D';
-const bar = variant === 'reversed' ? '#F4F4F2' : '#1A1B1D';
-const word = variant === 'reversed' ? '#F4F4F2' : '#1A1B1D';
-const wmSize = size * 1.45;
+const ink = variant === 'reversed' ? '#FFFFFF' : '#0E1116';
+const accent = variant === 'reversed' ? '#FFFFFF' : '#1466E0';
+const barTop = variant === 'accent' || variant === 'reversed' ? accent : ink;
+const word = variant === 'reversed' ? '#FFFFFF' : '#0E1116';
+const wmSize = size * 0.9;
+const gap = size * 0.35;
 ---
 
-<span class={`inline-flex items-center gap-[0.42em] ${klass}`} aria-label="Indi">
+<span
+  class={`inline-flex items-center ${klass}`}
+  style={`gap:${gap}px`}
+  aria-label="Indi"
+>
   <svg
     width={size}
     height={size}
@@ -25,14 +31,15 @@ const wmSize = size * 1.45;
     aria-hidden="true"
     style="display:block;flex:none;"
   >
-    <circle cx="50" cy="42" r="21" fill={sun} />
-    <rect x="16" y="66" width="68" height="6" rx="3" fill={bar} />
+    <rect x="26" y="54" width="13" height="20" rx="6.5" fill={ink} />
+    <rect x="44" y="42" width="13" height="32" rx="6.5" fill={ink} />
+    <rect x="62" y="28" width="13" height="46" rx="6.5" fill={barTop} />
+    <circle cx="68.5" cy="18" r="5" fill={barTop} />
   </svg>
   {
     wordmark && (
       <span
-        class="display"
-        style={`font-size:${wmSize}px;color:${word};line-height:1;`}
+        style={`font-family:var(--font-wordmark);font-weight:700;letter-spacing:-0.03em;font-size:${wmSize}px;color:${word};line-height:1;`}
       >
         Indi
       </span>
