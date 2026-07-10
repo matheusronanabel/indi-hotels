@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
-import { CTA } from '../../data/site.js';
-import { SERVICE_PAGES, SERVICE_ORDER } from '../../data/services.js';
+import { CTA, TESTIMONIALS } from '../../data/site.js';
+import { SERVICE_PAGES, SERVICE_ORDER, PROOF_NOTE } from '../../data/services.js';
 
 export function getStaticPaths() {
   return SERVICE_ORDER.map((slug) => ({ params: { slug }, props: { slug } }));
@@ -18,6 +18,9 @@ const p = pages[slug];
 const idx = SERVICE_ORDER.indexOf(slug);
 const nextSlug = SERVICE_ORDER[(idx + 1) % SERVICE_ORDER.length];
 const next = pages[nextSlug];
+
+// rotate a different owner testimonial per capability page
+const testimonial = TESTIMONIALS[idx % TESTIMONIALS.length];
 ---
 
 <BaseLayout
@@ -86,8 +89,9 @@ const next = pages[nextSlug];
           <p class="text-[15px] text-[#4a4b4d] leading-relaxed">{p.honest}</p>
         </div>
       )}
-      <div class="mt-8" data-aos="fade-up">
+      <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3" data-aos="fade-up">
         <a href="/how-we-work" class="tlink">See how we work<Icon name="arrow_forward" size={16} /></a>
+        <a href="/services/projects" class="tlink">See standalone projects<Icon name="arrow_forward" size={16} /></a>
       </div>
     </div>
   </section>
@@ -95,7 +99,14 @@ const next = pages[nextSlug];
   <!-- PROOF (container) -->
   <section class="py-20 md:py-28 bg-[var(--color-ash)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead eyebrow="Proof" heading="Evidence, honestly framed." note="Client outcomes and testimonials for this capability are published on the Results page, never as a guaranteed result." />
+      <SectionHead eyebrow="Proof" heading={PROOF_NOTE.heading} note={PROOF_NOTE.body} />
+      <div class="card p-7 mt-8 max-w-[62ch]" data-aos="fade-up">
+        <Icon name="format_quote" size={26} class="text-[var(--color-line)]" fill={1} />
+        <p class="text-[15px] text-[#3a3b3d] leading-relaxed mt-3 italic">{testimonial.quote}</p>
+        <p class="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--color-grey)] mt-5 pt-5 border-t border-[var(--color-line)]">
+          {testimonial.name} · {testimonial.role} · {testimonial.property}
+        </p>
+      </div>
       <div class="mt-8" data-aos="fade-up">
         <a href="/results" class="tlink">See client results<Icon name="arrow_forward" size={16} /></a>
       </div>
@@ -115,5 +126,5 @@ const next = pages[nextSlug];
     </div>
   </section>
 
-  <CtaBand heading={p.closing} sub="A free commercial audit of your distribution, revenue and marketing. No cost, no commitment." />
+  <CtaBand heading={p.closing} sub="A free discovery across your distribution, revenue and marketing. No cost, no commitment." />
 </BaseLayout>

@@ -4,7 +4,7 @@ import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
 import PhotoBlock from '../components/PhotoBlock.astro';
 import Icon from '../components/Icon.astro';
-import { CTA, TESTIMONIALS, PROPERTIES } from '../data/site.js';
+import { CTA, TESTIMONIALS, PROPERTIES, SNAPSHOT } from '../data/site.js';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -21,10 +21,10 @@ import 'swiper/css/pagination';
       <div>
         <span class="eyebrow block mb-4" data-aos="fade-up">Results</span>
         <h1 class="display text-[clamp(34px,6vw,62px)] max-w-[16ch]" data-aos="fade-up">
-          Independent hotels,<br />performing <span class="border-b-2 border-[var(--color-clay)] pb-0.5">better</span>.
+          The proof is in <span class="border-b-2 border-[var(--color-clay)] pb-0.5">who trusts us</span>.
         </h1>
         <p class="serif-italic text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[44ch] mt-7" data-aos="fade-up" data-aos-delay="80">
-          Real properties, real owners, real commercial outcomes, in their own words.
+          Independent owners and operators partner with Indi to run their commercials. Here's who we work with, what they say, and how a direct-first strategy performs across our group.
         </p>
         <a href={CTA.href} class="btn block w-fit btn-clay mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
       </div>
@@ -35,18 +35,6 @@ import 'swiper/css/pagination';
           alt="Hotel property performing well"
         />
       </div>
-    </div>
-  </section>
-
-  <!-- HONESTY FRAME -->
-  <section class="py-20 md:py-28">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
-      <p class="serif-italic text-[clamp(22px,3vw,32px)] text-[var(--color-ink)] leading-snug max-w-[28ch]" data-aos="fade-up">
-        We won't promise you a number.
-      </p>
-      <p class="text-[18px] leading-relaxed text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">
-        No hotel group honestly can, and we won't pretend otherwise. What we can show you is the owners and properties who trust Indi with their commercials, and what they have to say about it.
-      </p>
     </div>
   </section>
 
@@ -83,6 +71,34 @@ import 'swiper/css/pagination';
     </div>
   </section>
 
+  <!-- MONTHLY GROUP SNAPSHOT -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="This month across the properties we work with" heading="A monthly snapshot, aggregated across our group." />
+      <div class="grid gap-4 sm:grid-cols-2 mt-10 max-w-[64ch]">
+        <div class="card p-7" data-aos="fade-up">
+          <span class="display text-[clamp(34px,4.4vw,48px)] text-[var(--color-clay)]">{SNAPSHOT.directShare}%</span>
+          <p class="text-[14px] text-[var(--color-grey)] mt-2 leading-relaxed">of bookings through direct and independent channels, well above industry average.</p>
+        </div>
+        <div class="card p-7" data-aos="fade-up" data-aos-delay="70">
+          <span class="display text-[clamp(34px,4.4vw,48px)] text-[var(--color-clay)]">~${SNAPSHOT.commissionSaved}k</span>
+          <p class="text-[14px] text-[var(--color-grey)] mt-2 leading-relaxed">in estimated travel-agent commission saved across our group.</p>
+        </div>
+      </div>
+      <p class="font-mono text-[11.5px] tracking-[0.06em] uppercase text-[var(--color-grey)] mt-6">Updated {SNAPSHOT.month}</p>
+      <p class="text-[13.5px] text-[var(--color-grey)] leading-relaxed mt-3 max-w-[64ch]">
+        Aggregate across the independent properties Indi works with. Direct-channel share and estimated commission savings, updated monthly. Individual results vary.
+      </p>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="py-20 md:py-28 bg-[var(--color-ash)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="Case studies" heading="Coming soon." note="A closer look at how Indi's approach plays out for real properties, built around the strategy and the owner's own words, not guaranteed numbers." />
+    </div>
+  </section>
+
   <!-- PROPERTIES -->
   <section class="py-20 md:py-28">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
@@ -114,7 +130,7 @@ import 'swiper/css/pagination';
     </div>
   </section>
 
-  <CtaBand heading="Your property could be the next result." sub="Start with a free audit. We'll show you where the upside is." />
+  <CtaBand heading="Your property could be the next result." sub="Start with a free discovery. We'll show you where the upside is." />
 </BaseLayout>
 
 <script>

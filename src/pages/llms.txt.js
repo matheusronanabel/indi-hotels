@@ -9,23 +9,24 @@ export async function GET() {
 
 ## What Indi does
 Three headline capabilities, delivered as one coordinated team:
-- [Electronic Distribution](${SITE.url}/services/distribution): channel strategy, OTA setup & optimisation, clean PMS/channel-manager connectivity, rate parity, GDS activation.
+- [Electronic Distribution](${SITE.url}/services/distribution): channel strategy, OTA setup & optimisation, clean PMS/channel-manager connectivity, custom channel positioning, GDS activation.
 - [Revenue Management](${SITE.url}/services/revenue-management): best-practice pricing, rate plans, segmentation, demand-based dynamic pricing, RMS implementation.
 - [Digital Marketing](${SITE.url}/services/digital-marketing): booking-ready websites, professional photography, direct-booking campaigns, positioning, metasearch.
+- [Projects](${SITE.url}/services/projects): standalone, fixed-scope work (website + booking engine, GDS activation, direct-channel optimisation, PMS setup, revenue management setup, professional photography), with or without an ongoing partnership.
 
 ## How owners engage
-- [How We Work](${SITE.url}/how-we-work): a free commercial audit, then productised onboarding (the foundation), then an ongoing partnership at Quarterly, Monthly or Weekly intensity, plus standalone projects. Minimum 12-month term on partnerships.
+- [How We Work](${SITE.url}/how-we-work): a free discovery, then productised onboarding (the foundation), then an ongoing partnership at Quarterly, Monthly or Weekly intensity, plus standalone projects. Minimum 12-month term on partnerships.
 
 ## Key pages
 - [Home](${SITE.url}/)
 - [Services overview](${SITE.url}/services)
 - [Results](${SITE.url}/results): client outcomes and testimonials, honestly framed.
-- [About](${SITE.url}/about): the integrated-team story and team.
-- [Free commercial audit (contact)](${SITE.url}/contact): the primary way to get in touch.
+- [About](${SITE.url}/about): the independence-with-expert-team story and team.
+- [Commercial Discovery (contact)](${SITE.url}/contact): the primary way to get in touch.
 
 ## Notes for agents
-- Brand name is "Indi" (not "Indi Hotels"); the domain ${SITE.legalDomain} reflects the industry served, not a hotel chain.
-- No public pricing: cost is established through the free audit and a tailored proposal.
+- Brand name is "Indi" (not "Indi Hotels"); the domain ${SITE.legalDomain} reflects the industry served.
+- No public pricing: cost is established through the free discovery and a tailored proposal.
 - Honesty rule: Indi never guarantees performance outcomes.
 - Audience: owners of small-to-midscale independent hotels and motels in Australia.
 - Contact: ${SITE.email}

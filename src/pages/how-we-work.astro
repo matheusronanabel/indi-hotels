@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
-import { CTA, TIERS, ROUTING, PROJECTS, JOURNEY } from '../data/site.js';
+import { CTA, TIERS, ROUTING, JOURNEY } from '../data/site.js';
 
 const journeyDetail = [
   { ...JOURNEY[0], note: 'A no-cost, no-commitment review. You get a clear picture of where the upside is, and a recommended path.' },
@@ -17,13 +17,13 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
 
 <BaseLayout
   title="How we work: bespoke commercial strategies for hotel owners"
-  description="A bespoke commercial strategy, built around your property. Every Indi partnership starts with a free audit and an intensive onboarding foundation, then ongoing support at the level you choose."
+  description="A bespoke commercial strategy, built around your property. Every Indi partnership starts with a free discovery and an intensive onboarding foundation, then ongoing support at the level you choose."
   path="/how-we-work"
 >
   <PageHero
     eyebrow="How we work"
     heading="A bespoke strategy, built around your property."
-    sub="Every Indi partnership begins with an intensive foundation built around your property, your market and your goals, then ongoing support at the level you choose."
+    sub="One team. The level of support you choose."
     secondary={{ label: 'See the three steps', href: '#journey' }}
   />
 
@@ -118,7 +118,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
         All partnerships run on a minimum 12-month term.
       </p>
       <div class="mt-8" data-aos="fade-up">
-        <a href={CTA.href} class="btn block w-fit btn-clay">{CTA.label}, we'll recommend the right level</a>
+        <a href={CTA.href} class="btn block w-fit btn-clay">{CTA.label}</a>
       </div>
     </div>
   </section>
@@ -132,18 +132,12 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
         heading="Need one thing fixed? We do projects too."
         note="Not ready for an ongoing partnership? Indi runs standalone projects with a fixed scope and a defined timeline, quoted per property. Many owners start here."
       />
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12">
-        {PROJECTS.map((p, i) => (
-          <div class="rounded-2xl border border-[#34373a] bg-[#202225] p-6" data-aos="fade-up" data-aos-delay={i * 60}>
-            <Icon name={p.icon} size={24} class="text-[#9a9c9e]" />
-            <h3 class="font-semibold text-[17px] mt-4 text-[var(--color-paper)]">{p.title}</h3>
-            <p class="text-[14.5px] text-[#C9C9C6] mt-1.5 leading-relaxed">{p.body}</p>
-          </div>
-        ))}
+      <div class="mt-8" data-aos="fade-up">
+        <a href="/services/projects" class="tlink" style="color:var(--color-paper)">
+          See what Indi takes on as a project
+          <Icon name="arrow_forward" size={16} />
+        </a>
       </div>
-      <p class="text-[15px] text-[#C9C9C6] leading-relaxed mt-7 max-w-[64ch]" data-aos="fade-up">
-        Every project is built to stand on its own, and to keep paying off. We can implement the system; an ongoing partnership keeps it optimised. Entirely your call.
-      </p>
     </div>
   </section>
 
@@ -153,7 +147,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
       <SectionHead
         eyebrow="Where do you fit?"
         heading="A starting point, not a rule."
-        note="Your free audit confirms the right fit for your property and market, but here's the pattern most owners follow."
+        note="Your free discovery confirms the right fit for your property and market, but here's the pattern most owners follow."
       />
       <div class="grid gap-4 sm:grid-cols-2 mt-12">
         {ROUTING.map((r, i) => (
@@ -169,13 +163,13 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
         ))}
       </div>
       <p class="text-[15px] text-[var(--color-grey)] leading-relaxed mt-7 max-w-[66ch]" data-aos="fade-up">
-        A boutique in a competitive market might need Weekly; a large property with a strong in-house team might choose Quarterly. Size is a clue, not the answer. The audit determines the actual fit.
+        A boutique in a competitive market might need Weekly, a large property with a strong in-house team might choose Quarterly. Size is a clue, not the answer. The discovery determines the actual fit.
       </p>
     </div>
   </section>
 
   <CtaBand
-    heading="One free audit. A clear path forward."
+    heading="One free discovery. A clear path forward."
     sub="We'll show you where the upside is and recommend how to capture it. No cost, no commitment."
   />
 </BaseLayout>

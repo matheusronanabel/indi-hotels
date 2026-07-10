@@ -2,7 +2,7 @@ export const prerender = true;
 
 import { SITE } from '../data/site.js';
 import { SERVICE_PAGES, SERVICE_ORDER } from '../data/services.js';
-import { TIERS, JOURNEY, PROJECTS } from '../data/site.js';
+import { TIERS, JOURNEY, PROJECT_ITEMS } from '../data/site.js';
 
 export async function GET() {
   const services = SERVICE_ORDER.map((slug) => {
@@ -13,7 +13,7 @@ export async function GET() {
 
   const journey = JOURNEY.map((s) => `${s.n}. **${s.title}**: ${s.body}`).join('\n');
   const tiers = TIERS.map((t) => `- **${t.cadence}** (${t.line}): ${t.who}. Best for: ${t.best}.`).join('\n');
-  const projects = PROJECTS.map((p) => `- **${p.title}**: ${p.body}`).join('\n');
+  const projects = PROJECT_ITEMS.map((p) => `- **${p.title}**: ${p.body}`).join('\n');
 
   const body = `# Indi Full Content
 
@@ -25,7 +25,7 @@ Indi is the expert commercial team behind independent hotels and motels in Austr
 - One integrated team, not a stitched-together supplier list.
 - We sell expertise (with technology as the toolkit), not software you self-serve.
 - Honesty rule: Indi never guarantees performance outcomes, and won't pretend otherwise.
-- Brand: "Indi". Domain and email stay on ${SITE.legalDomain}, which reads as the industry served, not a chain.
+- Brand: "Indi". Domain and email stay on ${SITE.legalDomain}, which reads as the industry served.
 
 ## Who it's for
 Owners of small-to-midscale independent hotels and motels in Australia, typically hands-on operators, often regional, without an in-house revenue or marketing function, wanting to grow direct bookings and having no time to manage pricing.
@@ -50,7 +50,7 @@ ${tiers}
 
 About Quarterly: this is strategic oversight, not active yield management. In markets where rates move week to week, the more execution you hand to Indi (Monthly or Weekly), the more RevPAR upside you're positioned to capture.
 
-Projects (standalone, fixed-scope, quoted per property):
+Projects (standalone, fixed-scope, quoted per property): ${SITE.url}/services/projects
 ${projects}
 
 ## Results
@@ -62,10 +62,10 @@ ${SITE.url}/about
 Indi gives independent hotel owners the commercial expertise and tools to compete, while the property stays entirely theirs. One team, not a stack of suppliers. Beliefs: independence is the point; honesty over hype; the work is the value. Team: Sonny (Founder & Revenue), Deby (Marketing), Yudi (Revenue), Abel (Developer), Yuka (Administrator). Based in Sunshine Coast, QLD, and Seminyak, Bali.
 
 ## Pricing
-No public pricing. Cost is established through a free commercial audit and a tailored proposal, the single front door to working with Indi.
+No public pricing. Cost is established through a free Commercial Discovery and a tailored proposal, the single front door to working with Indi.
 
 ## Contact
-Primary action: the free commercial audit at ${SITE.url}/contact, a no-cost, no-commitment review of your distribution, revenue and marketing.
+Primary action: the free Commercial Discovery at ${SITE.url}/contact, a no-cost, no-commitment review of your distribution, revenue and marketing.
 Email: ${SITE.email}
 `;
 

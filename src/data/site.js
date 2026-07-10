@@ -37,6 +37,7 @@ export const NAV = [
       { label: 'Distribution', href: '/services/distribution' },
       { label: 'Revenue Management', href: '/services/revenue-management' },
       { label: 'Digital Marketing', href: '/services/digital-marketing' },
+      { label: 'Projects', href: '/services/projects' },
     ],
   },
   { label: 'How We Work', href: '/how-we-work' },
@@ -45,8 +46,9 @@ export const NAV = [
 ];
 
 export const CTA = {
-  label: 'Get your free commercial audit',
-  short: 'Free commercial audit',
+  name: 'Commercial Discovery',
+  label: 'Start your free discovery',
+  short: 'Free discovery',
   href: '/contact',
 };
 
@@ -80,21 +82,21 @@ export const SERVICES = [
 export const JOURNEY = [
   {
     n: '01',
-    title: 'Free commercial audit',
+    title: 'Free discovery',
     body:
-      'We review your distribution, revenue and marketing, and show you where the upside is. No cost, no commitment.',
+      'A free look across your distribution, revenue and marketing, with practical ideas to help your hotel perform at its best.',
   },
   {
     n: '02',
     title: 'Onboarding',
     body:
-      'We build and implement your distribution, revenue and marketing strategy. This is where the value is created.',
+      'We build and put in place a bespoke commercial strategy, built around your property.',
   },
   {
     n: '03',
     title: 'Ongoing partnership',
     body:
-      'We keep it running and improving, at the level of support that fits your property.',
+      'We keep it running and improving, at the level of support that fits you.',
   },
 ];
 
@@ -103,20 +105,20 @@ export const TIERS = [
     cadence: 'Weekly',
     line: 'Your outsourced commercial team, Indi-led',
     who: 'Indi, adjusting continuously as the market moves',
-    best: 'Larger or complex assets, turnarounds, volatile demand',
+    best: 'Larger or complex properties, repositionings, and demand that moves fast.',
   },
   {
     cadence: 'Monthly',
     line: 'Active management, shared',
     who: 'Shared: Indi and you, with monthly reporting',
-    best: 'Most midscale properties wanting momentum',
+    best: 'Most midscale properties wanting real momentum.',
     popular: true,
   },
   {
     cadence: 'Quarterly',
-    line: 'Strategic oversight, owner-led execution',
+    line: 'Strategic oversight, owner-led',
     who: 'You do; Indi reviews and course-corrects each quarter',
-    best: 'Hands-on owners, stable demand',
+    best: 'Hands-on owners and steady demand.',
   },
 ];
 
@@ -143,33 +145,47 @@ export const ROUTING = [
   },
 ];
 
-export const PROJECTS = [
+// Content for the standalone Projects page (services/projects.astro).
+export const PROJECT_ITEMS = [
   {
     icon: 'language',
-    title: 'New website + booking engine',
-    body: 'A booking-ready site built to convert lookers into direct bookings.',
-  },
-  {
-    icon: 'photo_camera',
-    title: 'Professional photography',
-    body: 'The imagery your listings and website live or die on.',
-  },
-  {
-    icon: 'dns',
-    title: 'PMS selection & setup',
-    body: 'The right property management system, implemented properly.',
-  },
-  {
-    icon: 'tune',
-    title: 'RMS / dynamic pricing',
-    body: 'Set up your revenue management system to best practice.',
+    title: 'A new website and booking engine',
+    body: 'A fast, beautiful site built to convert, with direct booking at its heart.',
   },
   {
     icon: 'hub',
     title: 'GDS activation',
-    body: 'Open up corporate and travel-agent distribution.',
+    body: 'Open your property to corporate and travel-trade demand, set up and connected properly.',
+  },
+  {
+    icon: 'tune',
+    title: 'Direct-channel optimisation',
+    body: "Position your own website, phone and email as the best offer in the market, so more guests book with you directly.",
+  },
+  {
+    icon: 'dns',
+    title: 'PMS selection and setup',
+    body: 'The right property management system for your property, implemented without the headaches.',
+  },
+  {
+    icon: 'monitoring',
+    title: 'Revenue management setup',
+    body: 'Pricing structure, rate plans and tooling put in place to best practice.',
+  },
+  {
+    icon: 'photo_camera',
+    title: 'Professional photography',
+    body: 'Imagery that makes your property look as good as it is, and helps every channel perform.',
   },
 ];
+
+// Monthly group snapshot for the Results page. Update this single object each
+// month once Sonny supplies the figures. Placeholder brackets flag it as unpublished.
+export const SNAPSHOT = {
+  month: '[Month]',
+  directShare: '[XX]',
+  commissionSaved: '[XX]',
+};
 
 // Verbatim owner testimonials, published exactly as supplied and with consent.
 export const TESTIMONIALS = [

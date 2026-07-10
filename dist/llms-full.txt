@@ -8,7 +8,7 @@ Indi is the expert commercial team behind independent hotels and motels in Austr
 - One integrated team, not a stitched-together supplier list.
 - We sell expertise (with technology as the toolkit), not software you self-serve.
 - Honesty rule: Indi never guarantees performance outcomes, and won't pretend otherwise.
-- Brand: "Indi". Domain and email stay on indihotels.com.au, which reads as the industry served, not a chain.
+- Brand: "Indi". Domain and email stay on indihotels.com.au, which reads as the industry served.
 
 ## Who it's for
 Owners of small-to-midscale independent hotels and motels in Australia, typically hands-on operators, often regional, without an in-house revenue or marketing function, wanting to grow direct bookings and having no time to manage pricing.
@@ -21,27 +21,27 @@ https://indihotels.com.au/services/distribution
 **Be bookable everywhere, without losing control of your rates.**
 Indi sets up and manages your distribution so you're visible on the channels that matter, connected cleanly to your systems, with a channel mix that balances cost and reach.
 
-*The problem: Distribution that grows by accident leaves revenue on the table.*
-For most independents, distribution grows by accident: a few listings, set up years ago, never optimised. Acquisition costs climb. Rates drift out of parity. Channels aren't talking to your PMS, so someone's updating availability by hand. And without a direct-booking strategy, you never build the guest relationship that lowers your cost per acquisition over time. The problem isn't the channels you're on. It's having no strategy for how you use them.
+*The problem: Every channel, working with intent.*
+For most independents, distribution grows by accident, a few listings set up years ago and left to run. The opportunity is to make it deliberate. Rather than the same rate everywhere by default, Indi positions each channel with purpose, so every one earns its place and your direct channels, your own website, phone and email, are always your guests' best offer. Connected cleanly to your PMS, priced with intent, and built around a direct-booking strategy that lowers your cost of acquisition over time. The strength isn't just the channels you're on. It's the strategy behind how you use them.
 
 *What Indi does:*
 - **Channel strategy**: The right mix of OTAs, direct and other channels for your property and market, not a scattergun of listings.
 - **OTA setup & optimisation**: Listings, content and the levers that affect how you rank and convert.
 - **Clean connectivity**: Channel manager, PMS and booking engine working together, so availability and rates move once and update everywhere.
-- **Rate parity & integrity**: Keeping your pricing consistent and your direct channel competitive.
+- **Custom channel positioning**: Every channel priced with intent, so your direct channels are always your guests’ best offer.
 - **New channel & GDS activation**: Opening corporate and travel-trade demand when it’s right for you.
 - **Ongoing channel management**: Watching performance and shifting mix as demand changes.
 
-*How it's delivered:* Your distribution strategy is built and implemented during onboarding, then kept running and optimised through your ongoing partnership, at the intensity you choose. Need a specific piece done on its own (a GDS activation, a channel manager / PMS setup)? We run those as standalone projects too.
+*How it's delivered:* Your distribution strategy is built and implemented during onboarding, then kept running and optimised through your ongoing partnership, at the intensity you choose. Need a specific piece done on its own, a GDS activation, a channel manager or PMS setup? We run those as standalone projects too.
 
 ### Revenue Management
 https://indihotels.com.au/services/revenue-management
 
-**Stop leaving revenue on the table.**
-Indi brings best-practice pricing and revenue management to your property, rates that move with demand, segmented to capture what static pricing misses.
+**Pricing that captures what the market will pay.**
+Indi brings best-practice pricing and revenue management to your property, rates that move with demand, segmented to capture more of what’s out there.
 
-*The problem: Your rates sit still. The market doesn't.*
-Most independent properties price on gut feel and habit, a season rate, a weekend rate, and not much in between. Meanwhile demand shifts daily: events, weather, your comp set, the day of week. Every night you’re priced below what the market would pay, you lose revenue you’ll never get back. Every night you’re priced above it, you lose the booking. Getting this right is a full-time discipline most owners don’t have time for.
+*The problem: Pricing that moves with the market, every day.*
+Demand shifts daily, events, weather, your comp set, the day of week, and the opportunity is to move with it. Rather than a season rate and a weekend rate with not much in between, Indi builds pricing that responds to real demand signals, so every night is priced to capture what the market will pay. It’s a full-time discipline, and it’s exactly what we bring to your property.
 
 *What Indi does:*
 - **Pricing structure**: A rate framework built for your property, not a generic template.
@@ -52,7 +52,7 @@ Most independent properties price on gut feel and habit, a season rate, a weeken
 
 *How it's delivered:* Your revenue management strategy is built in onboarding. How actively it’s then run depends on your tier: Monthly and Weekly partnerships actively manage your pricing as the market moves, where the most upside lives, while Quarterly provides strategic oversight and course-correction rather than active yield management. Need only the system set up? We run RMS / dynamic pricing implementation as a standalone project.
 
-*Honest note:* No group can honestly promise you a number, and we won't pretend otherwise. What we can promise is the discipline and expertise that gives your asset the best shot at strong performance.
+*Honest note:* No group can honestly promise you a number, and we won't pretend otherwise. What we can promise is the discipline and expertise that gives your property the best shot at strong performance.
 
 ### Digital Marketing
 https://indihotels.com.au/services/digital-marketing
@@ -60,8 +60,8 @@ https://indihotels.com.au/services/digital-marketing
 **Turn lookers into direct bookings.**
 A booking-ready website, professional photography and direct-booking campaigns, so guests find you, choose you, and book direct with you.
 
-*The problem: Your most profitable bookings come direct, but only if guests can find you and want to book there.*
-A guest discovers your property, books through a third-party channel, and you pay for the privilege, then pay again next time, because you never captured the relationship. Often the direct alternative isn’t compelling: an ageing website that’s hard to book on, photography that doesn’t do the rooms justice, no campaigns driving guests to your own channel. Strong marketing is how you build a direct channel guests want to use, and grow your revenue while reducing your cost of acquisition over time.
+*The problem: Your most profitable bookings come direct, when guests can find you and want to book there.*
+Guests who book direct are your most profitable, and the opportunity is making that channel the one they want to use. A fast, modern website that’s easy to book on, photography that does the rooms justice, and campaigns that bring guests to your own channel, that’s what turns interest into direct bookings, and builds the guest relationship that lowers your cost of acquisition over time.
 
 *What Indi does:*
 - **Website + booking engine**: A fast, modern site built to convert, with booking built in.
@@ -79,25 +79,26 @@ PMS, RMS and channel-manager selection & setup, surfaced within Distribution and
 https://indihotels.com.au/how-we-work
 
 The journey:
-01. **Free commercial audit**: We review your distribution, revenue and marketing, and show you where the upside is. No cost, no commitment.
-02. **Onboarding**: We build and implement your distribution, revenue and marketing strategy. This is where the value is created.
-03. **Ongoing partnership**: We keep it running and improving, at the level of support that fits your property.
+01. **Free discovery**: A free look across your distribution, revenue and marketing, with practical ideas to help your hotel perform at its best.
+02. **Onboarding**: We build and put in place a bespoke commercial strategy, built around your property.
+03. **Ongoing partnership**: We keep it running and improving, at the level of support that fits you.
 
 Onboarding is the foundation, a dedicated, productised engagement where the three strategies are built and implemented. Every ongoing partnership runs on a minimum 12-month term.
 
 Levels of support (ascending intensity):
-- **Weekly** (Your outsourced commercial team, Indi-led): Indi, adjusting continuously as the market moves. Best for: Larger or complex assets, turnarounds, volatile demand.
-- **Monthly** (Active management, shared): Shared: Indi and you, with monthly reporting. Best for: Most midscale properties wanting momentum.
-- **Quarterly** (Strategic oversight, owner-led execution): You do; Indi reviews and course-corrects each quarter. Best for: Hands-on owners, stable demand.
+- **Weekly** (Your outsourced commercial team, Indi-led): Indi, adjusting continuously as the market moves. Best for: Larger or complex properties, repositionings, and demand that moves fast..
+- **Monthly** (Active management, shared): Shared: Indi and you, with monthly reporting. Best for: Most midscale properties wanting real momentum..
+- **Quarterly** (Strategic oversight, owner-led): You do; Indi reviews and course-corrects each quarter. Best for: Hands-on owners and steady demand..
 
 About Quarterly: this is strategic oversight, not active yield management. In markets where rates move week to week, the more execution you hand to Indi (Monthly or Weekly), the more RevPAR upside you're positioned to capture.
 
-Projects (standalone, fixed-scope, quoted per property):
-- **New website + booking engine**: A booking-ready site built to convert lookers into direct bookings.
-- **Professional photography**: The imagery your listings and website live or die on.
-- **PMS selection & setup**: The right property management system, implemented properly.
-- **RMS / dynamic pricing**: Set up your revenue management system to best practice.
-- **GDS activation**: Open up corporate and travel-agent distribution.
+Projects (standalone, fixed-scope, quoted per property): https://indihotels.com.au/services/projects
+- **A new website and booking engine**: A fast, beautiful site built to convert, with direct booking at its heart.
+- **GDS activation**: Open your property to corporate and travel-trade demand, set up and connected properly.
+- **Direct-channel optimisation**: Position your own website, phone and email as the best offer in the market, so more guests book with you directly.
+- **PMS selection and setup**: The right property management system for your property, implemented without the headaches.
+- **Revenue management setup**: Pricing structure, rate plans and tooling put in place to best practice.
+- **Professional photography**: Imagery that makes your property look as good as it is, and helps every channel perform.
 
 ## Results
 https://indihotels.com.au/results
@@ -108,8 +109,8 @@ https://indihotels.com.au/about
 Indi gives independent hotel owners the commercial expertise and tools to compete, while the property stays entirely theirs. One team, not a stack of suppliers. Beliefs: independence is the point; honesty over hype; the work is the value. Team: Sonny (Founder & Revenue), Deby (Marketing), Yudi (Revenue), Abel (Developer), Yuka (Administrator). Based in Sunshine Coast, QLD, and Seminyak, Bali.
 
 ## Pricing
-No public pricing. Cost is established through a free commercial audit and a tailored proposal, the single front door to working with Indi.
+No public pricing. Cost is established through a free Commercial Discovery and a tailored proposal, the single front door to working with Indi.
 
 ## Contact
-Primary action: the free commercial audit at https://indihotels.com.au/contact, a no-cost, no-commitment review of your distribution, revenue and marketing.
+Primary action: the free Commercial Discovery at https://indihotels.com.au/contact, a no-cost, no-commitment review of your distribution, revenue and marketing.
 Email: revenue@indihotels.com.au

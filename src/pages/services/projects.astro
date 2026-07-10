@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { CTA, PROJECT_ITEMS } from '../../data/site.js';
+---
+
+<BaseLayout
+  title="Projects: standalone commercial work for independent hotels"
+  description="Not every property needs ongoing support. Indi takes on standalone projects with a clear scope and a defined timeline, from a new website and booking engine to GDS activation and professional photography."
+  path="/services/projects"
+>
+  <PageHero
+    eyebrow="Projects"
+    heading="Expert help for a single, focused goal."
+    sub="Not every property needs ongoing support. Sometimes there's one important thing to get right, done properly, by a team that does it every day. Indi takes on standalone projects with a clear scope and a defined timeline, so you get expert delivery on the thing that matters most right now, with or without an ongoing partnership."
+  />
+
+  <!-- WHAT WE TAKE ON -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="What we take on" heading="A defined scope, delivered properly." />
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12">
+        {PROJECT_ITEMS.map((p, i) => (
+          <div class="card p-7" data-aos="fade-up" data-aos-delay={(i % 3) * 70}>
+            <span class="w-11 h-11 rounded-[10px] flex items-center justify-center bg-[var(--color-ash)]">
+              <Icon name={p.icon} size={22} class="text-[var(--color-ink)]" />
+            </span>
+            <h3 class="font-semibold text-[17px] mt-5">{p.title}</h3>
+            <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFT BRIDGE -->
+  <section class="py-20 md:py-28 bg-[var(--color-ash)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
+      <p class="serif-italic text-[clamp(20px,2.6vw,28px)] text-[var(--color-ink)] leading-snug max-w-[46ch]" data-aos="fade-up">
+        Every project stands on its own. And when it's done, it's easy to keep the momentum going with ongoing support, entirely your call.
+      </p>
+      <a href={CTA.href} class="btn block w-fit btn-clay mt-8" data-aos="fade-up" data-aos-delay="80">{CTA.label}</a>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Have one project in mind?"
+    sub="Tell us what you need done. No cost, no commitment to talk it through."
+  />
+</BaseLayout>

@@ -9,9 +9,11 @@
   /* monochrome spine */
   --color-ink: #1A1B1D;
   --color-paper: #F4F4F2;
+  --color-linen: #F4EEE1;
   --color-white: #FFFFFF;
   --color-ash: #ECECE9;
   --color-grey: #6F7173;
+  --color-stone: #8C8070;
   --color-line: #E2E2DF;
 
   /* accents — used sparingly, ocean leads */

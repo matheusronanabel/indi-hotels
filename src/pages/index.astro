@@ -8,11 +8,11 @@ import { CTA, SERVICES, JOURNEY, TIERS, SITE, TESTIMONIALS } from '../data/site.
 
 const accentVar: Record<string, string> = { ocean: 'var(--color-ocean)', clay: 'var(--color-clay)', palm: 'var(--color-palm)' };
 
-const problems = [
-  { icon: 'percent', title: 'Rising acquisition costs', body: 'More margin going out the door than it needs to.' },
-  { icon: 'schedule', title: 'No time to yield', body: 'Pricing rarely moves with demand.' },
-  { icon: 'shuffle', title: 'Scattered suppliers', body: 'Web, photography and marketing pulling in different directions.' },
-  { icon: 'help', title: 'Undiagnosed', body: "You can't see where the upside is." },
+const opportunities = [
+  { icon: 'trending_up', title: 'Smarter acquisition', body: 'Keep more of every booking working for you.' },
+  { icon: 'monitoring', title: 'Pricing that moves with the market', body: 'Capture demand as it happens, day to day.' },
+  { icon: 'hub', title: 'One team, pulling together', body: 'Distribution, marketing and web working as one.' },
+  { icon: 'insights', title: 'Clarity on your upside', body: 'See exactly where the growth is, and go after it.' },
 ];
 ---
 
@@ -53,20 +53,20 @@ const problems = [
     </div>
   </section>
 
-  <!-- THE PROBLEM -->
+  <!-- THE OPPORTUNITY -->
   <section class="py-20 md:py-28 bg-paper">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <SectionHead
-        eyebrow="The problem"
-        heading="Most independent owners are carrying this alone."
-        note="You're competing against hotels with whole commercial teams, and doing it between check-ins. Acquisition costs climb. Pricing sits still while the market moves. Marketing, photography and your website are scattered across different suppliers, or no one at all. You suspect the property could perform better. You just don't have the time, or the team, to prove it."
+        eyebrow="The opportunity"
+        heading="Imagine your commercials in expert hands."
+        note="You've built something independent, with its own character, run your way. What most owners never get is a full commercial team behind it, the people who live and breathe distribution, pricing and marketing every day. That's what Indi brings, specialists dedicated to your revenue, so the property performs at its best while you stay focused on your guests."
       />
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mt-12">
-        {problems.map((p, i) => (
+        {opportunities.map((o, i) => (
           <div class="card p-6" data-aos="fade-up" data-aos-delay={i * 70}>
-            <Icon name={p.icon} size={26} class="text-[var(--color-grey)]" />
-            <h3 class="font-semibold text-[17px] mt-4">{p.title}</h3>
-            <p class="text-[14.5px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{p.body}</p>
+            <Icon name={o.icon} size={26} class="text-[var(--color-grey)]" />
+            <h3 class="font-semibold text-[17px] mt-4">{o.title}</h3>
+            <p class="text-[14.5px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{o.body}</p>
           </div>
         ))}
       </div>
@@ -124,31 +124,13 @@ const problems = [
           </div>
         ))}
       </div>
-      <div class="mt-12" data-aos="fade-up">
+      <div class="mt-12 flex flex-wrap gap-x-8 gap-y-3" data-aos="fade-up">
         <a href="/how-we-work" class="tlink">
           See how we work in detail
           <Icon name="arrow_forward" size={16} />
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="py-16 md:py-20 bg-[var(--color-ash)]">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead
-        eyebrow="Projects"
-        heading="Need just one thing done?"
-        note="Not every property needs ongoing support. Indi also takes on standalone, fixed-scope projects, with or without a partnership."
-      />
-      <div class="flex flex-wrap gap-3 mt-8" data-aos="fade-up">
-        {['PMS selection & implementation', 'GDS activation', 'New website & booking engine', 'RMS / dynamic pricing setup'].map((item) => (
-          <span class="rounded-full border border-[var(--color-line)] bg-[var(--color-white)] px-4 py-2 text-[14px] text-[var(--color-grey)]">{item}</span>
-        ))}
-      </div>
-      <div class="mt-8" data-aos="fade-up">
-        <a href={CTA.href} class="tlink">
-          Talk to us about a project
+        <a href="/services/projects" class="tlink">
+          Need just one thing done? See Projects
           <Icon name="arrow_forward" size={16} />
         </a>
       </div>
@@ -182,7 +164,7 @@ const problems = [
             <p class="text-[14.5px] text-[#C9C9C6] leading-relaxed flex-1">{t.best}</p>
             {t.cadence === 'Quarterly' && (
               <p class="text-[13px] text-[#9a9c9e] mt-4 leading-relaxed border-t border-[#34373a] pt-4">
-                Worth knowing: Quarterly is oversight, not active yield management. In markets where rates move week to week, the more execution you hand to Indi, the more upside you capture.
+                Quarterly is strategic oversight rather than active day-to-day pricing. The more of the execution you hand to Indi, the more of the upside we can help you capture.
               </p>
             )}
           </div>
@@ -218,7 +200,7 @@ const problems = [
             Read more from the owners and properties that trust Indi with their commercials.
           </p>
           <span class="tlink mt-6">
-            See client results
+            See the properties who trust Indi
             <Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" />
           </span>
         </a>
@@ -227,7 +209,7 @@ const problems = [
   </section>
 
   <CtaBand
-    heading="See where your hotel is leaving money on the table."
-    sub="A free commercial audit of your distribution, revenue and marketing. No cost, no commitment."
+    heading="See your property through an expert's eyes."
+    sub="A free commercial discovery across your distribution, revenue and marketing, with clear, practical ideas to help your hotel perform at its best. No cost, no commitment."
   />
 </BaseLayout>
