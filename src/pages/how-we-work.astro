@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { CTA, TIERS, ROUTING, PROJECTS, JOURNEY } from '../data/site.js';
+
+const journeyDetail = [
+  { ...JOURNEY[0], note: 'A no-cost, no-commitment review. You get a clear picture of where the upside is, and a recommended path.' },
+  { n: '02', title: 'Onboarding: the foundation', note: 'We build and implement a bespoke distribution, revenue and marketing strategy around your property. This is where the value is created; everything that follows runs on it.' },
+  { n: '03', title: 'Ongoing partnership', note: 'We keep the strategy running and improving, at the level of support that fits your property, Quarterly, Monthly or Weekly.' },
+];
+
+const tierLabels = ['Indi-led', 'Active', 'Oversight'];
+---
+
+<BaseLayout
+  title="How we work: bespoke commercial strategies for hotel owners"
+  description="A bespoke commercial strategy, built around your property. Every Indi partnership starts with a free audit and an intensive onboarding foundation, then ongoing support at the level you choose."
+  path="/how-we-work"
+>
+  <PageHero
+    eyebrow="How we work"
+    heading="A bespoke strategy, built around your property."
+    sub="Every Indi partnership begins with an intensive foundation built around your property, your market and your goals, then ongoing support at the level you choose."
+    secondary={{ label: 'See the three steps', href: '#journey' }}
+  />
+
+  <!-- JOURNEY -->
+  <section id="journey" class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="The journey" heading="How an Indi partnership works." />
+      <div class="grid gap-x-8 gap-y-10 sm:grid-cols-3 mt-14">
+        {journeyDetail.map((s, i) => (
+          <div data-aos="fade-up" data-aos-delay={i * 70}>
+            <span class="font-mono text-[13px] tracking-[0.1em] text-[var(--color-clay)]">{s.n}</span>
+            <div class="h-px bg-[var(--color-line)] mt-3 mb-5"></div>
+            <h3 class="font-semibold text-[18px]">{s.title}</h3>
+            <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed">{s.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ONBOARDING FOUNDATION -->
+  <section class="py-20 md:py-28 bg-[var(--color-ash)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-12 lg:grid-cols-[1fr_1fr] items-start">
+      <SectionHead
+        eyebrow="Onboarding"
+        heading="It starts with a bespoke foundation, not a subscription."
+        note="Every Indi partnership begins with a bespoke commercial strategy, built around your property, your market, your guests, your goals. Before any ongoing work begins, we build and implement the three strategies your commercial performance depends on."
+      />
+      <div class="space-y-4" data-aos="fade-up">
+        {[
+          { t: 'Distribution strategy', b: 'Channel mix, OTA setup and optimisation, clean connectivity.' },
+          { t: 'Revenue management strategy', b: 'Pricing structure, rate plans, segmentation.' },
+          { t: 'Marketing strategy', b: 'Direct-booking drivers, positioning, key campaigns.' },
+        ].map((x) => (
+          <div class="card p-6">
+            <h3 class="font-semibold text-[17px]">{x.t}</h3>
+            <p class="text-[15px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{x.b}</p>
+          </div>
+        ))}
+        <p class="text-[15px] text-[var(--color-grey)] leading-relaxed pt-2">
+          This is the work that drives your results, so onboarding is a dedicated, productised engagement in its own right, not a free add-on. Every ongoing partnership runs on a <strong class="text-[var(--color-ink)] font-semibold">minimum 12-month term</strong>, so the strategy has runway to do its job.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIERS -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        eyebrow="Your level of support"
+        heading="Choose your level of support."
+        note="Every property is different, so support is too. The difference between tiers isn't how often we talk, it's how much of the day-to-day commercial work you'd like us to run."
+      />
+      <div class="grid gap-4 md:grid-cols-3 mt-12">
+        {TIERS.map((t, i) => (
+          <div class="card p-7 flex flex-col relative" data-aos="fade-up" data-aos-delay={i * 80}>
+            {t.popular && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-clay)] text-white font-mono text-[10px] tracking-[0.14em] uppercase px-3 py-1 rounded-full">
+                Most popular
+              </span>
+            )}
+            <div class="flex items-center justify-between">
+              <h3 class="display text-[26px]">{t.cadence}</h3>
+              <span class="font-mono text-[11px] tracking-[0.12em] uppercase text-[var(--color-grey)]">
+                {tierLabels[i]}
+              </span>
+            </div>
+            <p class="serif-italic text-[16px] text-[#3a3b3d] mt-1">{t.line}</p>
+            <div class="h-px bg-[var(--color-line)] my-5"></div>
+            <dl class="space-y-4 text-[14.5px] flex-1">
+              <div>
+                <dt class="font-mono text-[10.5px] tracking-[0.12em] uppercase text-[var(--color-grey)]">Who runs the day-to-day</dt>
+                <dd class="mt-1 leading-relaxed">{t.who}</dd>
+              </div>
+              <div>
+                <dt class="font-mono text-[10.5px] tracking-[0.12em] uppercase text-[var(--color-grey)]">Best for</dt>
+                <dd class="mt-1 leading-relaxed">{t.best}</dd>
+              </div>
+            </dl>
+          </div>
+        ))}
+      </div>
+
+      <!-- mandatory honesty note -->
+      <div class="mt-6 rounded-xl border-l-2 border-[var(--color-clay)] bg-[var(--color-ash)] p-6" data-aos="fade-up">
+        <p class="text-[15px] text-[#4a4b4d] leading-relaxed max-w-[70ch]">
+          <strong class="text-[var(--color-ink)] font-semibold">About Quarterly:</strong> this is strategic oversight, not active yield management. It keeps your distribution, marketing and pricing strategy on track, but in markets where rates move week to week, quarterly reviews can't capture that movement. The more of the execution you hand to Indi (Monthly or Weekly), the more RevPAR upside you're positioned to capture.
+        </p>
+      </div>
+      <p class="font-mono text-[12px] tracking-[0.06em] text-[var(--color-grey)] mt-5">
+        All partnerships run on a minimum 12-month term.
+      </p>
+      <div class="mt-8" data-aos="fade-up">
+        <a href={CTA.href} class="btn block w-fit btn-clay">{CTA.label}, we'll recommend the right level</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="py-20 md:py-28 bg-[var(--color-ink)] text-[var(--color-paper)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        light
+        eyebrow="Projects"
+        heading="Need one thing fixed? We do projects too."
+        note="Not ready for an ongoing partnership? Indi runs standalone projects with a fixed scope and a defined timeline, quoted per property. Many owners start here."
+      />
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12">
+        {PROJECTS.map((p, i) => (
+          <div class="rounded-2xl border border-[#34373a] bg-[#202225] p-6" data-aos="fade-up" data-aos-delay={i * 60}>
+            <Icon name={p.icon} size={24} class="text-[#9a9c9e]" />
+            <h3 class="font-semibold text-[17px] mt-4 text-[var(--color-paper)]">{p.title}</h3>
+            <p class="text-[14.5px] text-[#C9C9C6] mt-1.5 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-[15px] text-[#C9C9C6] leading-relaxed mt-7 max-w-[64ch]" data-aos="fade-up">
+        Every project is built to stand on its own, and to keep paying off. We can implement the system; an ongoing partnership keeps it optimised. Entirely your call.
+      </p>
+    </div>
+  </section>
+
+  <!-- ROUTING SELECTOR -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        eyebrow="Where do you fit?"
+        heading="A starting point, not a rule."
+        note="Your free audit confirms the right fit for your property and market, but here's the pattern most owners follow."
+      />
+      <div class="grid gap-4 sm:grid-cols-2 mt-12">
+        {ROUTING.map((r, i) => (
+          <a href={CTA.href} class="card p-7 flex items-start gap-5 group hover:-translate-y-1 hover:shadow-[0_22px_44px_-26px_rgba(0,0,0,0.3)] transition-all" data-aos="fade-up" data-aos-delay={i * 70}>
+            <span class="w-12 h-12 rounded-xl bg-[var(--color-ash)] flex items-center justify-center shrink-0">
+              <Icon name={r.icon} size={24} class="text-[var(--color-ink)]" />
+            </span>
+            <div>
+              <h3 class="font-semibold text-[17px]">{r.when}</h3>
+              <p class="text-[15px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{r.then}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="text-[15px] text-[var(--color-grey)] leading-relaxed mt-7 max-w-[66ch]" data-aos="fade-up">
+        A boutique in a competitive market might need Weekly; a large property with a strong in-house team might choose Quarterly. Size is a clue, not the answer. The audit determines the actual fit.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="One free audit. A clear path forward."
+    sub="We'll show you where the upside is and recommend how to capture it. No cost, no commitment."
+  />
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { SERVICES } from '../../data/site.js';
+
+const accentVar = { ocean: 'var(--color-ocean)', clay: 'var(--color-clay)', palm: 'var(--color-palm)' };
+---
+
+<BaseLayout
+  title="Commercial services for independent hotels"
+  description="Indi's three headline capabilities for independent hotels and motels: electronic distribution, revenue management and digital marketing, delivered as one coordinated team."
+  path="/services"
+>
+  <PageHero
+    eyebrow="Commercial services"
+    heading="One team for everything that drives your revenue."
+    sub="Distribution, revenue management and marketing, coordinated, not stitched together. Each capability below is run by people who do this for a living."
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <div class="grid gap-4 md:grid-cols-3">
+        {SERVICES.map((s, i) => (
+          <a href={`/services/${s.slug}`} class="card p-8 group flex flex-col hover:-translate-y-1 hover:shadow-[0_22px_44px_-26px_rgba(0,0,0,0.32)] transition-all" data-aos="fade-up" data-aos-delay={i * 80}>
+            <span class="w-12 h-12 rounded-xl flex items-center justify-center" style={`background:${accentVar[s.accent]}`}>
+              <Icon name={s.icon} size={24} class="text-white" />
+            </span>
+            <h2 class="display text-[25px] mt-6">{s.label}</h2>
+            <p class="text-[15px] text-[var(--color-grey)] mt-3 leading-relaxed flex-1">{s.tile}</p>
+            <span class="tlink mt-6">Explore<Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" /></span>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-12 rounded-2xl bg-[var(--color-ash)] p-8 max-w-[72ch]" data-aos="fade-up">
+        <span class="eyebrow">Delivered within partnerships &amp; projects</span>
+        <h3 class="display text-[22px] mt-3">Systems &amp; Technology</h3>
+        <p class="text-[15px] text-[var(--color-grey)] mt-3 leading-relaxed">
+          PMS, RMS and channel-manager selection &amp; setup is surfaced within Distribution and Revenue Management, and offered as standalone projects. There's no separate page because it's part of the work, not a product.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Not sure where to start? The audit tells you." sub="A free commercial audit shows you which capability holds the most upside for your property." />
+</BaseLayout>

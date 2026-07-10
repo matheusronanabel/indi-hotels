@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CTA } from '../data/site.js';
+---
+<BaseLayout title="Page not found" description="That page doesn't exist. Find your way back to Indi's commercial services for independent hotels." path="/404">
+  <section class="bg-[var(--color-ink)] text-[var(--color-paper)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 py-28 md:py-36 text-center">
+      <span class="eyebrow block mb-4" style="color:#9a9c9e">Error 404</span>
+      <h1 class="display text-[clamp(36px,6vw,64px)]">This page checked out.</h1>
+      <p class="serif-italic text-[clamp(19px,2.4vw,24px)] text-[#D7D7D4] mt-6 max-w-[40ch] mx-auto">
+        The link's gone, but your upside hasn't. Let's get you back on track.
+      </p>
+      <div class="flex flex-w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 gap-4 justify-center mt-10">
+        <a href="/" class="btn block w-fit  btn-paper">Back to home</a>
+        <a href={CTA.href} class="btn block w-fit  btn-ocean">{CTA.short}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

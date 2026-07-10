@@ -1,0 +1,41 @@
+---
+// Indi logo — sun over a horizon + Fraunces wordmark.
+// Mono by default. Clay sun is an occasional accent only.
+interface Props {
+  variant?: 'mono' | 'reversed' | 'accent';
+  size?: number; // mark height in px
+  wordmark?: boolean;
+  class?: string;
+}
+const { variant = 'accent', size = 30, wordmark = true, class: klass = '' } = Astro.props;
+
+const sun =
+  variant === 'reversed' ? '#F4F4F2' : variant === 'accent' ? '#A9684A' : '#1A1B1D';
+const bar = variant === 'reversed' ? '#F4F4F2' : '#1A1B1D';
+const word = variant === 'reversed' ? '#F4F4F2' : '#1A1B1D';
+const wmSize = size * 1.45;
+---
+
+<span class={`inline-flex items-center gap-[0.42em] ${klass}`} aria-label="Indi">
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 100 100"
+    role="img"
+    aria-hidden="true"
+    style="display:block;flex:none;"
+  >
+    <circle cx="50" cy="42" r="21" fill={sun} />
+    <rect x="16" y="66" width="68" height="6" rx="3" fill={bar} />
+  </svg>
+  {
+    wordmark && (
+      <span
+        class="display"
+        style={`font-size:${wmSize}px;color:${word};line-height:1;`}
+      >
+        Indi
+      </span>
+    )
+  }
+</span>

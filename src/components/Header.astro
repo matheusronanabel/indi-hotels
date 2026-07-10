@@ -1,0 +1,167 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { NAV, CTA } from '../data/site.js';
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-paper)]/85 backdrop-blur-md">
+  <div class="w-full px-4 sm:px-0 max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto flex items-center justify-between h-[68px] gap-6">
+    <a href="/" class="shrink-0" aria-label="Indi home">
+      <Logo size={26} />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
+      {
+        NAV.map((item) =>
+          item.children ? (
+            <div class="relative group">
+              <a
+                href={item.href}
+                class:list={[
+                  'flex items-center gap-1 px-3 py-2 rounded-md text-[15px] font-semibold transition-colors',
+                  isActive(item.href)
+                    ? 'text-[var(--color-ink)]'
+                    : 'text-[var(--color-grey)] hover:text-[var(--color-ink)]',
+                ]}
+                aria-haspopup="true"
+              >
+                {item.label}
+                <Icon name="expand_more" size={18} class="transition-transform group-hover:rotate-180" />
+              </a>
+              <div class="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200">
+                <div class="card p-2 min-w-[244px] shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]">
+                  {item.children.map((c) => (
+                    <a
+                      href={c.href}
+                      class:list={[
+                        'block px-3 py-2.5 rounded-lg text-[15px] font-medium transition-colors',
+                        isActive(c.href)
+                          ? 'bg-[var(--color-ash)] text-[var(--color-ink)]'
+                          : 'text-[var(--color-grey)] hover:bg-[var(--color-ash)] hover:text-[var(--color-ink)]',
+                      ]}
+                    >
+                      {c.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class:list={[
+                'px-3 py-2 rounded-md text-[15px] font-semibold transition-colors',
+                isActive(item.href)
+                  ? 'text-[var(--color-ink)]'
+                  : 'text-[var(--color-grey)] hover:text-[var(--color-ink)]',
+              ]}
+            >
+              {item.label}
+            </a>
+          )
+        )
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <!-- CTA only in desktop bar; on mobile it lives inside the toggled menu -->
+        <a href={CTA.href} class="btn btn-clay hidden sm:inline-flex">{CTA.short}</a>
+
+      <button
+        id="menu-toggle"
+        class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-[var(--color-line)] text-[var(--color-ink)]"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="nav-icon-open">
+          <Icon name="menu" size={22} />
+        </span>
+        <span class="nav-icon-close hidden">
+          <Icon name="close" size={22} />
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu — animated via max-height + opacity -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden overflow-hidden border-t border-[var(--color-line)] bg-[var(--color-paper)] px-4"
+    style="max-height: 0; opacity: 0; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;"
+    aria-hidden="true"
+  >
+    <nav class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto py-5 flex flex-col" aria-label="Mobile">
+      {
+        NAV.map((item) => (
+          <>
+            <a
+              href={item.href}
+              class="py-3 text-[17px] font-semibold border-b border-[var(--color-line)] text-[var(--color-ink)]"
+            >
+              {item.label}
+            </a>
+            {item.children && (
+              <div class="flex flex-col pl-4 border-b border-[var(--color-line)]">
+                {item.children.map((c) => (
+                  <a href={c.href} class="py-2.5 text-[15px] text-[var(--color-grey)]">
+                    {c.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </>
+        ))
+      }
+      <a href={CTA.href} class="btn btn-clay text-center mt-5 justify-center">{CTA.label}</a>
+      <div class="pb-2"></div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu') as HTMLElement | null;
+  const iconOpen = toggle?.querySelector('.nav-icon-open');
+  const iconClose = toggle?.querySelector('.nav-icon-close');
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    if (menu) {
+      menu.style.maxHeight = `${menu.scrollHeight}px`;
+      menu.style.opacity = '1';
+      menu.setAttribute('aria-hidden', 'false');
+    }
+    toggle?.setAttribute('aria-expanded', 'true');
+    toggle?.setAttribute('aria-label', 'Close menu');
+    iconOpen?.classList.add('hidden');
+    iconClose?.classList.remove('hidden');
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    if (menu) {
+      menu.style.maxHeight = '0';
+      menu.style.opacity = '0';
+      menu.setAttribute('aria-hidden', 'true');
+    }
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Open menu');
+    iconOpen?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+  }
+
+  toggle?.addEventListener('click', () => {
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  // Close when a link inside the menu is tapped
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>

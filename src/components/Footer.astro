@@ -1,0 +1,69 @@
+---
+import Logo from './Logo.astro';
+import { NAV, CTA, SITE, SERVICES } from '../data/site.js';
+const year = new Date().getFullYear();
+---
+<footer class="bg-[var(--color-paper)] border-t border-[var(--color-line)]">
+  <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 py-20 md:py-24">
+    <div class="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div>
+        <Logo size={28} />
+        <p class="serif-italic text-[19px] text-[#3a3b3d] mt-5 max-w-[30ch]">
+          The commercial team and tech behind independent hotels.
+        </p>
+        <p class="eyebrow mt-5 mb-1">Commercial services for independent hotels.</p>
+        <a href={CTA.href} class="btn block w-fit btn-clay mt-4">{CTA.short}</a>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-4">Services</p>
+        <ul class="space-y-2.5">
+          {SERVICES.map((s) => (
+            <li>
+              <a href={`/services/${s.slug}`} class="text-[15px] text-[var(--color-grey)] hover:text-[var(--color-ink)] transition-colors">
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-4">Company</p>
+        <ul class="space-y-2.5">
+          {NAV.filter((n) => n.label !== 'Services').map((n) => (
+            <li>
+              <a href={n.href} class="text-[15px] text-[var(--color-grey)] hover:text-[var(--color-ink)] transition-colors">
+                {n.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href={CTA.href} class="text-[15px] text-[var(--color-grey)] hover:text-[var(--color-ink)] transition-colors">
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-4">Get in touch</p>
+        <a href={`mailto:${SITE.email}`} class="text-[15px] text-[var(--color-grey)] hover:text-[var(--color-ink)] transition-colors break-all">
+          {SITE.email}
+        </a>
+        <p class="text-[13px] text-[var(--color-grey)] mt-3 leading-relaxed max-w-[28ch]">
+          Commercial services for independent hotels &amp; motels across Australia.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-[var(--color-line)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <p class="font-mono text-[11.5px] tracking-[0.04em] text-[var(--color-grey)] uppercase">
+        © {year} Indi · {SITE.legalDomain}
+      </p>
+      <p class="font-mono text-[11.5px] tracking-[0.04em] text-[var(--color-grey)] uppercase">
+        Independent. Like you.
+      </p>
+    </div>
+  </div>
+</footer>

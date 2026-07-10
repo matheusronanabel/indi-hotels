@@ -1,0 +1,45 @@
+# Indi — Hostinger / Apache config
+# SSL, caching, compression + 301 redirect map for retired guest URLs.
+
+# --- Force HTTPS ---
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# --- 301 redirects: old guest pages -> nearest new page ---
+# (Site repositioned from guest "collection" to B2B commercial services.)
+Redirect 301 /hotels            /results
+Redirect 301 /our-hotels        /results
+Redirect 301 /collection        /results
+Redirect 301 /restaurants       /
+Redirect 301 /meetings          /services
+Redirect 301 /book              /contact
+Redirect 301 /book-now          /contact
+Redirect 301 /booking           /contact
+Redirect 301 /membership        /how-we-work
+Redirect 301 /ih-membership     /how-we-work
+Redirect 301 /contact-us        /contact
+
+# --- Compression ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# --- Browser caching ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# --- Security headers ---
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+ErrorDocument 404 /404.html

@@ -1,0 +1,26 @@
+---
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  note?: string;
+  align?: 'left' | 'center';
+  light?: boolean; // for dark backgrounds
+}
+const { eyebrow, heading, note, align = 'left', light = false } = Astro.props;
+const alignCls = align === 'center' ? 'text-center mx-auto' : '';
+---
+<div class:list={['max-w-[60ch]', alignCls]} data-aos="fade-up">
+  {eyebrow && (
+    <span class="eyebrow" style={light ? 'color:#9a9c9e' : ''}>{eyebrow}</span>
+  )}
+  <h2
+    class:list={['display text-[clamp(26px,3.6vw,40px)] mt-3', light ? 'text-[var(--color-paper)]' : 'text-[var(--color-ink)]']}
+  >
+    <Fragment set:html={heading} />
+  </h2>
+  {note && (
+    <p class:list={['mt-4 text-[16.5px] leading-relaxed', light ? 'text-[#C9C9C6]' : 'text-[var(--color-grey)]']}>
+      {note}
+    </p>
+  )}
+</div>

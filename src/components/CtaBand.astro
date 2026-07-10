@@ -1,0 +1,15 @@
+---
+import { CTA } from '../data/site.js';
+interface Props {
+  heading: string;
+  sub?: string;
+}
+const { heading, sub } = Astro.props;
+---
+<section class="bg-[var(--color-ink)] text-[var(--color-paper)]">
+  <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 py-24 md:py-32 text-center" data-aos="fade-up">
+    <h2 class="display text-[clamp(28px,4.6vw,46px)] max-w-[18ch] mx-auto">{heading}</h2>
+    {sub && <p class="mt-5 text-[17px] text-[#C9C9C6] max-w-[52ch] mx-auto">{sub}</p>}
+    <a href={CTA.href} class="btn btn-paper block w-fit mx-auto mt-9 text-[15px]">{CTA.label}</a>
+  </div>
+</section>

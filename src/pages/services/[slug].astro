@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { CTA } from '../../data/site.js';
+import { SERVICE_PAGES, SERVICE_ORDER } from '../../data/services.js';
+
+export function getStaticPaths() {
+  return SERVICE_ORDER.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.props;
+const pages = SERVICE_PAGES as Record<string, (typeof SERVICE_PAGES)[keyof typeof SERVICE_PAGES]>;
+const p = pages[slug];
+
+// next service for cross-link
+const idx = SERVICE_ORDER.indexOf(slug);
+const nextSlug = SERVICE_ORDER[(idx + 1) % SERVICE_ORDER.length];
+const next = pages[nextSlug];
+---
+
+<BaseLayout
+  title={p.seoTitle}
+  description={p.seoDesc}
+  path={`/services/${slug}`}
+  serviceName={p.label}
+>
+  <!-- HERO -->
+  <section class="bg-[var(--color-paper)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32">
+      <span class="inline-flex items-center gap-2.5 mb-6" data-aos="fade-up">
+        <span class="w-9 h-9 rounded-lg flex items-center justify-center" style={`background:${p.accent}`}>
+          <Icon name={p.icon} size={20} class="text-white" />
+        </span>
+        <span class="eyebrow">{p.label}</span>
+      </span>
+      <h1 class="display text-[clamp(32px,5.6vw,58px)] max-w-[20ch]" data-aos="fade-up">{p.h1}</h1>
+      <p class="serif-italic text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
+        {p.sub}
+      </p>
+      <a href={CTA.href} class="btn block w-fit btn-clay mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
+      <SectionHead eyebrow="The problem" heading={p.problemHeading} />
+      <p class="text-[18px] leading-relaxed text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">
+        {p.problemBody}
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT INDI DOES -->
+  <section class="py-20 md:py-28 bg-[var(--color-ash)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="What Indi does" heading="The actual work." />
+      <div class="grid gap-4 md:grid-cols-2 mt-12">
+        {p.work.map((row: string[], i: number) => {
+          const [t, b] = row;
+          return (
+            <div class="card p-6 flex gap-4" data-aos="fade-up" data-aos-delay={(i % 2) * 70}>
+              <span class="font-mono text-[12px] text-[var(--color-grey)] pt-1 shrink-0">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h3 class="font-semibold text-[17px]">{t}</h3>
+                <p class="text-[15px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{b}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT'S DELIVERED -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
+      <SectionHead eyebrow="How it's delivered" heading="Built in onboarding. Run at the intensity you choose." />
+      <p class="text-[18px] leading-relaxed text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">{p.delivery}</p>
+      {p.honest && (
+        <div class="mt-8 rounded-xl border-l-2 border-[var(--color-clay)] bg-[var(--color-ash)] p-6 max-w-[66ch]" data-aos="fade-up">
+          <p class="text-[15px] text-[#4a4b4d] leading-relaxed">{p.honest}</p>
+        </div>
+      )}
+      <div class="mt-8" data-aos="fade-up">
+        <a href="/how-we-work" class="tlink">See how we work<Icon name="arrow_forward" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF (container) -->
+  <section class="py-20 md:py-28 bg-[var(--color-ash)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="Proof" heading="Evidence, honestly framed." note="Client outcomes and testimonials for this capability are published on the Results page, never as a guaranteed result." />
+      <div class="mt-8" data-aos="fade-up">
+        <a href="/results" class="tlink">See client results<Icon name="arrow_forward" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT SERVICE -->
+  <section class="py-16">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <a href={`/services/${nextSlug}`} class="card p-7 flex items-center justify-between group hover:-translate-y-1 transition-all" data-aos="fade-up">
+        <div>
+          <span class="font-mono text-[11px] tracking-[0.12em] uppercase text-[var(--color-grey)]">Next capability</span>
+          <h3 class="display text-[24px] mt-1">{next.label}</h3>
+        </div>
+        <Icon name="arrow_forward" size={26} class="text-[var(--color-grey)] group-hover:translate-x-1 group-hover:text-[var(--color-ink)] transition-all" />
+      </a>
+    </div>
+  </section>
+
+  <CtaBand heading={p.closing} sub="A free commercial audit of your distribution, revenue and marketing. No cost, no commitment." />
+</BaseLayout>

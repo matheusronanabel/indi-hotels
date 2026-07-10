@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import PhotoBlock from '../components/PhotoBlock.astro';
+import { CTA, SERVICES, JOURNEY, TIERS, SITE, TESTIMONIALS } from '../data/site.js';
+
+const accentVar: Record<string, string> = { ocean: 'var(--color-ocean)', clay: 'var(--color-clay)', palm: 'var(--color-palm)' };
+
+const problems = [
+  { icon: 'percent', title: 'Rising acquisition costs', body: 'More margin going out the door than it needs to.' },
+  { icon: 'schedule', title: 'No time to yield', body: 'Pricing rarely moves with demand.' },
+  { icon: 'shuffle', title: 'Scattered suppliers', body: 'Web, photography and marketing pulling in different directions.' },
+  { icon: 'help', title: 'Undiagnosed', body: "You can't see where the upside is." },
+];
+---
+
+<BaseLayout
+  title="Commercial services for independent hotels"
+  description={SITE.description}
+  path="/"
+  schema="organization"
+>
+  <!-- HERO -->
+  <section class="bg-white relative overflow-hidden">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 min-h-screen sm:min-h-auto md:pt-36 md:pb-32 relative grid gap-12 lg:grid-cols-[1.15fr_0.85fr] items-center">
+      <div>
+        <span class="eyebrow block mb-5" data-aos="fade-up">
+          Commercial services for independent hotels
+        </span>
+        <h1 class="display text-[clamp(38px,7vw,76px)] max-w-[14ch] leading-[0.98]" data-aos="fade-up">
+          Stay focused on your guests.<br />We'll run the commercials.
+        </h1>
+        <p class="serif-italic text-[clamp(19px,2.6vw,26px)] text-[var(--color-grey)] max-w-[42ch] mt-8" data-aos="fade-up" data-aos-delay="80">
+          Indi is the expert team behind your distribution, revenue management and digital marketing, working to grow your revenue, build direct market share and reduce your cost of guest acquisition.
+        </p>
+        <div class="flex flex-col sm:flex-row flex-w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto items-center gap-x-7 gap-y-4 mt-11" data-aos="fade-up" data-aos-delay="140">
+          <a href={CTA.href} class="btn block w-fit btn-clay text-[15px]">{CTA.label}</a>
+          <a href="/how-we-work" class="link text-[var(--color-ink)] hover:text-[var(--color-clay)]">
+            See how we work
+            <Icon name="arrow_forward" size={17} />
+          </a>
+        </div>
+      </div>
+      <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="180">
+        <PhotoBlock
+          aspect="portrait"
+          label="Independent hotels, performing better"
+          alt="An independent hotel property"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="py-20 md:py-28 bg-paper">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        eyebrow="The problem"
+        heading="Most independent owners are carrying this alone."
+        note="You're competing against hotels with whole commercial teams, and doing it between check-ins. Acquisition costs climb. Pricing sits still while the market moves. Marketing, photography and your website are scattered across different suppliers, or no one at all. You suspect the property could perform better. You just don't have the time, or the team, to prove it."
+      />
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mt-12">
+        {problems.map((p, i) => (
+          <div class="card p-6" data-aos="fade-up" data-aos-delay={i * 70}>
+            <Icon name={p.icon} size={26} class="text-[var(--color-grey)]" />
+            <h3 class="font-semibold text-[17px] mt-4">{p.title}</h3>
+            <p class="text-[14.5px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="py-20 md:py-28 bg-[var(--color-ash)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        eyebrow="What we do"
+        heading="One team for everything that drives your revenue."
+        note="Indi brings your distribution, revenue management and marketing under one roof, coordinated, not stitched together."
+      />
+      <div class="grid gap-4 md:grid-cols-3 mt-12">
+        {SERVICES.map((s, i) => (
+          <a
+            href={`/services/${s.slug}`}
+            class="card p-7 group flex flex-col transition-all hover:-translate-y-1 hover:shadow-[0_22px_44px_-26px_rgba(0,0,0,0.32)]"
+            data-aos="fade-up"
+            data-aos-delay={i * 80}
+          >
+            <span
+              class="w-11 h-11 rounded-[10px] flex items-center justify-center"
+              style={`background:${accentVar[s.accent]}`}
+            >
+              <Icon name={s.icon} size={22} class="text-white" />
+            </span>
+            <h3 class="display text-[23px] mt-5">{s.label}</h3>
+            <p class="text-[15px] text-[var(--color-grey)] mt-3 leading-relaxed flex-1">{s.tile}</p>
+            <span class="tlink mt-6">
+              Explore
+              <Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" />
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS (3 steps) -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        eyebrow="How it works"
+        heading="A clear path, from first look to ongoing results."
+      />
+      <div class="grid gap-x-8 gap-y-10 sm:grid-cols-3 mt-14">
+        {JOURNEY.map((step, i) => (
+          <div class="relative" data-aos="fade-up" data-aos-delay={i * 70}>
+            <span class="font-mono text-[13px] tracking-[0.1em] text-[var(--color-clay)]">{step.n}</span>
+            <div class="h-px bg-[var(--color-line)] mt-3 mb-5"></div>
+            <h3 class="font-semibold text-[18px]">{step.title}</h3>
+            <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed">{step.body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-12" data-aos="fade-up">
+        <a href="/how-we-work" class="tlink">
+          See how we work in detail
+          <Icon name="arrow_forward" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="py-16 md:py-20 bg-[var(--color-ash)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        eyebrow="Projects"
+        heading="Need just one thing done?"
+        note="Not every property needs ongoing support. Indi also takes on standalone, fixed-scope projects, with or without a partnership."
+      />
+      <div class="flex flex-wrap gap-3 mt-8" data-aos="fade-up">
+        {['PMS selection & implementation', 'GDS activation', 'New website & booking engine', 'RMS / dynamic pricing setup'].map((item) => (
+          <span class="rounded-full border border-[var(--color-line)] bg-[var(--color-white)] px-4 py-2 text-[14px] text-[var(--color-grey)]">{item}</span>
+        ))}
+      </div>
+      <div class="mt-8" data-aos="fade-up">
+        <a href={CTA.href} class="tlink">
+          Talk to us about a project
+          <Icon name="arrow_forward" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIERS -->
+  <section class="py-20 md:py-28 bg-[var(--color-ink)] text-[var(--color-paper)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        light
+        eyebrow="Your level of support"
+        heading="Choose your level of support."
+        note="Every property is different, so support is too. The difference between tiers isn't how often we talk, it's how much of the day-to-day commercial work you'd like us to run."
+      />
+      <div class="grid gap-4 md:grid-cols-3 mt-12">
+        {TIERS.map((t, i) => (
+          <div
+            class="rounded-2xl border border-[#34373a] bg-[#202225] p-7 flex flex-col relative"
+            data-aos="fade-up"
+            data-aos-delay={i * 80}
+          >
+            {t.popular && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-clay)] text-white font-mono text-[10px] tracking-[0.14em] uppercase px-3 py-1 rounded-full">
+                Most popular
+              </span>
+            )}
+            <span class="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9a9c9e]">{t.cadence}</span>
+            <h3 class="display text-[26px] mt-2 text-[var(--color-paper)]">{t.line}</h3>
+            <div class="h-px bg-[#34373a] my-5"></div>
+            <p class="text-[14.5px] text-[#C9C9C6] leading-relaxed flex-1">{t.best}</p>
+            {t.cadence === 'Quarterly' && (
+              <p class="text-[13px] text-[#9a9c9e] mt-4 leading-relaxed border-t border-[#34373a] pt-4">
+                Worth knowing: Quarterly is oversight, not active yield management. In markets where rates move week to week, the more execution you hand to Indi, the more upside you capture.
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+      <p class="font-mono text-[12px] tracking-[0.06em] text-[#9a9c9e] mt-6">
+        All partnerships run on a minimum 12-month term.
+      </p>
+      <div class="mt-9" data-aos="fade-up">
+        <a href={CTA.href} class="btn block w-fit btn-paper">{CTA.label}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="py-20 md:py-28 bg-ash">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        eyebrow="In their words"
+        heading="Owners, talking about Indi."
+      />
+      <div class="grid gap-4 md:grid-cols-3 mt-12">
+        <div class="tint-ocean rounded-2xl p-8 md:col-span-2 flex flex-col justify-center" data-aos="fade-up">
+          <p class="serif-italic text-[clamp(18px,2.2vw,24px)] text-[#23423f] leading-snug">
+            "{TESTIMONIALS[1].quote}"
+          </p>
+          <p class="font-mono text-[11.5px] tracking-[0.12em] uppercase text-[var(--color-grey)] mt-6">
+            {TESTIMONIALS[1].name}, {TESTIMONIALS[1].role}, {TESTIMONIALS[1].property}
+          </p>
+        </div>
+        <a href="/results" class="card p-8 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="80">
+          <p class="text-[16px] text-[var(--color-grey)] leading-relaxed">
+            Read more from the owners and properties that trust Indi with their commercials.
+          </p>
+          <span class="tlink mt-6">
+            See client results
+            <Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" />
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="See where your hotel is leaving money on the table."
+    sub="A free commercial audit of your distribution, revenue and marketing. No cost, no commitment."
+  />
+</BaseLayout>

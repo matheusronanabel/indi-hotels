@@ -1,0 +1,26 @@
+# Indi
+
+> The commercial team and tech behind independent hotels. Indi is an outsourced commercial team for independent hotels and motels in Australia, providing electronic distribution, revenue management and digital marketing as an ongoing partnership or one-off projects. Owner-facing: no guest booking. Indi serves independent hotels; it does not own, brand, or operate them.
+
+## What Indi does
+Three headline capabilities, delivered as one coordinated team:
+- [Electronic Distribution](https://indihotels.com.au/services/distribution): channel strategy, OTA setup & optimisation, clean PMS/channel-manager connectivity, rate parity, GDS activation.
+- [Revenue Management](https://indihotels.com.au/services/revenue-management): best-practice pricing, rate plans, segmentation, demand-based dynamic pricing, RMS implementation.
+- [Digital Marketing](https://indihotels.com.au/services/digital-marketing): booking-ready websites, professional photography, direct-booking campaigns, positioning, metasearch.
+
+## How owners engage
+- [How We Work](https://indihotels.com.au/how-we-work): a free commercial audit, then productised onboarding (the foundation), then an ongoing partnership at Quarterly, Monthly or Weekly intensity, plus standalone projects. Minimum 12-month term on partnerships.
+
+## Key pages
+- [Home](https://indihotels.com.au/)
+- [Services overview](https://indihotels.com.au/services)
+- [Results](https://indihotels.com.au/results): client outcomes and testimonials, honestly framed.
+- [About](https://indihotels.com.au/about): the integrated-team story and team.
+- [Free commercial audit (contact)](https://indihotels.com.au/contact): the primary way to get in touch.
+
+## Notes for agents
+- Brand name is "Indi" (not "Indi Hotels"); the domain indihotels.com.au reflects the industry served, not a hotel chain.
+- No public pricing: cost is established through the free audit and a tailored proposal.
+- Honesty rule: Indi never guarantees performance outcomes.
+- Audience: owners of small-to-midscale independent hotels and motels in Australia.
+- Contact: revenue@indihotels.com.au

@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import PhotoBlock from '../components/PhotoBlock.astro';
+import Icon from '../components/Icon.astro';
+import { CTA, TESTIMONIALS, PROPERTIES } from '../data/site.js';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+---
+
+<BaseLayout
+  title="Results: independent hotels performing better"
+  description="Real properties, real owners, real commercial outcomes. Hear from the hotels and motels that trust Indi with their commercials."
+  path="/results"
+>
+  <!-- HERO -->
+  <section class="bg-[var(--color-paper)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
+      <div>
+        <span class="eyebrow block mb-4" data-aos="fade-up">Results</span>
+        <h1 class="display text-[clamp(34px,6vw,62px)] max-w-[16ch]" data-aos="fade-up">
+          Independent hotels,<br />performing <span class="border-b-2 border-[var(--color-clay)] pb-0.5">better</span>.
+        </h1>
+        <p class="serif-italic text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[44ch] mt-7" data-aos="fade-up" data-aos-delay="80">
+          Real properties, real owners, real commercial outcomes, in their own words.
+        </p>
+        <a href={CTA.href} class="btn block w-fit btn-clay mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
+      </div>
+      <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="180">
+        <PhotoBlock
+          aspect="wide"
+          label="Real outcomes, honestly presented"
+          alt="Hotel property performing well"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- HONESTY FRAME -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
+      <p class="serif-italic text-[clamp(22px,3vw,32px)] text-[var(--color-ink)] leading-snug max-w-[28ch]" data-aos="fade-up">
+        We won't promise you a number.
+      </p>
+      <p class="text-[18px] leading-relaxed text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">
+        No hotel group honestly can, and we won't pretend otherwise. What we can show you is the owners and properties who trust Indi with their commercials, and what they have to say about it.
+      </p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (container) -->
+  <section class="py-20 md:py-28 bg-[var(--color-ash)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="In their words" heading="What owners say." note="Shared directly by the owners we work with, published exactly as they wrote it." />
+      <div class="testimonial-swiper mt-12" data-aos="fade-up">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            {TESTIMONIALS.map((t) => (
+              <div class="swiper-slide">
+                <div class="card p-7 flex flex-col h-full">
+                  <Icon name="format_quote" size={30} class="text-[var(--color-line)]" fill={1} />
+                  <p class="text-[15px] text-[#3a3b3d] leading-relaxed mt-3 flex-1 italic">{t.quote}</p>
+                  <div class="mt-6 pt-5 border-t border-[var(--color-line)]">
+                    <p class="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--color-grey)]">{t.name} · {t.role} · {t.property}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="flex items-center justify-center gap-5 mt-8">
+          <button type="button" class="testimonial-nav testimonial-prev" aria-label="Previous testimonial">
+            <Icon name="arrow_forward" size={18} class="rotate-180" />
+          </button>
+          <div class="testimonial-pagination"></div>
+          <button type="button" class="testimonial-nav testimonial-next" aria-label="Next testimonial">
+            <Icon name="arrow_forward" size={18} />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPERTIES -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="The properties we work with" heading="Hotels and motels that trust Indi with their commercials." note="Presented as independent clients Indi works with, never as an owned collection." />
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-12">
+        {PROPERTIES.map((p, i) => (
+          p.url ? (
+            <a href={p.url} target="_blank" rel="noopener" class="card overflow-hidden flex flex-col group" data-aos="fade-up" data-aos-delay={(i % 6) * 50}>
+              <PhotoBlock src={p.image ?? undefined} aspect="landscape" label={p.name} alt={`${p.name}, ${p.location}`} />
+              <div class="p-6 flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold text-[16px]">{p.name}</h3>
+                  <p class="text-[13.5px] text-[var(--color-grey)] mt-1">{p.location}</p>
+                </div>
+                <Icon name="north_east" size={18} class="text-[var(--color-line)] group-hover:text-[var(--color-ink)] transition-colors shrink-0" />
+              </div>
+            </a>
+          ) : (
+            <div class="card overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay={(i % 6) * 50}>
+              <PhotoBlock src={p.image ?? undefined} aspect="landscape" label={p.name} alt={`${p.name}, ${p.location}`} />
+              <div class="p-6">
+                <h3 class="font-semibold text-[16px]">{p.name}</h3>
+                <p class="text-[13.5px] text-[var(--color-grey)] mt-1">{p.location}</p>
+              </div>
+            </div>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Your property could be the next result." sub="Start with a free audit. We'll show you where the upside is." />
+</BaseLayout>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+  new Swiper('.testimonial-swiper .swiper', {
+    modules: [Navigation, Pagination, Autoplay],
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+    loop: true,
+    grabCursor: true,
+    autoplay: {
+      delay: 4500,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    navigation: {
+      nextEl: '.testimonial-next',
+      prevEl: '.testimonial-prev',
+    },
+    pagination: {
+      el: '.testimonial-pagination',
+      clickable: true,
+    },
+  });
+</script>

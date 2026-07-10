@@ -1,0 +1,99 @@
+---
+import { SITE, KEYWORDS, SERVICES } from '../data/site.js';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string; // e.g. "/how-we-work"
+  schema?: 'organization' | 'service' | 'webpage';
+  serviceName?: string;
+}
+const {
+  title,
+  description,
+  path,
+  schema = 'webpage',
+  serviceName,
+} = Astro.props;
+
+const canonical = new URL(path, SITE.url).href;
+const fullTitle =
+  path === '/' ? `${SITE.name} · ${SITE.tagline}` : `${title} · ${SITE.name}`;
+const ogImage = new URL('/og-image.svg', SITE.url).href;
+
+// ---- JSON-LD structured data (helps AI + search understand the entity) ----
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}/#organization`,
+  name: SITE.name,
+  alternateName: 'Indi Hotels',
+  url: SITE.url,
+  email: SITE.email,
+  description: SITE.description,
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  knowsAbout: KEYWORDS,
+  slogan: SITE.tagline,
+  serviceType: SERVICES.map((s) => s.label),
+  audience: {
+    '@type': 'Audience',
+    audienceType: 'Independent hotel and motel owners',
+  },
+};
+
+const serviceLd = serviceName
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: serviceName,
+      provider: { '@id': `${SITE.url}/#organization` },
+      areaServed: { '@type': 'Country', name: 'Australia' },
+      description,
+      serviceType: serviceName,
+    }
+  : null;
+
+const webpage = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: fullTitle,
+  description,
+  url: canonical,
+  isPartOf: { '@id': `${SITE.url}/#organization` },
+  inLanguage: SITE.locale,
+};
+
+const blocks = [org, webpage, serviceLd].filter(Boolean);
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={KEYWORDS.join(', ')} />
+<link rel="canonical" href={canonical} />
+<meta name="author" content={SITE.name} />
+
+<!-- Crawlers + AI agents: explicitly welcome -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="googlebot" content="index, follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content="en_AU" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- Structured data -->
+{
+  blocks.map((b) => (
+    <script type="application/ld+json" set:html={JSON.stringify(b)} />
+  ))
+}

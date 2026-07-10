@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../data/site.js';
+
+const what = [
+  'A review of your current distribution and channel mix',
+  'Where your pricing is likely leaving revenue behind',
+  'How your direct-booking and marketing setup stacks up',
+  'A clear, recommended path, no cost, no commitment',
+];
+---
+
+<BaseLayout
+  title="Get your free commercial audit"
+  description="Start with a free commercial audit of your independent hotel's distribution, revenue management and marketing. No cost, no commitment. Indi shows you where the upside is."
+  path="/contact"
+>
+  <section class="bg-[var(--color-paper)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32">
+      <span class="eyebrow block mb-4" data-aos="fade-up">Free commercial audit</span>
+      <h1 class="display text-[clamp(32px,5.6vw,56px)] max-w-[18ch]" data-aos="fade-up">
+        See where your hotel is leaving money on the table.
+      </h1>
+      <p class="serif-italic text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
+        Tell us about your property. We'll review your distribution, revenue and marketing, and show you the upside.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-12 lg:grid-cols-[0.85fr_1.15fr] items-start">
+      <!-- What you get -->
+      <div data-aos="fade-up">
+        <span class="eyebrow">What's in the audit</span>
+        <ul class="mt-6 space-y-4">
+          {what.map((w) => (
+            <li class="flex gap-3 items-start">
+              <Icon name="check_circle" size={22} class="text-[var(--color-ocean)] shrink-0 mt-0.5" fill={1} />
+              <span class="text-[16px] text-[#3a3b3d] leading-relaxed">{w}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8 rounded-xl bg-[var(--color-ash)] p-6">
+          <p class="text-[14.5px] text-[#4a4b4d] leading-relaxed">
+            Prefer email? Reach us at
+            <a href={`mailto:${SITE.email}`} class="text-[var(--color-ink)] font-semibold underline decoration-[var(--color-line)] underline-offset-2">{SITE.email}</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="card p-7 md:p-9" data-aos="fade-up" data-aos-delay="80">
+        <form id="audit-form" class="space-y-5">
+          <!-- honeypot: hidden from real users, bots that autofill every field trip it -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="block text-[13px] font-semibold mb-1.5">Your name</label>
+              <input id="name" name="name" type="text" required class="field" autocomplete="name" />
+            </div>
+            <div>
+              <label for="property" class="block text-[13px] font-semibold mb-1.5">Property name</label>
+              <input id="property" name="property" type="text" required class="field" />
+            </div>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="email" class="block text-[13px] font-semibold mb-1.5">Email</label>
+              <input id="email" name="email" type="email" required class="field" autocomplete="email" />
+            </div>
+            <div>
+              <label for="phone" class="block text-[13px] font-semibold mb-1.5">Phone <span class="text-[var(--color-grey)] font-normal">(optional)</span></label>
+              <input id="phone" name="phone" type="tel" class="field" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="location" class="block text-[13px] font-semibold mb-1.5">Location</label>
+              <input id="location" name="location" type="text" placeholder="Town / state" class="field" />
+            </div>
+            <div>
+              <label for="rooms" class="block text-[13px] font-semibold mb-1.5">Approx. rooms</label>
+              <select id="rooms" name="rooms" class="field">
+                <option value="">Select…</option>
+                <option>Under 20</option>
+                <option>20 to 50</option>
+                <option>50 to 100</option>
+                <option>100+</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="message" class="block text-[13px] font-semibold mb-1.5">What's prompting this? <span class="text-[var(--color-grey)] font-normal">(optional)</span></label>
+            <textarea id="message" name="message" rows="4" class="field resize-y" placeholder="Distribution, pricing, a new website, whatever's top of mind."></textarea>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn block w-full btn-clay justify-center text-[15px]">
+            Request my free audit
+          </button>
+          <p id="form-status" class="text-[14px] text-center" role="status" aria-live="polite"></p>
+          <p class="text-[12px] text-[var(--color-grey)] text-center leading-relaxed">
+            No cost, no commitment. We'll only use your details to prepare and discuss your audit.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .field {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 11px 14px;
+    border: 1px solid var(--color-line);
+    border-radius: 9px;
+    background: var(--color-white);
+    color: var(--color-ink);
+    transition: border-color 0.16s ease, box-shadow 0.16s ease;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-ocean);
+    box-shadow: 0 0 0 3px rgba(46, 110, 116, 0.12);
+  }
+  .field::placeholder { color: #9a9c9e; }
+</style>
+
+<script is:inline>
+  // Maps this form's field names to the Google Form's entry IDs (Contact Form - Website).
+  const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScuoTS9MJLdPwSfY5j3HhZ_9h_zMkcwkI6jUpP1l03YY09Vtw/formResponse';
+  const ENTRY_MAP = {
+    name: 'entry.266651390',
+    property: 'entry.1060230947',
+    email: 'entry.441335380',
+    phone: 'entry.2061716409',
+    location: 'entry.1872318622',
+    rooms: 'entry.693629465',
+    message: 'entry.822872600',
+  };
+
+  const form = document.getElementById('audit-form');
+  const status = document.getElementById('form-status');
+  const btn = document.getElementById('submit-btn');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.style.color = 'var(--color-grey)';
+
+    // Honeypot: real users never see or fill this field, so a checked box means a bot.
+    // Pretend success without actually submitting, so the bot doesn't know to adapt.
+    if (form.querySelector('[name="botcheck"]').checked) {
+      form.reset();
+      status.style.color = 'var(--color-ocean)';
+      status.textContent = "Thanks, your audit request is in. We'll be in touch shortly.";
+      btn.textContent = 'Request received';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.textContent = '';
+
+    const formData = new FormData(form);
+    const payload = new URLSearchParams();
+    for (const [field, entry] of Object.entries(ENTRY_MAP)) {
+      payload.set(entry, formData.get(field) || '');
+    }
+
+    try {
+      // Google Forms doesn't send CORS headers, so the response is opaque here:
+      // a no-cors POST always resolves, even on failure, so we show success optimistically.
+      await fetch(GOOGLE_FORM_ACTION, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload,
+      });
+      form.reset();
+      status.style.color = 'var(--color-ocean)';
+      status.textContent = "Thanks, your audit request is in. We'll be in touch shortly.";
+      btn.textContent = 'Request received';
+    } catch (err) {
+      status.style.color = 'var(--color-clay)';
+      status.textContent = 'Sorry, that didn\u2019t send. Please email us directly and we\u2019ll sort it.';
+      btn.disabled = false;
+      btn.textContent = 'Request my free audit';
+    }
+  });
+</script>
