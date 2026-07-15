@@ -1,6 +1,6 @@
 # Indi
 
-> The commercial team and tech behind independent hotels. Indi is an outsourced commercial team for independent hotels and motels in Australia, providing electronic distribution, revenue management and digital marketing as an ongoing partnership or one-off projects. Owner-facing: no guest booking. Indi serves independent hotels; it does not own, brand, or operate them.
+> The commercial team behind independent hotels. Indi is an outsourced commercial team for independent hotels and motels in Australia, providing electronic distribution, revenue management and digital marketing as an ongoing partnership or one-off projects. Owner-facing: no guest booking. Indi serves independent hotels; it does not own, brand, or operate them.
 
 ## What Indi does
 Three headline capabilities, delivered as one coordinated team:
@@ -15,7 +15,7 @@ Three headline capabilities, delivered as one coordinated team:
 ## Key pages
 - [Home](https://indihotels.com.au/)
 - [Services overview](https://indihotels.com.au/services)
-- [Results](https://indihotels.com.au/results): client outcomes and testimonials, honestly framed.
+- [Our Work](https://indihotels.com.au/our-work): the owners and properties Indi works with, and their testimonials.
 - [About](https://indihotels.com.au/about): the independence-with-expert-team story and team.
 - [Commercial Discovery (contact)](https://indihotels.com.au/contact): the primary way to get in touch.
 

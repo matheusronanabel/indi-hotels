@@ -1,48 +1,34 @@
 ---
-// Indi logo — Lockup 5b: Ascent mark (three ascending bars + beacon, reading as
-// a lowercase "i") + "Indi" wordmark in Space Grotesk 700.
-// Ink by default. Azure is for favicons, tiles and brand moments, not every lockup.
+// Indi mark — three ascending bars, the tallest reading as a lowercase "i"
+// with its dot. The mark stands alone: never place a wordmark beside it.
+// Geometry mirrors public/indi-logo-assets/indi-mark*.svg (source of truth).
 interface Props {
-  variant?: 'mono' | 'reversed' | 'accent';
+  variant?: 'default' | 'reversed' | 'mono-ink' | 'mono-white';
   size?: number; // mark height in px
-  wordmark?: boolean;
   class?: string;
 }
-const { variant = 'accent', size = 30, wordmark = true, class: klass = '' } = Astro.props;
+const { variant = 'default', size = 30, class: klass = '' } = Astro.props;
 
-const ink = variant === 'reversed' ? '#FFFFFF' : '#0E1116';
-const accent = variant === 'reversed' ? '#FFFFFF' : '#1466E0';
-const barTop = variant === 'accent' || variant === 'reversed' ? accent : ink;
-const word = variant === 'reversed' ? '#FFFFFF' : '#0E1116';
-const wmSize = size * 0.9;
-const gap = size * 0.35;
+const barLow =
+  variant === 'reversed' || variant === 'mono-white' ? '#FFFFFF' : '#0E1116';
+const barTop =
+  variant === 'mono-ink' ? '#0E1116'
+  : variant === 'mono-white' ? '#FFFFFF'
+  : variant === 'reversed' ? '#3B7BE0'
+  : '#0E4FB0';
 ---
 
-<span
-  class={`inline-flex items-center ${klass}`}
-  style={`gap:${gap}px`}
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  role="img"
   aria-label="Indi"
+  class={klass}
+  style="display:block;flex:none;"
 >
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 100 100"
-    role="img"
-    aria-hidden="true"
-    style="display:block;flex:none;"
-  >
-    <rect x="26" y="54" width="13" height="20" rx="6.5" fill={ink} />
-    <rect x="44" y="42" width="13" height="32" rx="6.5" fill={ink} />
-    <rect x="62" y="28" width="13" height="46" rx="6.5" fill={barTop} />
-    <circle cx="68.5" cy="18" r="5" fill={barTop} />
-  </svg>
-  {
-    wordmark && (
-      <span
-        style={`font-family:var(--font-wordmark);font-weight:700;letter-spacing:-0.03em;font-size:${wmSize}px;color:${word};line-height:1;`}
-      >
-        Indi
-      </span>
-    )
-  }
-</span>
+  <rect x="14" y="60" width="16" height="30" rx="8" fill={barLow} />
+  <rect x="41" y="42" width="16" height="48" rx="8" fill={barLow} />
+  <rect x="68" y="28" width="16" height="62" rx="8" fill={barTop} />
+  <circle cx="76" cy="13" r="8" fill={barTop} />
+</svg>

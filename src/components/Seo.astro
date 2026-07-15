@@ -19,7 +19,7 @@ const {
 const canonical = new URL(path, SITE.url).href;
 const fullTitle =
   path === '/' ? `${SITE.name} · ${SITE.tagline}` : `${title} · ${SITE.name}`;
-const ogImage = new URL('/og-image.svg', SITE.url).href;
+const ogImage = new URL('/og-image.png', SITE.url).href;
 
 // ---- JSON-LD structured data (helps AI + search understand the entity) ----
 const org = {

@@ -4,7 +4,7 @@ import Icon from '../components/Icon.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
 import PhotoBlock from '../components/PhotoBlock.astro';
-import { CTA, SERVICES, JOURNEY, TIERS, SITE, TESTIMONIALS } from '../data/site.js';
+import { CTA, SERVICES, JOURNEY, TIERS, SITE, PULL_QUOTES } from '../data/site.js';
 
 const opportunities = [
   { icon: 'acquisition', title: 'Smarter acquisition', body: 'Keep more of every booking working for you.' },
@@ -22,18 +22,18 @@ const opportunities = [
 >
   <!-- HERO -->
   <section class="bg-sky/30 relative overflow-hidden">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 min-h-screen sm:min-h-auto md:pt-20 md:pb-32 relative grid gap-12 lg:grid-cols-[1.15fr_0.85fr] items-center">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-6 pb-10 md:pt-20 md:pb-16 relative grid gap-12 lg:grid-cols-[1.15fr_0.85fr] items-center">
       <div>
         <span class="eyebrow block mb-5" data-aos="fade-up">
           Commercial services for independent hotels
         </span>
-        <h1 class="display text-[clamp(38px,7vw,76px)] max-w-[14ch] leading-[0.98]" data-aos="fade-up">
-          Stay focused on your guests.<br />We'll run the commercials.
+        <h1 class="display text-[clamp(34px,6.5vw,64px)] max-w-[17ch]" style="hyphens:none" data-aos="fade-up">
+          <span class="text-[var(--color-azure)]">Indi</span> is the commercial team behind high&#8209;performing independent hotels.
         </h1>
-        <p class="serif-italic text-[clamp(19px,2.6vw,26px)] text-[var(--color-grey)] max-w-[42ch] mt-8" data-aos="fade-up" data-aos-delay="80">
-          Indi is the expert team behind your distribution, revenue management and digital marketing, working to grow your revenue, build direct market share and reduce your cost of guest acquisition.
+        <p class="subhead text-[clamp(16px,2.2vw,19px)] text-[var(--color-grey)] max-w-[40ch] mt-7" data-aos="fade-up" data-aos-delay="80">
+          You stay focused on your guests. We run your distribution, revenue management and digital marketing, growing your revenue and your direct bookings.
         </p>
-        <div class="flex flex-col sm:flex-row flex-w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto items-center gap-x-7 gap-y-4 mt-11" data-aos="fade-up" data-aos-delay="140">
+        <div class="flex flex-col sm:flex-row flex-w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto items-center gap-x-7 gap-y-4 mt-9" data-aos="fade-up" data-aos-delay="140">
           <a href={CTA.href} class="btn block w-fit btn-azure text-[15px]">{CTA.label}</a>
           <a href="/how-we-work" class="link text-[var(--color-ink)] hover:text-[var(--color-azure)]">
             See how we work
@@ -77,7 +77,7 @@ const opportunities = [
       <SectionHead
         eyebrow="What we do"
         heading="One team for everything that drives your revenue."
-        note="Indi brings your distribution, revenue management and marketing under one roof, coordinated, not stitched together."
+        note="Indi brings your distribution, revenue management and marketing under one roof, coordinated, not stitched together. And when you need just one thing done, we take on standalone projects too."
       />
       <div class="grid gap-4 md:grid-cols-3 mt-12">
         {SERVICES.map((s, i) => (
@@ -102,6 +102,21 @@ const opportunities = [
           </a>
         ))}
       </div>
+      <a
+        href="/services/projects"
+        class="card p-7 group flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mt-4 border-dashed bg-transparent shadow-none hover:-translate-y-1 transition-all"
+        data-aos="fade-up"
+      >
+        <div>
+          <span class="eyebrow">Projects</span>
+          <h3 class="display text-[21px] mt-2">A different way to buy: standalone projects.</h3>
+          <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed max-w-[52ch]">A new website, GDS activation, a PMS setup or dynamic pricing. One-off, fixed scope, delivered by the same expert team.</p>
+        </div>
+        <span class="tlink shrink-0">
+          Explore
+          <Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" />
+        </span>
+      </a>
     </div>
   </section>
 
@@ -110,12 +125,12 @@ const opportunities = [
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <SectionHead
         eyebrow="How it works"
-        heading="A clear path, from first look to ongoing results."
+        heading="A clear path, from first look to ongoing partnership."
       />
       <div class="grid gap-x-8 gap-y-10 sm:grid-cols-3 mt-14">
         {JOURNEY.map((step, i) => (
           <div class="relative" data-aos="fade-up" data-aos-delay={i * 70}>
-            <span class="font-mono text-[13px] tracking-[0.1em] text-[var(--color-azure)]">{step.n}</span>
+            <span class="font-semibold text-[13px] text-[var(--color-azure)]">{step.n}</span>
             <div class="h-px bg-[var(--color-line)] mt-3 mb-5"></div>
             <h3 class="font-semibold text-[18px]">{step.title}</h3>
             <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed">{step.body}</p>
@@ -125,10 +140,6 @@ const opportunities = [
       <div class="mt-12 flex flex-wrap gap-x-8 gap-y-3" data-aos="fade-up">
         <a href="/how-we-work" class="tlink">
           See how we work in detail
-          <Icon name="arrow_forward" size={16} />
-        </a>
-        <a href="/services/projects" class="tlink">
-          Need just one thing done? See Projects
           <Icon name="arrow_forward" size={16} />
         </a>
       </div>
@@ -152,11 +163,11 @@ const opportunities = [
             data-aos-delay={i * 80}
           >
             {t.popular && (
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-azure)] text-white font-mono text-[10px] tracking-[0.14em] uppercase px-3 py-1 rounded-full">
+              <span class="badge absolute -top-3 left-1/2 -translate-x-1/2">
                 Most popular
               </span>
             )}
-            <span class="font-mono text-[11px] tracking-[0.14em] uppercase text-[#9a9c9e]">{t.cadence}</span>
+            <span class="font-semibold text-[12px] text-[#9a9c9e]">{t.cadence}</span>
             <h3 class="display text-[26px] mt-2 text-[var(--color-paper)]">{t.line}</h3>
             <div class="h-px bg-[#34373a] my-5"></div>
             <p class="text-[14.5px] text-[#C9C9C6] leading-relaxed flex-1">{t.best}</p>
@@ -168,7 +179,7 @@ const opportunities = [
           </div>
         ))}
       </div>
-      <p class="font-mono text-[12px] tracking-[0.06em] text-[#9a9c9e] mt-6">
+      <p class="text-[12px] text-[#9a9c9e] mt-6">
         All partnerships run on a minimum 12-month term.
       </p>
       <div class="mt-9" data-aos="fade-up">
@@ -178,31 +189,29 @@ const opportunities = [
   </section>
 
   <!-- TESTIMONIAL -->
-  <section class="py-20 md:py-28 bg-[var(--color-mist-grey)]">
+  <section class="py-20 md:py-28 bg-[var(--color-sand)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <SectionHead
+        human
         eyebrow="In their words"
         heading="Owners, talking about Indi."
       />
       <div class="grid gap-4 md:grid-cols-3 mt-12">
-        <div class="tint-azure rounded-2xl p-8 md:col-span-2 flex flex-col justify-center" data-aos="fade-up">
-          <p class="serif-italic text-[clamp(18px,2.2vw,24px)] text-[var(--color-azure-deep)] leading-snug">
-            "{TESTIMONIALS[1].quote}"
-          </p>
-          <p class="font-mono text-[11.5px] tracking-[0.12em] uppercase text-[var(--color-grey)] mt-6">
-            {TESTIMONIALS[1].name}, {TESTIMONIALS[1].role}, {TESTIMONIALS[1].property}
-          </p>
-        </div>
-        <a href="/results" class="card p-8 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="80">
-          <p class="text-[16px] text-[var(--color-grey)] leading-relaxed">
-            Read more from the owners and properties that trust Indi with their commercials.
-          </p>
-          <span class="tlink mt-6">
-            See the properties who trust Indi
-            <Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" />
-          </span>
-        </a>
+        {PULL_QUOTES.map((t, i) => (
+          <div class="card-human p-8 flex flex-col justify-center" data-aos="fade-up" data-aos-delay={i * 80}>
+            <p class="serif-italic text-[clamp(17px,2vw,21px)] text-[var(--color-ink)] leading-snug">
+              "{t.quote}"
+            </p>
+            <p class="font-semibold text-[12px] text-[var(--color-clay)] mt-6">
+              {t.name} · {t.role} · {t.property}
+            </p>
+          </div>
+        ))}
       </div>
+      <a href="/our-work" class="tlink mt-8" data-aos="fade-up">
+        Read what owners say
+        <Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" />
+      </a>
     </div>
   </section>
 

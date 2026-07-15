@@ -3,28 +3,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
 import PhotoBlock from '../components/PhotoBlock.astro';
+import CaseStudy from '../components/CaseStudy.astro';
 import Icon from '../components/Icon.astro';
-import { CTA, TESTIMONIALS, PROPERTIES, SNAPSHOT } from '../data/site.js';
+import { CTA, TESTIMONIALS, PROPERTIES } from '../data/site.js';
+import { CASE_STUDIES } from '../data/caseStudies.js';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 ---
 
 <BaseLayout
-  title="Results: independent hotels performing better"
+  title="Our Work: the owners and properties we work with"
   description="Real properties, real owners, real commercial outcomes. Hear from the hotels and motels that trust Indi with their commercials."
-  path="/results"
+  path="/our-work"
 >
   <!-- HERO -->
   <section class="bg-[var(--color-paper)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
       <div>
-        <span class="eyebrow block mb-4" data-aos="fade-up">Results</span>
-        <h1 class="display text-[clamp(34px,6vw,62px)] max-w-[16ch]" data-aos="fade-up">
-          The proof is in <span class="border-b-2 border-[var(--color-azure)] pb-0.5">who trusts us</span>.
+        <span class="eyebrow block mb-4" data-aos="fade-up">Our Work</span>
+        <h1 class="display text-[clamp(34px,6vw,62px)] max-w-[18ch]" data-aos="fade-up">
+          The owners and properties we work with.
         </h1>
-        <p class="serif-italic text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[44ch] mt-7" data-aos="fade-up" data-aos-delay="80">
-          Independent owners and operators partner with Indi to run their commercials. Here's who we work with, what they say, and how a direct-first strategy performs across our group.
+        <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[44ch] mt-7" data-aos="fade-up" data-aos-delay="80">
+          Independent owners across Australia trust Indi with their commercials. Here's who they are, and what they say.
         </p>
         <a href={CTA.href} class="btn block w-fit btn-azure mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
       </div>
@@ -39,19 +41,19 @@ import 'swiper/css/pagination';
   </section>
 
   <!-- TESTIMONIALS (container) -->
-  <section class="py-20 md:py-28 bg-[var(--color-mist-grey)]">
+  <section class="py-20 md:py-28 bg-[var(--color-sand)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead eyebrow="In their words" heading="What owners say." note="Shared directly by the owners we work with, published exactly as they wrote it." />
+      <SectionHead human eyebrow="In their words" heading="What owners say." note="Shared directly by the owners we work with, published exactly as they wrote it." />
       <div class="testimonial-swiper mt-12" data-aos="fade-up">
         <div class="swiper">
           <div class="swiper-wrapper">
             {TESTIMONIALS.map((t) => (
               <div class="swiper-slide">
-                <div class="card p-7 flex flex-col h-full">
-                  <Icon name="format_quote" size={30} class="text-[var(--color-line)]" fill={1} />
-                  <p class="text-[15px] text-[#3a3b3d] leading-relaxed mt-3 flex-1">{t.quote}</p>
-                  <div class="mt-6 pt-5 border-t border-[var(--color-line)]">
-                    <p class="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--color-grey)]">{t.name} · {t.role} · {t.property}</p>
+                <div class="card-human p-7 flex flex-col h-full">
+                  <Icon name="format_quote" size={30} class="text-[var(--color-sand-line)]" fill={1} />
+                  <p class="serif-italic text-[16px] text-[#3a3b3d] leading-relaxed mt-3 flex-1">{t.quote}</p>
+                  <div class="mt-6 pt-5 border-t border-[var(--color-sand-line)]">
+                    <p class="font-semibold text-[12px] text-[var(--color-clay)]">{t.name} · {t.role} · {t.property}</p>
                   </div>
                 </div>
               </div>
@@ -71,38 +73,24 @@ import 'swiper/css/pagination';
     </div>
   </section>
 
-  <!-- MONTHLY GROUP SNAPSHOT -->
-  <section class="py-20 md:py-28">
+  <!-- A CLOSER LOOK (case studies) -->
+  <section class="py-20 md:py-28 bg-[var(--color-sand)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead eyebrow="This month across the properties we work with" heading="A monthly snapshot, aggregated across our group." />
-      <div class="grid gap-4 sm:grid-cols-2 mt-10 max-w-[64ch]">
-        <div class="card p-7" data-aos="fade-up">
-          <span class="display text-[clamp(34px,4.4vw,48px)] text-[var(--color-azure)]">{SNAPSHOT.directShare}%</span>
-          <p class="text-[14px] text-[var(--color-grey)] mt-2 leading-relaxed">of bookings through direct and independent channels, well above industry average.</p>
-        </div>
-        <div class="card p-7" data-aos="fade-up" data-aos-delay="70">
-          <span class="display text-[clamp(34px,4.4vw,48px)] text-[var(--color-azure)]">~${SNAPSHOT.commissionSaved}k</span>
-          <p class="text-[14px] text-[var(--color-grey)] mt-2 leading-relaxed">in estimated travel-agent commission saved across our group.</p>
-        </div>
+      <SectionHead human eyebrow="A closer look" heading="Three properties, priced with intent." note="Built around the strategy and, where an owner has shared one, their own words. We publish RevPAR growth only, never room counts, occupancy, ADR or total revenue, so a property's numbers stay its own." />
+      <div class="grid gap-6 mt-12">
+        {CASE_STUDIES.map((cs) => (
+          <div data-aos="fade-up">
+            <CaseStudy {...cs} />
+          </div>
+        ))}
       </div>
-      <p class="font-mono text-[11.5px] tracking-[0.06em] uppercase text-[var(--color-grey)] mt-6">Updated {SNAPSHOT.month}</p>
-      <p class="text-[13.5px] text-[var(--color-grey)] leading-relaxed mt-3 max-w-[64ch]">
-        Aggregate across the independent properties Indi works with. Direct-channel share and estimated commission savings, updated monthly. Individual results vary.
-      </p>
-    </div>
-  </section>
-
-  <!-- CASE STUDIES -->
-  <section class="py-20 md:py-28 bg-[var(--color-mist-grey)]">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead eyebrow="Case studies" heading="Coming soon." note="A closer look at how Indi's approach plays out for real properties, built around the strategy and the owner's own words, not guaranteed numbers." />
     </div>
   </section>
 
   <!-- PROPERTIES -->
-  <section class="py-20 md:py-28">
+  <section id="properties" class="py-20 md:py-28 bg-[var(--color-sand)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead eyebrow="The properties we work with" heading="Hotels and motels that trust Indi with their commercials." note="Presented as independent clients Indi works with, never as an owned collection." />
+      <SectionHead human eyebrow="Who we work with" heading="Hotels and motels that trust Indi with their commercials." note="Presented as the independent owners and properties Indi works with, never as an owned collection." />
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-12">
         {PROPERTIES.map((p, i) => (
           p.url ? (
@@ -130,7 +118,7 @@ import 'swiper/css/pagination';
     </div>
   </section>
 
-  <CtaBand heading="Your property could be the next result." sub="Start with a free discovery. We'll show you where the upside is." />
+  <CtaBand heading="Your property could be next." sub="Start with a free discovery. We'll show you where the upside is." />
 </BaseLayout>
 
 <script>

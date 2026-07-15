@@ -34,7 +34,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
       <div class="grid gap-x-8 gap-y-10 sm:grid-cols-3 mt-14">
         {journeyDetail.map((s, i) => (
           <div data-aos="fade-up" data-aos-delay={i * 70}>
-            <span class="font-mono text-[13px] tracking-[0.1em] text-[var(--color-azure)]">{s.n}</span>
+            <span class="font-semibold text-[13px] text-[var(--color-azure)]">{s.n}</span>
             <div class="h-px bg-[var(--color-line)] mt-3 mb-5"></div>
             <h3 class="font-semibold text-[18px]">{s.title}</h3>
             <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed">{s.note}</p>
@@ -64,7 +64,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
           </div>
         ))}
         <p class="text-[15px] text-[var(--color-grey)] leading-relaxed pt-2">
-          This is the work that drives your results, so onboarding is a dedicated, productised engagement in its own right, not a free add-on. Every ongoing partnership runs on a <strong class="text-[var(--color-ink)] font-semibold">minimum 12-month term</strong>, so the strategy has runway to do its job.
+          This is the work that drives your revenue, so onboarding is a dedicated, productised engagement in its own right, not a free add-on. Every ongoing partnership runs on a <strong class="text-[var(--color-ink)] font-semibold">minimum 12-month term</strong>, so the strategy has runway to do its job.
         </p>
       </div>
     </div>
@@ -82,25 +82,25 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
         {TIERS.map((t, i) => (
           <div class="card p-7 flex flex-col relative" data-aos="fade-up" data-aos-delay={i * 80}>
             {t.popular && (
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--color-azure)] text-white font-mono text-[10px] tracking-[0.14em] uppercase px-3 py-1 rounded-full">
+              <span class="badge absolute -top-3 left-1/2 -translate-x-1/2">
                 Most popular
               </span>
             )}
             <div class="flex items-center justify-between">
               <h3 class="display text-[26px]">{t.cadence}</h3>
-              <span class="font-mono text-[11px] tracking-[0.12em] uppercase text-[var(--color-grey)]">
+              <span class="font-semibold text-[12px] text-[var(--color-grey)]">
                 {tierLabels[i]}
               </span>
             </div>
-            <p class="serif-italic text-[16px] text-[#3a3b3d] mt-1">{t.line}</p>
+            <p class="subhead text-[16px] text-[#3a3b3d] mt-1">{t.line}</p>
             <div class="h-px bg-[var(--color-line)] my-5"></div>
             <dl class="space-y-4 text-[14.5px] flex-1">
               <div>
-                <dt class="font-mono text-[10.5px] tracking-[0.12em] uppercase text-[var(--color-grey)]">Who runs the day-to-day</dt>
+                <dt class="font-semibold text-[12px] text-[var(--color-grey)]">Who runs the day-to-day</dt>
                 <dd class="mt-1 leading-relaxed">{t.who}</dd>
               </div>
               <div>
-                <dt class="font-mono text-[10.5px] tracking-[0.12em] uppercase text-[var(--color-grey)]">Best for</dt>
+                <dt class="font-semibold text-[12px] text-[var(--color-grey)]">Best for</dt>
                 <dd class="mt-1 leading-relaxed">{t.best}</dd>
               </div>
             </dl>
@@ -114,7 +114,7 @@ const tierLabels = ['Indi-led', 'Active', 'Oversight'];
           <strong class="text-[var(--color-ink)] font-semibold">About Quarterly:</strong> this is strategic oversight, not active yield management. It keeps your distribution, marketing and pricing strategy on track, but in markets where rates move week to week, quarterly reviews can't capture that movement. The more of the execution you hand to Indi (Monthly or Weekly), the more RevPAR upside you're positioned to capture.
         </p>
       </div>
-      <p class="font-mono text-[12px] tracking-[0.06em] text-[var(--color-grey)] mt-5">
+      <p class="text-[12px] text-[var(--color-grey)] mt-5">
         All partnerships run on a minimum 12-month term.
       </p>
       <div class="mt-8" data-aos="fade-up">

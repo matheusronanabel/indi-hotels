@@ -8,9 +8,9 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
 # --- 301 redirects: old guest pages -> nearest new page ---
 # (Site repositioned from guest "collection" to B2B commercial services.)
-Redirect 301 /hotels            /results
-Redirect 301 /our-hotels        /results
-Redirect 301 /collection        /results
+Redirect 301 /hotels            /our-work
+Redirect 301 /our-hotels        /our-work
+Redirect 301 /collection        /our-work
 Redirect 301 /restaurants       /
 Redirect 301 /meetings          /services
 Redirect 301 /book              /contact
@@ -19,6 +19,9 @@ Redirect 301 /booking           /contact
 Redirect 301 /membership        /how-we-work
 Redirect 301 /ih-membership     /how-we-work
 Redirect 301 /contact-us        /contact
+
+# --- Round 4: Results renamed to Our Work ---
+Redirect 301 /results           /our-work
 
 # --- Compression ---
 <IfModule mod_deflate.c>

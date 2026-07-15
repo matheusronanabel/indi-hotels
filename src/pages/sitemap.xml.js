@@ -8,7 +8,7 @@ const routes = [
   '/services',
   ...SERVICE_ORDER.map((s) => `/services/${s}`),
   '/how-we-work',
-  '/results',
+  '/our-work',
   '/about',
   '/contact',
 ];

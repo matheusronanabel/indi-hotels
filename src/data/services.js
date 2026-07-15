@@ -22,7 +22,6 @@ export const SERVICE_PAGES = {
     ],
     delivery:
       'Your distribution strategy is built and implemented during onboarding, then kept running and optimised through your ongoing partnership, at the intensity you choose. Need a specific piece done on its own, a GDS activation, a channel manager or PMS setup? We run those as standalone projects too.',
-    honest: null,
     closing: 'Find out where your distribution has the most upside.',
   },
   'revenue-management': {
@@ -31,7 +30,7 @@ export const SERVICE_PAGES = {
     accent: 'var(--color-azure)',
     seoTitle: 'Hotel revenue management & dynamic pricing services Australia',
     seoDesc:
-      'Best-practice hotel revenue management from Indi: dynamic pricing, rate plans and segmentation that move with demand to capture the revenue static rates leave on the table.',
+      'Best-practice hotel revenue management from Indi: dynamic pricing, rate plans and segmentation that move with demand, so you capture more of it.',
     h1: 'Pricing that captures what the market will pay.',
     sub: 'Indi brings best-practice pricing and revenue management to your property, rates that move with demand, segmented to capture more of what\u2019s out there.',
     problemHeading: 'Pricing that moves with the market, every day.',
@@ -46,8 +45,7 @@ export const SERVICE_PAGES = {
     ],
     delivery:
       'Your revenue management strategy is built in onboarding. How actively it\u2019s then run depends on your tier: Monthly and Weekly partnerships actively manage your pricing as the market moves, where the most upside lives, while Quarterly provides strategic oversight and course-correction rather than active yield management. Need only the system set up? We run RMS / dynamic pricing implementation as a standalone project.',
-    honest:
-      "No group can honestly promise you a number, and we won't pretend otherwise. What we can promise is the discipline and expertise that gives your property the best shot at strong performance.",
+    crossLink: { label: 'Works hand in hand with digital marketing', href: '/services/digital-marketing' },
     closing: 'See where your pricing has room to move.',
   },
   'digital-marketing': {
@@ -60,8 +58,12 @@ export const SERVICE_PAGES = {
     h1: 'Turn lookers into direct bookings.',
     sub: 'A booking-ready website, professional photography and direct-booking campaigns, so guests find you, choose you, and book direct with you.',
     problemHeading: 'Your most profitable bookings come direct, when guests can find you and want to book there.',
+    leadIn:
+      "Of everything that drives revenue, digital marketing is the most overlooked, and it's the lowest cost way to sell a room online. Every point of acquisition cost you remove goes straight to net profit.",
     problemBody:
       'Guests who book direct are your most profitable, and the opportunity is making that channel the one they want to use. A fast, modern website that\u2019s easy to book on, photography that does the rooms justice, and campaigns that bring guests to your own channel, that\u2019s what turns interest into direct bookings, and builds the guest relationship that lowers your cost of acquisition over time.',
+    connective:
+      "Revenue management sets the price. Digital marketing sells it. Run together, they give guests a real reason to book direct, and they protect the integrity of your direct rate so it isn't quietly undercut elsewhere.",
     work: [
       ['Website + booking engine', 'A fast, modern site built to convert, with booking built in.'],
       ['Professional photography', 'Imagery that makes your property look as good as it is, also a live sample of our work.'],
@@ -71,15 +73,9 @@ export const SERVICE_PAGES = {
     ],
     delivery:
       'Your marketing strategy is built and launched in onboarding, then driven and refined through your ongoing partnership. Two of the highest-impact pieces, a new website + booking engine and professional photography, are also available as standalone projects, and both are built to hand off into ongoing marketing if you want it.',
-    honest: null,
+    crossLink: { label: 'Works hand in hand with revenue management', href: '/services/revenue-management' },
     closing: 'See how much of your demand you could be owning.',
   },
 };
 
 export const SERVICE_ORDER = ['distribution', 'revenue-management', 'digital-marketing'];
-
-// Shared "Proof" section copy across all capability pages.
-export const PROOF_NOTE = {
-  heading: 'Proof, honestly framed.',
-  body: 'The best evidence is the owners we work with, and the results a direct-first strategy produces across our group. You’ll find their words, and a monthly snapshot, on the Results page.',
-};

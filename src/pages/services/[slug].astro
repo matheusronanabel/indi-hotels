@@ -3,15 +3,32 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
-import { CTA, TESTIMONIALS } from '../../data/site.js';
-import { SERVICE_PAGES, SERVICE_ORDER, PROOF_NOTE } from '../../data/services.js';
+import { CTA, PULL_QUOTES } from '../../data/site.js';
+import { SERVICE_PAGES, SERVICE_ORDER } from '../../data/services.js';
 
 export function getStaticPaths() {
   return SERVICE_ORDER.map((slug) => ({ params: { slug }, props: { slug } }));
 }
 
 const { slug } = Astro.props;
-const pages = SERVICE_PAGES as Record<string, (typeof SERVICE_PAGES)[keyof typeof SERVICE_PAGES]>;
+interface ServicePage {
+  label: string;
+  icon: string;
+  accent: string;
+  seoTitle: string;
+  seoDesc: string;
+  h1: string;
+  sub: string;
+  problemHeading: string;
+  leadIn?: string;
+  problemBody: string;
+  connective?: string;
+  work: string[][];
+  delivery: string;
+  crossLink?: { label: string; href: string };
+  closing: string;
+}
+const pages = SERVICE_PAGES as Record<string, ServicePage>;
 const p = pages[slug];
 
 // next service for cross-link
@@ -19,8 +36,8 @@ const idx = SERVICE_ORDER.indexOf(slug);
 const nextSlug = SERVICE_ORDER[(idx + 1) % SERVICE_ORDER.length];
 const next = pages[nextSlug];
 
-// rotate a different owner testimonial per capability page
-const testimonial = TESTIMONIALS[idx % TESTIMONIALS.length];
+// rotate a different owner pull-quote per capability page
+const pullQuote = PULL_QUOTES[idx % PULL_QUOTES.length];
 ---
 
 <BaseLayout
@@ -39,7 +56,7 @@ const testimonial = TESTIMONIALS[idx % TESTIMONIALS.length];
         <span class="eyebrow">{p.label}</span>
       </span>
       <h1 class="display text-[clamp(32px,5.6vw,58px)] max-w-[20ch]" data-aos="fade-up">{p.h1}</h1>
-      <p class="serif-italic text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
+      <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
         {p.sub}
       </p>
       <a href={CTA.href} class="btn block w-fit btn-azure mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
@@ -50,9 +67,19 @@ const testimonial = TESTIMONIALS[idx % TESTIMONIALS.length];
   <section class="py-20 md:py-28">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
       <SectionHead eyebrow="The problem" heading={p.problemHeading} />
+      {p.leadIn && (
+        <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">
+          {p.leadIn}
+        </p>
+      )}
       <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">
         {p.problemBody}
       </p>
+      {p.connective && (
+        <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">
+          {p.connective}
+        </p>
+      )}
     </div>
   </section>
 
@@ -65,7 +92,7 @@ const testimonial = TESTIMONIALS[idx % TESTIMONIALS.length];
           const [t, b] = row;
           return (
             <div class="card p-6 flex gap-4" data-aos="fade-up" data-aos-delay={(i % 2) * 70}>
-              <span class="font-mono text-[12px] text-[var(--color-grey)] pt-1 shrink-0">
+              <span class="font-semibold text-[12px] text-[var(--color-grey)] pt-1 shrink-0">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div>
@@ -84,31 +111,27 @@ const testimonial = TESTIMONIALS[idx % TESTIMONIALS.length];
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
       <SectionHead eyebrow="How it's delivered" heading="Built in onboarding. Run at the intensity you choose." />
       <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">{p.delivery}</p>
-      {p.honest && (
-        <div class="mt-8 rounded-xl border-l-2 border-[var(--color-azure)] bg-[var(--color-ash)] p-6 max-w-[66ch]" data-aos="fade-up">
-          <p class="text-[15px] text-[#4a4b4d] leading-relaxed">{p.honest}</p>
-        </div>
-      )}
       <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3" data-aos="fade-up">
         <a href="/how-we-work" class="tlink">See how we work<Icon name="arrow_forward" size={16} /></a>
         <a href="/services/projects" class="tlink">See standalone projects<Icon name="arrow_forward" size={16} /></a>
+        {p.crossLink && (
+          <a href={p.crossLink.href} class="tlink">{p.crossLink.label}<Icon name="arrow_forward" size={16} /></a>
+        )}
       </div>
     </div>
   </section>
 
-  <!-- PROOF (container) -->
-  <section class="py-20 md:py-28 bg-[var(--color-mist-grey)]">
+  <!-- IN THEIR WORDS (one-line pull-quote, per §1.4) -->
+  <section class="py-20 md:py-28 bg-[var(--color-sand)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead eyebrow="Proof" heading={PROOF_NOTE.heading} note={PROOF_NOTE.body} />
-      <div class="card p-7 mt-8 max-w-[62ch]" data-aos="fade-up">
-        <Icon name="format_quote" size={26} class="text-[var(--color-line)]" fill={1} />
-        <p class="text-[15px] text-[#3a3b3d] leading-relaxed mt-3">{testimonial.quote}</p>
-        <p class="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--color-grey)] mt-5 pt-5 border-t border-[var(--color-line)]">
-          {testimonial.name} · {testimonial.role} · {testimonial.property}
-        </p>
-      </div>
-      <div class="mt-8" data-aos="fade-up">
-        <a href="/results" class="tlink">See client results<Icon name="arrow_forward" size={16} /></a>
+      <p class="serif-italic text-[clamp(20px,2.4vw,26px)] text-[var(--color-ink)] leading-snug max-w-[46ch]" data-aos="fade-up">
+        "{pullQuote.quote}"
+      </p>
+      <p class="font-semibold text-[13px] text-[var(--color-clay)] mt-5" data-aos="fade-up">
+        {pullQuote.name} · {pullQuote.role} · {pullQuote.property}
+      </p>
+      <div class="mt-6" data-aos="fade-up">
+        <a href="/our-work" class="tlink">Read what owners say<Icon name="arrow_forward" size={16} /></a>
       </div>
     </div>
   </section>
@@ -118,7 +141,7 @@ const testimonial = TESTIMONIALS[idx % TESTIMONIALS.length];
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <a href={`/services/${nextSlug}`} class="card p-7 flex items-center justify-between group hover:-translate-y-1 transition-all" data-aos="fade-up">
         <div>
-          <span class="font-mono text-[11px] tracking-[0.12em] uppercase text-[var(--color-grey)]">Next capability</span>
+          <span class="font-semibold text-[12px] text-[var(--color-grey)]">Next capability</span>
           <h3 class="display text-[24px] mt-1">{next.label}</h3>
         </div>
         <Icon name="arrow_forward" size={26} class="text-[var(--color-grey)] group-hover:translate-x-1 group-hover:text-[var(--color-ink)] transition-all" />

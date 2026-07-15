@@ -5,7 +5,7 @@ export const SITE = {
   name: 'Indi',
   legalDomain: 'indihotels.com.au',
   url: 'https://indihotels.com.au',
-  tagline: 'The commercial team and tech behind independent hotels.',
+  tagline: 'The commercial team behind independent hotels.',
   description:
     'Indi is the expert commercial team behind independent hotels and motels in Australia. Distribution, revenue management and digital marketing, run as one team to grow your revenue, build direct market share and reduce your cost of guest acquisition.',
   email: 'revenue@indihotels.com.au',
@@ -41,7 +41,7 @@ export const NAV = [
     ],
   },
   { label: 'How We Work', href: '/how-we-work' },
-  { label: 'Results', href: '/results' },
+  { label: 'Our Work', href: '/our-work' },
   { label: 'About', href: '/about' },
 ];
 
@@ -58,14 +58,14 @@ export const SERVICES = [
     label: 'Electronic Distribution',
     icon: 'lan', // material symbol
     tile:
-      "Your channels and OTAs set up and optimised, connected cleanly to your systems, so you're visible everywhere that matters, without the chaos.",
+      "Your channels and OTAs set up and optimised, connected cleanly to your systems, so you're visible everywhere that matters.",
   },
   {
     slug: 'revenue-management',
     label: 'Revenue Management',
     icon: 'monitoring',
     tile:
-      'Best-practice pricing, rate plans and segmentation that move with demand, capturing revenue your fixed rates leave on the table.',
+      'Best-practice pricing, rate plans and segmentation that move with demand, so you capture more of it.',
   },
   {
     slug: 'digital-marketing',
@@ -176,15 +176,8 @@ export const PROJECT_ITEMS = [
   },
 ];
 
-// Monthly group snapshot for the Results page. Update this single object each
-// month once Sonny supplies the figures. Placeholder brackets flag it as unpublished.
-export const SNAPSHOT = {
-  month: '[Month]',
-  directShare: '[XX]',
-  commissionSaved: '[XX]',
-};
-
 // Verbatim owner testimonials, published exactly as supplied and with consent.
+// Order: Andrew, Lawrence, Michael.
 export const TESTIMONIALS = [
   {
     quote:
@@ -195,17 +188,42 @@ export const TESTIMONIALS = [
   },
   {
     quote:
-      "Joining Indi Hotels has been a major step forward in the success of our business. After many years of being a member of a major brand, being inundated with the ever increasing costs, we decided to partner with Indi Hotels and go independent. Indi Hotels has been fantastic to deal with, giving exceptional advice and support. We highly recommend Indi Hotels to any owners looking to take their business to the next level.",
-    name: 'David Pratt',
-    role: 'Owner',
-    property: 'Southgate Motel',
-  },
-  {
-    quote:
       "Indi Hotels provided exceptional service and support from day one. Opening a new hotel is always a challenging time, so I was delighted that Indi Hotels were able to come on board pre-opening. They did everything that was asked and promised, plus a lot more on top. The website Indi Hotels provided is brilliant. It currently delivers two bookings for every OTA booking, keeping commissions at a minimum in these challenging times. I can't recommend Indi Hotels highly enough, so if you need a break from a hotel chain or help with your own independent business, then you'd better call Indi Hotels!",
     name: 'Lawrence Heasman',
     role: 'Group GM',
     property: 'City Apartment Hotel Group',
+  },
+  {
+    // Edited (Sonny's name removed, dashes stripped) — signed off by Michael Stephens.
+    quote:
+      "As a new entrant to the accommodation sector in late 2024, I couldn't have asked for a better partner than Indi. Their wisdom doesn't stop at the revenue side, the team really knows the game, and the knowledge they've shared has shaped how we run the whole business. They're readily available whenever I need them, and I've genuinely loved working with and learning from them. For any owner, new or established, I can't recommend Indi highly enough.",
+    name: 'Michael Stephens',
+    role: 'Owner',
+    property: 'Albany Motel & Apartments',
+  },
+];
+
+// Short pull-quotes for inner pages (homepage 3-up, capability-page snippets).
+// Exact excerpts from the verbatim TESTIMONIALS above.
+export const PULL_QUOTES = [
+  {
+    quote: 'I love being independent, but with the support of Indi Hotels in the background.',
+    name: 'Andrew Macdonald',
+    role: 'Owner',
+    property: 'Hotel Nelson',
+  },
+  {
+    quote:
+      'The website Indi Hotels provided is brilliant. It currently delivers two bookings for every OTA booking.',
+    name: 'Lawrence Heasman',
+    role: 'Group GM',
+    property: 'City Apartment Hotel Group',
+  },
+  {
+    quote: "I couldn't have asked for a better partner than Indi.",
+    name: 'Michael Stephens',
+    role: 'Owner',
+    property: 'Albany Motel & Apartments',
   },
 ];
 

@@ -8,7 +8,7 @@ import { CTA } from '../data/site.js';
 
 const beliefs = [
   ['Independence is the point', 'We make your property stronger without making it less yours.'],
-  ['Honesty over hype', "Results vary by asset and market; we'll tell you what's realistic, not what sounds good."],
+  ['Honesty over hype', "We tell you what's realistic for your property and market, not what sounds good."],
   ['The work is the value', "Strategy that's actually implemented, not a deck that sits in a drawer."],
 ];
 
@@ -28,13 +28,13 @@ const team = [
 >
   <!-- HERO -->
   <section class="bg-[var(--color-paper)]">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-6 pb-16 md:pt-20 md:pb-32 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
       <div>
         <span class="eyebrow block mb-4" data-aos="fade-up">About</span>
         <h1 class="display text-[clamp(32px,5.6vw,58px)] max-w-[20ch]" data-aos="fade-up">
           Independence, backed by real commercial expertise.
         </h1>
-        <p class="serif-italic text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
+        <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
           Indi is the expert commercial team behind independent hotels and motels: distribution, revenue management and marketing, run by people who do this for a living.
         </p>
         <a href={CTA.href} class="btn block w-fit btn-azure mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
@@ -53,7 +53,7 @@ const team = [
   <section class="py-24 md:py-32">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-16 lg:grid-cols-2 items-center">
       <div>
-        <SectionHead eyebrow="Why Indi exists" heading="Independent, with an expert team behind you." />
+        <SectionHead human eyebrow="Why Indi exists" heading="Independent, with an expert team behind you." />
         <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6" data-aos="fade-up">
           Indi exists to give independent hotels the commercial firepower of a major group, while keeping everything that makes them independent. The autonomy to run your property your way. The freedom to be creative in how you do business. Lower costs, genuine direct bookings, and a lower cost of guest acquisition. Sophisticated strategies usually reserved for the big brands, delivered by a team with deep knowledge and real experience. You bring the hospitality. We bring the commercial expertise behind it.
         </p>
@@ -79,7 +79,7 @@ const team = [
         />
       </div>
       <div>
-        <SectionHead eyebrow="How we're different" heading="One team, not a stack of suppliers." />
+        <SectionHead human eyebrow="How we're different" heading="One team, not a stack of suppliers." />
         <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6" data-aos="fade-up">
           Most owners end up juggling a revenue consultant, a distribution specialist, a marketing agency, a photographer and a web developer, none of them talking to each other. Indi brings all of it under one roof, coordinated, so your distribution, pricing and marketing pull in the same direction. We're not software you have to learn and run yourself; we're the people who run it for you, at the level of support you choose.
         </p>
@@ -90,11 +90,11 @@ const team = [
   <!-- WHAT WE BELIEVE -->
   <section class="py-20 md:py-28">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead eyebrow="What we believe" heading="Three things, held to." />
+      <SectionHead human eyebrow="What we believe" heading="Three things, held to." />
       <div class="grid gap-4 md:grid-cols-3 mt-12">
         {beliefs.map(([t, b], i) => (
           <div class="card p-7" data-aos="fade-up" data-aos-delay={i * 80}>
-            <span class="font-mono text-[13px] text-[var(--color-azure)]">{String(i + 1).padStart(2, '0')}</span>
+            <span class="font-semibold text-[13px] text-[var(--color-clay)]">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="display text-[22px] mt-3">{t}</h3>
             <p class="text-[15px] text-[var(--color-grey)] mt-2.5 leading-relaxed">{b}</p>
           </div>
@@ -104,21 +104,21 @@ const team = [
   </section>
 
   <!-- TEAM (container) -->
-  <section class="py-20 md:py-28 bg-[var(--color-mist-grey)]">
+  <section class="py-20 md:py-28 bg-[var(--color-sand)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead eyebrow="The team" heading="Real faces, real hotel experience." note="Founder-led, and every member of the team is dedicated to your property's commercial performance." />
+      <SectionHead human eyebrow="The team" heading="Real faces, real hotel experience." note="Founder-led, and every member of the team is dedicated to your property's commercial performance." />
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12">
         {team.map(([name, role], i) => (
-          <div class="card p-7" data-aos="fade-up" data-aos-delay={i * 80}>
-            <span class="w-16 h-16 rounded-full bg-[var(--color-ash)] border border-[var(--color-line)] flex items-center justify-center">
-              <Icon name="person" size={30} class="text-[var(--color-line)]" />
+          <div class="card-human p-7" data-aos="fade-up" data-aos-delay={i * 80}>
+            <span class="w-16 h-16 rounded-full bg-[var(--color-sand-line)] border border-[var(--color-sand-line)] flex items-center justify-center">
+              <Icon name="person" size={30} class="text-[var(--color-clay)]" />
             </span>
             <h3 class="font-semibold text-[17px] mt-5">{name}</h3>
             <p class="text-[14.5px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{role}</p>
           </div>
         ))}
       </div>
-      <p class="font-mono text-[12px] tracking-[0.06em] text-[var(--color-grey)] mt-8" data-aos="fade-up">
+      <p class="text-[12px] text-[var(--color-grey)] mt-8" data-aos="fade-up">
         Based in Sunshine Coast, QLD, and Seminyak, Bali.
       </p>
     </div>
@@ -127,7 +127,7 @@ const team = [
   <!-- WHY OWNERS CHOOSE INDI -->
   <section class="py-20 md:py-28">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
-      <SectionHead eyebrow="Why owners choose Indi" heading="A partner whose only job is your commercial performance." />
+      <SectionHead human eyebrow="Why owners choose Indi" heading="A partner whose only job is your commercial performance." />
       <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">
         No guesswork on where you stand. It starts with a free discovery that shows you the upside before you commit a cent. One team for everything that drives your revenue. And a partner whose only job is your commercial performance, not selling you software, not putting you in a uniform.
       </p>

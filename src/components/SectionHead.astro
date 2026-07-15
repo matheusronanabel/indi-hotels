@@ -5,13 +5,14 @@ interface Props {
   note?: string;
   align?: 'left' | 'center';
   light?: boolean; // for dark backgrounds
+  human?: boolean; // warm-thread: testimonials, team, About, case studies only
 }
-const { eyebrow, heading, note, align = 'left', light = false } = Astro.props;
+const { eyebrow, heading, note, align = 'left', light = false, human = false } = Astro.props;
 const alignCls = align === 'center' ? 'text-center mx-auto' : '';
 ---
 <div class:list={['max-w-[60ch]', alignCls]} data-aos="fade-up">
   {eyebrow && (
-    <span class="eyebrow" style={light ? 'color:#9a9c9e' : ''}>{eyebrow}</span>
+    <span class:list={['eyebrow', human && 'eyebrow-clay']} style={light ? 'color:#9a9c9e' : ''}>{eyebrow}</span>
   )}
   <h2
     class:list={['display text-[clamp(26px,3.6vw,40px)] mt-3', light ? 'text-[var(--color-paper)]' : 'text-[var(--color-ink)]']}

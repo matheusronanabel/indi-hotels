@@ -24,7 +24,7 @@ Indi is the expert commercial team behind independent hotels and motels in Austr
 ## Positioning
 - One integrated team, not a stitched-together supplier list.
 - We sell expertise (with technology as the toolkit), not software you self-serve.
-- Honesty rule: Indi never guarantees performance outcomes, and won't pretend otherwise.
+- Honesty rule: Indi never guarantees performance outcomes.
 - Brand: "Indi". Domain and email stay on ${SITE.legalDomain}, which reads as the industry served.
 
 ## Who it's for
@@ -53,9 +53,9 @@ About Quarterly: this is strategic oversight, not active yield management. In ma
 Projects (standalone, fixed-scope, quoted per property): ${SITE.url}/services/projects
 ${projects}
 
-## Results
-${SITE.url}/results
-Real properties, real owners, real commercial outcomes, in their own words. Testimonials published with consent from named owners. Client properties are presented as independent clients Indi works with, never an owned collection. No performance data or guaranteed results are shown.
+## Our Work
+${SITE.url}/our-work
+Real properties, real owners, real commercial outcomes, in their own words. Testimonials published with consent from named owners. Properties are presented as the independent owners and properties Indi works with, never an owned collection. No performance data or guaranteed outcomes are shown.
 
 ## About
 ${SITE.url}/about

@@ -1,0 +1,117 @@
+---
+// Reusable case-study block. RevPAR only — never room count, occupancy, ADR
+// or total revenue (RevPAR × rooms × days = revenue, so pairing RevPAR with
+// a room count would let anyone reverse the owner's turnover).
+import Icon from './Icon.astro';
+import { CTA } from '../data/site.js';
+
+interface Photo {
+  label: string;
+  note: string;
+}
+
+interface Stat {
+  pct: string; // e.g. "+16.1"
+  label: string; // e.g. "RevPAR growth, YoY"
+  caption: string;
+}
+
+interface Quote {
+  text: string;
+  name: string;
+  role: string;
+}
+
+interface Props {
+  headline: string;
+  lede?: string;
+  property: string;
+  location: string;
+  photos: [Photo, Photo];
+  stat: Stat;
+  quote?: Quote | null; // omit entirely rather than ship a placeholder quote
+}
+
+const { headline, lede, property, location, photos, stat, quote } = Astro.props;
+---
+
+<div class="cs bg-[var(--color-white)] border border-[var(--color-line)] rounded-[20px] overflow-hidden">
+  <div class="cs-pad pt-8">
+    <span class="eyebrow block mb-3">Case study</span>
+    <h3 class="display cs-h text-[clamp(27px,3.4vw,34px)] max-w-[22ch]">{headline}</h3>
+    {lede && <p class="text-[16px] text-[var(--color-grey)] leading-relaxed max-w-[58ch] mt-3">{lede}</p>}
+    <p class="text-[14px] text-[var(--color-grey)] mt-5 mb-6">
+      <span class="font-semibold text-[var(--color-ink)]">{property}</span> · {location}
+    </p>
+  </div>
+
+  <div class="cs-pad photos grid gap-3 grid-cols-1 sm:grid-cols-[1.6fr_1fr] pb-7">
+    {photos.map((p) => (
+      <div class="ph rounded-[14px] bg-[var(--color-mist-grey)] border border-dashed border-[#C7CDD6] flex flex-col items-center justify-center text-center px-4 py-5 min-h-[220px] text-[#98A0AC]">
+        <Icon name="photo_camera" size={26} class="opacity-50 mb-2" />
+        <span class="text-[12px] font-semibold">{p.label}</span>
+        <small class="text-[11px] mt-1 text-[#AEB5BF]">{p.note}</small>
+      </div>
+    ))}
+  </div>
+
+  <div class="cs-pad stats bg-[var(--color-mist-grey)] border-y border-[var(--color-line)] py-8">
+    <div class="big display text-[var(--color-azure)]">
+      {stat.pct}<span class="pct">%</span>
+    </div>
+    <p class="font-semibold text-[15px] text-[var(--color-ink)] mt-2">{stat.label}</p>
+    <p class="text-[11.5px] text-[var(--color-grey)] leading-relaxed max-w-[70ch] mt-6">{stat.caption}</p>
+  </div>
+
+  {quote && (
+    <div class="cs-pad py-8 bg-[var(--color-sand)]">
+      <p class="serif-italic text-[clamp(17px,2vw,19px)] leading-[1.55] max-w-[62ch]" style="color:#3B2F28">
+        "{quote.text}"
+      </p>
+      <div class="mt-4 flex items-center gap-2.5 flex-wrap">
+        <span class="font-bold text-[14px]" style="color:#3B2F28">{quote.name}</span>
+        <span class="text-[13px]" style="color:#8A6A54">{quote.role}</span>
+      </div>
+    </div>
+  )}
+
+  <div class="cs-pad py-6 flex items-center gap-3.5 flex-wrap">
+    <a href={CTA.href} class="btn btn-azure text-[14.5px]">{CTA.label}</a>
+    <a href="#properties" class="btn btn-ghost text-[14.5px]">See who else we work with</a>
+  </div>
+</div>
+
+<style>
+  .cs-pad {
+    padding-left: 34px;
+    padding-right: 34px;
+  }
+  .cs-h {
+    margin-top: 0;
+  }
+  .big {
+    font-weight: 600;
+    font-size: 66px;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+  }
+  .big .pct {
+    font-size: 40px;
+  }
+
+  @media (min-width: 640px) {
+    .big {
+      font-size: 88px;
+    }
+    .big .pct {
+      font-size: 52px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cs-pad {
+      padding-left: 22px;
+      padding-right: 22px;
+    }
+  }
+</style>

@@ -20,7 +20,7 @@ Three headline capabilities, delivered as one coordinated team:
 ## Key pages
 - [Home](${SITE.url}/)
 - [Services overview](${SITE.url}/services)
-- [Results](${SITE.url}/results): client outcomes and testimonials, honestly framed.
+- [Our Work](${SITE.url}/our-work): the owners and properties Indi works with, and their testimonials.
 - [About](${SITE.url}/about): the independence-with-expert-team story and team.
 - [Commercial Discovery (contact)](${SITE.url}/contact): the primary way to get in touch.
 
