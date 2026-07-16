@@ -65,8 +65,10 @@ Indi gives independent hotel owners the commercial expertise and tools to compet
 No public pricing. Cost is established through a free Commercial Discovery and a tailored proposal, the single front door to working with Indi.
 
 ## Contact
-Primary action: the free Commercial Discovery at ${SITE.url}/contact, a no-cost, no-commitment review of your distribution, revenue and marketing.
+Primary action: the free Commercial Discovery at ${SITE.url}/free-discovery, a no-cost, no-commitment review of your distribution, revenue and marketing.
+General enquiries: ${SITE.url}/contact
 Email: ${SITE.email}
+Phone: ${SITE.phone}
 `;
 
   return new Response(body, {

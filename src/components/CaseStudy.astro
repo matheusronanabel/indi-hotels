@@ -12,7 +12,7 @@ interface Photo {
 
 interface Stat {
   pct: string; // e.g. "+16.1"
-  label: string; // e.g. "RevPAR growth, YoY"
+  label: string; // e.g. "RevPAR growth · FY 2025/26"
   caption: string;
 }
 
@@ -24,7 +24,7 @@ interface Quote {
 
 interface Props {
   headline: string;
-  lede?: string;
+  lede?: string | null;
   property: string;
   location: string;
   photos: [Photo, Photo];

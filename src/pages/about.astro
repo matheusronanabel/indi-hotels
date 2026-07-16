@@ -13,11 +13,11 @@ const beliefs = [
 ];
 
 const team = [
-  ['Sonny', 'Founder & Revenue'],
-  ['Deby', 'Marketing'],
-  ['Yudi', 'Revenue'],
-  ['Abel', 'Developer'],
-  ['Yuka', 'Administrator'],
+  { name: 'Sonny', role: 'Co-Founder & Revenue', photo: '/teams/sonny.jpeg' },
+  { name: 'Deby', role: 'Co-Founder & Marketing', photo: '/teams/debby.jpeg' },
+  { name: 'Abel', role: 'Developer', photo: '/teams/abel.jpeg' },
+  { name: 'Yudi', role: 'Revenue' },
+  { name: 'Yuka', role: 'Administrator' },
 ];
 ---
 
@@ -27,7 +27,7 @@ const team = [
   path="/about"
 >
   <!-- HERO -->
-  <section class="bg-[var(--color-paper)]">
+  <section class="bg-[var(--color-sand-1)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-6 pb-16 md:pt-20 md:pb-32 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
       <div>
         <span class="eyebrow block mb-4" data-aos="fade-up">About</span>
@@ -69,7 +69,7 @@ const team = [
   </section>
 
   <!-- HOW WE'RE DIFFERENT -->
-  <section class="py-24 md:py-32 bg-[var(--color-mist-grey)]">
+  <section class="py-24 md:py-32 bg-[var(--color-sand-1)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-16 lg:grid-cols-2 items-center">
       <div class="order-last lg:order-first" data-aos="fade-right" data-aos-delay="100">
         <PhotoBlock
@@ -108,13 +108,17 @@ const team = [
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <SectionHead human eyebrow="The team" heading="Real faces, real hotel experience." note="Founder-led, and every member of the team is dedicated to your property's commercial performance." />
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12">
-        {team.map(([name, role], i) => (
+        {team.map((t, i) => (
           <div class="card-human p-7" data-aos="fade-up" data-aos-delay={i * 80}>
-            <span class="w-16 h-16 rounded-full bg-[var(--color-sand-line)] border border-[var(--color-sand-line)] flex items-center justify-center">
-              <Icon name="person" size={30} class="text-[var(--color-clay)]" />
-            </span>
-            <h3 class="font-semibold text-[17px] mt-5">{name}</h3>
-            <p class="text-[14.5px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{role}</p>
+            {t.photo ? (
+              <img src={t.photo} alt={t.name} class="w-16 h-16 rounded-full object-cover border border-[var(--color-sand-line)]" />
+            ) : (
+              <span class="w-16 h-16 rounded-full bg-[var(--color-sand-line)] border border-[var(--color-sand-line)] flex items-center justify-center">
+                <Icon name="person" size={30} class="text-[var(--color-clay)]" />
+              </span>
+            )}
+            <h3 class="font-semibold text-[17px] mt-5">{t.name}</h3>
+            <p class="text-[14.5px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{t.role}</p>
           </div>
         ))}
       </div>

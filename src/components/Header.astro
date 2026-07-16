@@ -1,16 +1,21 @@
 ---
-import Logo from './Logo.astro';
+import LogoAnimated from './LogoAnimated.astro';
 import Icon from './Icon.astro';
 import { NAV, CTA } from '../data/site.js';
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
   href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
+
+// Groups with children get their own slide-in panel in the mobile overlay
+// (see NavV4 in the albany-motel project — full-screen overlay, sliding
+// panel-per-group, staggered link entrance). Panel 0 is always the top level.
+const subGroups = NAV.filter((item) => item.children);
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-paper)]/85 backdrop-blur-md">
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-sand-1)]/85 backdrop-blur-md">
   <div class="w-full px-4 sm:px-0 max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto flex items-center justify-between h-[68px] gap-6">
     <a href="/" class="shrink-0 h-auto flex items-center" aria-label="Indi home">
-      <Logo size={26} />
+      <LogoAnimated size={26} />
     </a>
 
     <!-- Desktop nav -->
@@ -68,15 +73,16 @@ const isActive = (href: string) =>
     </nav>
 
     <div class="flex items-center gap-2">
-      <!-- CTA only in desktop bar; on mobile it lives inside the toggled menu -->
+      <!-- CTA only in desktop bar; on mobile it lives inside the overlay -->
         <a href={CTA.href} class="btn btn-azure hidden sm:inline-flex">{CTA.short}</a>
 
       <button
         id="menu-toggle"
-        class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-[var(--color-line)] text-[var(--color-ink)] transition-colors hover:border-[var(--color-ink)]"
+        class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-[var(--color-sand-line)] bg-[var(--color-sand)] text-[var(--color-ink)] transition-colors hover:border-[var(--color-ink)]"
         aria-label="Open menu"
         aria-expanded="false"
-        aria-controls="mobile-menu"
+        aria-haspopup="dialog"
+        aria-controls="mobile-nav-overlay"
       >
         <span class="nav-icon-open">
           <Icon name="menu" size={22} />
@@ -87,81 +93,192 @@ const isActive = (href: string) =>
       </button>
     </div>
   </div>
-
-  <!-- Mobile menu — animated via max-height + opacity -->
-  <div
-    id="mobile-menu"
-    class="lg:hidden overflow-hidden border-t border-[var(--color-line)] bg-[var(--color-paper)] px-4"
-    style="max-height: 0; opacity: 0; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;"
-    aria-hidden="true"
-  >
-    <nav class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto py-5 flex flex-col" aria-label="Mobile">
-      {
-        NAV.map((item) => (
-          <>
-            <a
-              href={item.href}
-              class="py-3 text-[17px] font-normal border-b border-[var(--color-line)] text-[var(--color-ink)]"
-            >
-              {item.label}
-            </a>
-            {item.children && (
-              <div class="flex flex-col pl-4 border-b border-[var(--color-line)]">
-                {item.children.map((c) => (
-                  <a href={c.href} class="py-2.5 text-[15px] text-[var(--color-grey)]">
-                    {c.label}
-                  </a>
-                ))}
-              </div>
-            )}
-          </>
-        ))
-      }
-      <a href={CTA.href} class="btn btn-azure text-center mt-5 justify-center">{CTA.label}</a>
-      <div class="pb-2"></div>
-    </nav>
-  </div>
 </header>
 
+<!-- Mobile nav overlay — full-screen takeover, sliding panel-per-group -->
+<div
+  id="mobile-nav-overlay"
+  class="mnav lg:hidden fixed inset-0 z-[60] flex flex-col bg-[var(--color-sand-1)]"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Site navigation"
+  aria-hidden="true"
+>
+  <div class="flex items-center justify-between px-4 shrink-0 h-[68px]">
+    <a href="/" aria-label="Indi home" class="shrink-0 flex items-center">
+      <LogoAnimated size={26} />
+    </a>
+    <button
+      id="mobile-nav-close"
+      aria-label="Close menu"
+      class="inline-flex items-center justify-center w-10 h-10 rounded-md border border-[var(--color-sand-line)] text-[var(--color-ink)] transition-colors hover:border-[var(--color-ink)]"
+    >
+      <Icon name="close" size={22} />
+    </button>
+  </div>
+
+  <div class="relative flex-1 min-h-0 overflow-hidden">
+    <div id="mobile-nav-track" class="mnav-track flex h-full">
+      <!-- Panel 0: top level -->
+      <div class="mnav-panel shrink-0 w-full h-full overflow-y-auto px-6 sm:px-10 flex flex-col justify-center" data-panel-index="0">
+        <nav aria-label="Mobile primary" class="flex flex-col">
+          {NAV.map((item, i) => (
+            item.children ? (
+              <button
+                type="button"
+                data-open-panel={subGroups.indexOf(item) + 1}
+                class="mnav-item display flex items-center justify-between gap-3 py-3 text-left text-[var(--color-ink)] border-b border-[var(--color-sand-line)]"
+                style={`transition-delay:${60 + i * 50}ms`}
+              >
+                <span>{item.label}</span>
+                <Icon name="expand_more" size={22} class="-rotate-90 opacity-50 shrink-0" />
+              </button>
+            ) : (
+              <a
+                href={item.href}
+                class="mnav-item display py-3 text-[var(--color-ink)] border-b border-[var(--color-sand-line)]"
+                style={`transition-delay:${60 + i * 50}ms`}
+              >
+                {item.label}
+              </a>
+            )
+          ))}
+        </nav>
+        <a
+          href={CTA.href}
+          class="mnav-item btn btn-azure text-center justify-center mt-8"
+          style={`transition-delay:${60 + NAV.length * 50}ms`}
+        >
+          {CTA.label}
+        </a>
+      </div>
+
+      <!-- Panel per group with children -->
+      {subGroups.map((item) => (
+        <div class="mnav-panel shrink-0 w-full h-full overflow-y-auto px-6 sm:px-10 flex flex-col justify-center" data-panel-index={subGroups.indexOf(item) + 1}>
+          <button
+            type="button"
+            data-back
+            class="flex items-center gap-2 mb-6 text-[13px] font-semibold uppercase tracking-wide text-[var(--color-grey)] transition-colors hover:text-[var(--color-ink)]"
+          >
+            <Icon name="arrow_forward" size={16} class="rotate-180" />
+            Back
+          </button>
+          <nav aria-label={item.label} class="flex flex-col">
+            {item.children!.map((c) => (
+              <a href={c.href} class="display py-2.5 text-[clamp(20px,5vw,28px)] text-[var(--color-ink)]">
+                {c.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .mnav {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+  }
+  .mnav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+  .mnav-track {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .mnav-item {
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: clamp(26px, 8vw, 38px);
+  }
+  .mnav.is-open .mnav-item {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  /* CTA keeps the standard .btn size — the clamp() above is for nav links only */
+  .mnav-item.btn {
+    font-size: 14.5px;
+  }
+</style>
+
 <script>
+  const overlay = document.getElementById('mobile-nav-overlay');
+  const track = document.getElementById('mobile-nav-track') as HTMLElement | null;
   const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu') as HTMLElement | null;
+  const closeBtn = document.getElementById('mobile-nav-close');
+  const panels = Array.from(overlay?.querySelectorAll<HTMLElement>('[data-panel-index]') ?? []);
   const iconOpen = toggle?.querySelector('.nav-icon-open');
   const iconClose = toggle?.querySelector('.nav-icon-close');
+
   let isOpen = false;
+  let activeIndex = 0;
+  let lastTrigger: HTMLElement | null = null;
+  let resetTimer: ReturnType<typeof setTimeout>;
+
+  function applyTrack() {
+    if (track) track.style.transform = `translateX(-${activeIndex * 100}%)`;
+  }
+
+  function setOpenState(open: boolean) {
+    isOpen = open;
+    overlay?.classList.toggle('is-open', open);
+    overlay?.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    iconOpen?.classList.toggle('hidden', open);
+    iconClose?.classList.toggle('hidden', !open);
+  }
+
+  function goToPanel(i: number) {
+    activeIndex = i;
+    applyTrack();
+    const target = i === 0 ? lastTrigger : panels[i]?.querySelector<HTMLElement>('[data-back]');
+    setTimeout(() => target?.focus(), 500);
+  }
 
   function openMenu() {
-    isOpen = true;
-    if (menu) {
-      menu.style.maxHeight = `${menu.scrollHeight}px`;
-      menu.style.opacity = '1';
-      menu.setAttribute('aria-hidden', 'false');
-    }
-    toggle?.setAttribute('aria-expanded', 'true');
-    toggle?.setAttribute('aria-label', 'Close menu');
-    iconOpen?.classList.add('hidden');
-    iconClose?.classList.remove('hidden');
+    clearTimeout(resetTimer);
+    activeIndex = 0;
+    applyTrack();
+    setOpenState(true);
   }
 
   function closeMenu() {
-    isOpen = false;
-    if (menu) {
-      menu.style.maxHeight = '0';
-      menu.style.opacity = '0';
-      menu.setAttribute('aria-hidden', 'true');
-    }
-    toggle?.setAttribute('aria-expanded', 'false');
-    toggle?.setAttribute('aria-label', 'Open menu');
-    iconOpen?.classList.remove('hidden');
-    iconClose?.classList.add('hidden');
+    setOpenState(false);
+    resetTimer = setTimeout(() => {
+      activeIndex = 0;
+      applyTrack();
+    }, 500);
   }
 
-  toggle?.addEventListener('click', () => {
-    isOpen ? closeMenu() : openMenu();
+  toggle?.addEventListener('click', () => (isOpen ? closeMenu() : openMenu()));
+  closeBtn?.addEventListener('click', closeMenu);
+
+  overlay?.querySelectorAll<HTMLElement>('[data-open-panel]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      lastTrigger = btn;
+      goToPanel(Number(btn.dataset.openPanel));
+    });
   });
 
-  // Close when a link inside the menu is tapped
-  menu?.querySelectorAll('a').forEach((link) => {
+  overlay?.querySelectorAll<HTMLElement>('[data-back]').forEach((btn) => {
+    btn.addEventListener('click', () => goToPanel(0));
+  });
+
+  overlay?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !isOpen) return;
+    if (activeIndex !== 0) goToPanel(0);
+    else closeMenu();
   });
 </script>

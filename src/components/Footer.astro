@@ -3,7 +3,7 @@ import Logo from './Logo.astro';
 import { NAV, CTA, SITE, SERVICES } from '../data/site.js';
 const year = new Date().getFullYear();
 ---
-<footer class="bg-[var(--color-paper)] border-t border-[var(--color-line)]">
+<footer class="bg-[var(--color-sand-1)] border-t border-[var(--color-line)]">
   <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 py-20 md:py-24">
     <div class="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
       <div>
@@ -38,21 +38,22 @@ const year = new Date().getFullYear();
               </a>
             </li>
           ))}
-          <li>
-            <a href={CTA.href} class="text-[15px] text-[var(--color-grey)] hover:text-[var(--color-ink)] transition-colors">
-              Contact
-            </a>
-          </li>
         </ul>
       </div>
 
       <div>
         <p class="eyebrow mb-4">Get in touch</p>
-        <a href={`mailto:${SITE.email}`} class="text-[15px] text-[var(--color-grey)] hover:text-[var(--color-ink)] transition-colors break-all">
+        <a href={`mailto:${SITE.email}`} class="block text-[15px] text-[var(--color-grey)] hover:text-[var(--color-ink)] transition-colors break-all">
           {SITE.email}
         </a>
+        <a href={`tel:${SITE.phone.replace(/\s+/g, '')}`} class="block text-[15px] text-[var(--color-grey)] hover:text-[var(--color-ink)] transition-colors mt-2">
+          {SITE.phone}
+        </a>
         <p class="text-[13px] text-[var(--color-grey)] mt-3 leading-relaxed max-w-[28ch]">
-          Commercial services for independent hotels &amp; motels across Australia.
+          {SITE.address.street}, {SITE.address.suburb} {SITE.address.state} {SITE.address.postcode}, Australia
+        </p>
+        <p class="text-[13px] text-[var(--color-grey)] mt-2 leading-relaxed max-w-[28ch]">
+          {SITE.addressBali}
         </p>
       </div>
     </div>

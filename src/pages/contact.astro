@@ -1,57 +1,60 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Icon from '../components/Icon.astro';
 import { SITE } from '../data/site.js';
-
-const what = [
-  'A review of your current distribution and channel mix',
-  'Where your pricing has the most room to move',
-  'How your direct-booking and marketing setup stacks up',
-  'A clear, recommended path, no cost, no commitment',
-];
 ---
 
 <BaseLayout
-  title="Start your free commercial discovery"
-  description="Start with a free commercial discovery of your independent hotel's distribution, revenue management and marketing. No cost, no commitment. Indi shows you where the upside is."
+  title="Contact Indi"
+  description="Get in touch with Indi, the commercial team behind independent hotels and motels in Australia."
   path="/contact"
 >
   <section class="bg-[var(--color-paper)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32">
-      <span class="eyebrow block mb-4" data-aos="fade-up">Commercial Discovery</span>
+      <span class="eyebrow block mb-4" data-aos="fade-up">Contact</span>
       <h1 class="display text-[clamp(32px,5.6vw,56px)] max-w-[18ch]" data-aos="fade-up">
-        See your property through an expert's eyes.
+        Get in touch.
       </h1>
       <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
-        Tell us about your property. We'll review your distribution, revenue and marketing, and show you the upside.
+        Have a question, or something specific to ask? Send us a message and we'll get back to you.
       </p>
     </div>
   </section>
 
   <section class="py-16 md:py-24">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-12 lg:grid-cols-[0.85fr_1.15fr] items-start">
-      <!-- What you get -->
+      <!-- Contact details -->
       <div data-aos="fade-up">
-        <span class="eyebrow">What's in the discovery</span>
-        <ul class="mt-6 space-y-4">
-          {what.map((w) => (
-            <li class="flex gap-3 items-start">
-              <Icon name="check_circle" size={22} class="text-[var(--color-azure)] shrink-0 mt-0.5" fill={1} />
-              <span class="text-[16px] text-[#3a3b3d] leading-relaxed">{w}</span>
-            </li>
-          ))}
-        </ul>
+        <span class="eyebrow">Contact details</span>
+        <div class="mt-6 space-y-4">
+          <div>
+            <p class="text-[12px] font-semibold text-[var(--color-grey)]">Email</p>
+            <a href={`mailto:${SITE.email}`} class="text-[16px] text-[var(--color-ink)] font-semibold">{SITE.email}</a>
+          </div>
+          <div>
+            <p class="text-[12px] font-semibold text-[var(--color-grey)]">Phone</p>
+            <a href={`tel:${SITE.phone.replace(/\s+/g, '')}`} class="text-[16px] text-[var(--color-ink)] font-semibold">{SITE.phone}</a>
+          </div>
+          <div>
+            <p class="text-[12px] font-semibold text-[var(--color-grey)]">Address</p>
+            <p class="text-[16px] text-[var(--color-ink)] font-semibold">
+              {SITE.address.street}, {SITE.address.suburb} {SITE.address.state} {SITE.address.postcode}, Australia
+            </p>
+            <p class="text-[16px] text-[var(--color-ink)] font-semibold mt-2">
+              {SITE.addressBali}
+            </p>
+          </div>
+        </div>
         <div class="mt-8 rounded-xl bg-[var(--color-ash)] p-6">
           <p class="text-[14.5px] text-[#4a4b4d] leading-relaxed">
-            Prefer email? Reach us at
-            <a href={`mailto:${SITE.email}`} class="text-[var(--color-ink)] font-semibold underline decoration-[var(--color-line)] underline-offset-2">{SITE.email}</a>.
+            Looking for a free commercial discovery instead?
+            <a href="/free-discovery" class="text-[var(--color-ink)] font-semibold underline decoration-[var(--color-line)] underline-offset-2">Start here</a>.
           </p>
         </div>
       </div>
 
       <!-- Form -->
       <div class="card p-7 md:p-9" data-aos="fade-up" data-aos-delay="80">
-        <form id="discovery-form" class="space-y-5">
+        <form id="contact-form" class="space-y-5">
           <!-- honeypot: hidden from real users, bots that autofill every field trip it -->
           <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
@@ -77,34 +80,17 @@ const what = [
             </div>
           </div>
 
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label for="location" class="block text-[13px] font-semibold mb-1.5">Location</label>
-              <input id="location" name="location" type="text" placeholder="Town / state" class="field" />
-            </div>
-            <div>
-              <label for="rooms" class="block text-[13px] font-semibold mb-1.5">Approx. rooms</label>
-              <select id="rooms" name="rooms" class="field">
-                <option value="">Select…</option>
-                <option>Under 20</option>
-                <option>20 to 50</option>
-                <option>50 to 100</option>
-                <option>100+</option>
-              </select>
-            </div>
-          </div>
-
           <div>
-            <label for="message" class="block text-[13px] font-semibold mb-1.5">What's prompting this? <span class="text-[var(--color-grey)] font-normal">(optional)</span></label>
-            <textarea id="message" name="message" rows="4" class="field resize-y" placeholder="Distribution, pricing, a new website, whatever's top of mind."></textarea>
+            <label for="message" class="block text-[13px] font-semibold mb-1.5">Message</label>
+            <textarea id="message" name="message" rows="5" required class="field resize-y" placeholder="What can we help with?"></textarea>
           </div>
 
           <button type="submit" id="submit-btn" class="btn block w-full btn-azure justify-center text-[15px]">
-            Start my free discovery
+            Send message
           </button>
           <p id="form-status" class="text-[14px] text-center" role="status" aria-live="polite"></p>
           <p class="text-[12px] text-[var(--color-grey)] text-center leading-relaxed">
-            No cost, no commitment. We'll only use your details to prepare and discuss your Commercial Discovery.
+            We'll only use your details to reply to your message.
           </p>
         </form>
       </div>
@@ -133,19 +119,23 @@ const what = [
 </style>
 
 <script is:inline>
-  // Maps this form's field names to the Google Form's entry IDs (Contact Form - Website).
-  const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScuoTS9MJLdPwSfY5j3HhZ_9h_zMkcwkI6jUpP1l03YY09Vtw/formResponse';
+  // TODO(Abel): this form isn't wired to a submission target yet. Once you have
+  // a Google Form (or other endpoint) for general contact, mirror the pattern in
+  // free-discovery.astro: set GOOGLE_FORM_ACTION to its formResponse URL, and map
+  // each field below to that form's entry.<id>. Until then, submissions are NOT
+  // sent anywhere — the form tells the visitor to email/call directly instead, so
+  // no one thinks they've reached us when they haven't.
+  const GOOGLE_FORM_ACTION = ''; // e.g. 'https://docs.google.com/forms/d/e/XXXX/formResponse'
   const ENTRY_MAP = {
-    name: 'entry.266651390',
-    property: 'entry.1060230947',
-    email: 'entry.441335380',
-    phone: 'entry.2061716409',
-    location: 'entry.1872318622',
-    rooms: 'entry.693629465',
-    message: 'entry.822872600',
+    name: '', // e.g. 'entry.123456789'
+    property: '',
+    email: '',
+    phone: '',
+    message: '',
   };
+  const WIRED = Boolean(GOOGLE_FORM_ACTION) && Object.values(ENTRY_MAP).every(Boolean);
 
-  const form = document.getElementById('discovery-form');
+  const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
   const btn = document.getElementById('submit-btn');
 
@@ -154,12 +144,20 @@ const what = [
     status.style.color = 'var(--color-grey)';
 
     // Honeypot: real users never see or fill this field, so a checked box means a bot.
-    // Pretend success without actually submitting, so the bot doesn't know to adapt.
     if (form.querySelector('[name="botcheck"]').checked) {
       form.reset();
       status.style.color = 'var(--color-azure)';
-      status.textContent = "Thanks, your discovery request is in. We'll be in touch shortly.";
-      btn.textContent = 'Request received';
+      status.textContent = "Thanks, we've got your message and will be in touch shortly.";
+      btn.textContent = 'Message sent';
+      return;
+    }
+
+    if (!WIRED) {
+      console.warn('[contact form] No submission target configured yet — see TODO in contact.astro.');
+      const email = document.querySelector('a[href^="mailto:"]')?.textContent || '';
+      const phone = document.querySelector('a[href^="tel:"]')?.textContent || '';
+      status.style.color = 'var(--color-grey)';
+      status.textContent = `This form isn't connected yet — please email ${email} or call ${phone} directly for now.`;
       return;
     }
 
@@ -184,13 +182,13 @@ const what = [
       });
       form.reset();
       status.style.color = 'var(--color-azure)';
-      status.textContent = "Thanks, your discovery request is in. We'll be in touch shortly.";
-      btn.textContent = 'Request received';
+      status.textContent = "Thanks, we've got your message and will be in touch shortly.";
+      btn.textContent = 'Message sent';
     } catch (err) {
       status.style.color = 'var(--color-azure)';
-      status.textContent = 'Sorry, that didn\u2019t send. Please email us directly and we\u2019ll sort it.';
+      status.textContent = 'Sorry, that didn’t send. Please email us directly and we’ll sort it.';
       btn.disabled = false;
-      btn.textContent = 'Start my free discovery';
+      btn.textContent = 'Send message';
     }
   });
 </script>

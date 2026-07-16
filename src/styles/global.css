@@ -23,7 +23,10 @@
   --color-sky: #EAF1FB;
   --color-mist-line: #D6E4F7;
 
-  /* warm thread — people only: testimonials, team, About, case studies, property photography */
+  /* structural warmth — paler sand, used broadly: hero, alternating sections, nav, footer */
+  --color-sand-1: #FAF6EF;
+
+  /* warm thread — people only: testimonials, team, About, case-study quotes */
   --color-clay: #C0714B;
   --color-sand: #F3EBE3;
   --color-sand-line: #E8DDD2;

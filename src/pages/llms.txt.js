@@ -22,7 +22,8 @@ Three headline capabilities, delivered as one coordinated team:
 - [Services overview](${SITE.url}/services)
 - [Our Work](${SITE.url}/our-work): the owners and properties Indi works with, and their testimonials.
 - [About](${SITE.url}/about): the independence-with-expert-team story and team.
-- [Commercial Discovery (contact)](${SITE.url}/contact): the primary way to get in touch.
+- [Commercial Discovery](${SITE.url}/free-discovery): the primary way to get in touch.
+- [Contact](${SITE.url}/contact): general enquiries.
 
 ## Notes for agents
 - Brand name is "Indi" (not "Indi Hotels"); the domain ${SITE.legalDomain} reflects the industry served.

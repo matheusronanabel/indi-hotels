@@ -10,6 +10,7 @@ const routes = [
   '/how-we-work',
   '/our-work',
   '/about',
+  '/free-discovery',
   '/contact',
 ];
 
@@ -18,7 +19,7 @@ export async function GET() {
   const urls = routes
     .map((r) => {
       const loc = new URL(r, SITE.url).href;
-      const priority = r === '/' ? '1.0' : r === '/contact' ? '0.9' : '0.8';
+      const priority = r === '/' ? '1.0' : r === '/free-discovery' ? '0.9' : '0.8';
       return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
     })
     .join('\n');

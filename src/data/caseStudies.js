@@ -1,12 +1,11 @@
 // Case studies for the Our Work page. RevPAR growth (%) only, ever — never room
 // count, occupancy, ADR or total revenue (see indi-case-studies-handoff-for-abel.md §1).
 // Order on the page: Albany -> Hobart -> Nelson (newcomer -> expertise -> veteran).
+// No ledes, uniform structure across all three (see indi-round5-handoff-for-abel.md §3.2).
 //
 // Michael Stephens has signed off on his edited Albany quote — Albany is cleared to publish.
-// Still open: photography for all three (placeholders shown instead); Hobart headline choice
-// between this yield-story version and the neutral alternative ("A strong year, priced with
-// intent." / "Indi positioned every channel and every date deliberately, so the property
-// earned more from each room available.").
+// Andrew Macdonald's Nelson quote is verbatim — do not edit.
+// Still open: photography for all three (placeholders shown instead).
 export const CASE_STUDIES = [
   {
     slug: 'albany',
@@ -20,9 +19,9 @@ export const CASE_STUDIES = [
     ],
     stat: {
       pct: '+16.1',
-      label: 'RevPAR growth, YoY',
+      label: 'RevPAR growth · FY 2025/26',
       caption:
-        "Full financial year. Results reflect the property's first full year working with Indi. Every property and market is different, and individual results vary.",
+        "Full financial year. Every property and market is different, and individual results vary.",
     },
     // Edited (Sonny's name removed, dashes stripped) — signed off by Michael Stephens.
     quote: {
@@ -34,9 +33,10 @@ export const CASE_STUDIES = [
   },
   {
     slug: 'hobart',
-    headline: 'More revenue, from fewer rooms sold.',
-    lede:
-      'Chasing occupancy is the instinct. Pricing with intent is the discipline. At Hobart City Apartments, Indi priced each channel and each date deliberately rather than filling rooms at any price, and the property earned significantly more from a slightly smaller book of business.',
+    // Overrides Round 4. Do not reference "more revenue from fewer rooms sold" —
+    // invites questions about occupancy. The title alone carries the story.
+    headline: 'A stronger year, priced with intent.',
+    lede: null,
     property: 'Hobart City Apartments',
     location: 'Hobart, Tasmania',
     photos: [
@@ -45,7 +45,7 @@ export const CASE_STUDIES = [
     ],
     stat: {
       pct: '+11.3',
-      label: 'RevPAR growth, YoY',
+      label: 'RevPAR growth · FY 2025/26',
       caption: 'Full financial year. Every property and market is different, and individual results vary.',
     },
     quote: null, // none available — omit the block rather than ship a placeholder
@@ -53,8 +53,7 @@ export const CASE_STUDIES = [
   {
     slug: 'hotel-nelson',
     headline: 'An experienced owner, still finding upside.',
-    lede:
-      'Andrew has run an independent hotel for many years and knows his market intimately. With Indi behind the commercials, both sides of the equation moved up together, more rooms sold and a stronger rate, which is the clearest sign that demand is being captured rather than discounted for.',
+    lede: null,
     property: 'Hotel Nelson',
     location: 'Nelson Bay, New South Wales',
     photos: [
@@ -63,7 +62,7 @@ export const CASE_STUDIES = [
     ],
     stat: {
       pct: '+8.2',
-      label: 'RevPAR growth, YoY',
+      label: 'RevPAR growth · FY 2025/26',
       caption: 'Full financial year. Every property and market is different, and individual results vary.',
     },
     // Verbatim — do not edit. Owner quotes are exempt from the chain/OTA tone rules.

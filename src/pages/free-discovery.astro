@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../data/site.js';
+
+const what = [
+  'A review of your current distribution and channel mix',
+  'Where your pricing has the most room to move',
+  'How your direct-booking and marketing setup stacks up',
+  'A clear, recommended path, no cost, no commitment',
+];
+---
+
+<BaseLayout
+  title="Start your free commercial discovery"
+  description="Start with a free commercial discovery of your independent hotel's distribution, revenue management and marketing. No cost, no commitment. Indi shows you where the upside is."
+  path="/free-discovery"
+>
+  <section class="bg-[var(--color-paper)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32">
+      <span class="eyebrow block mb-4" data-aos="fade-up">Commercial Discovery</span>
+      <h1 class="display text-[clamp(32px,5.6vw,56px)] max-w-[18ch]" data-aos="fade-up">
+        See your property through an expert's eyes.
+      </h1>
+      <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
+        Tell us about your property. We'll review your distribution, revenue and marketing, and show you the upside.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-12 lg:grid-cols-[0.85fr_1.15fr] items-start">
+      <!-- What you get -->
+      <div data-aos="fade-up">
+        <span class="eyebrow">What's in the discovery</span>
+        <ul class="mt-6 space-y-4">
+          {what.map((w) => (
+            <li class="flex gap-3 items-start">
+              <Icon name="check_circle" size={22} class="text-[var(--color-azure)] shrink-0 mt-0.5" fill={1} />
+              <span class="text-[16px] text-[#3a3b3d] leading-relaxed">{w}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8 rounded-xl bg-[var(--color-ash)] p-6 space-y-2">
+          <p class="text-[14.5px] text-[#4a4b4d] leading-relaxed">
+            Prefer email? Reach us at
+            <a href={`mailto:${SITE.email}`} class="text-[var(--color-ink)] font-semibold underline decoration-[var(--color-line)] underline-offset-2">{SITE.email}</a>
+            or call
+            <a href={`tel:${SITE.phone.replace(/\s+/g, '')}`} class="text-[var(--color-ink)] font-semibold underline decoration-[var(--color-line)] underline-offset-2">{SITE.phone}</a>.
+          </p>
+          <p class="text-[13px] text-[var(--color-grey)] leading-relaxed">
+            {SITE.address.street}, {SITE.address.suburb} {SITE.address.state} {SITE.address.postcode}, Australia
+          </p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="card p-7 md:p-9" data-aos="fade-up" data-aos-delay="80">
+        <!-- TODO: submission isn't wired up yet — pending a decision on how this
+             should submit (see conversation history: direct POST to Google Forms
+             proved unreliable, iframe embed was tried and reverted). Do not add
+             submission logic here without checking in first. -->
+        <form id="discovery-form" class="space-y-5">
+          <!-- honeypot: hidden from real users, bots that autofill every field trip it -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="block text-[13px] font-semibold mb-1.5">Your name</label>
+              <input id="name" name="name" type="text" required class="field" autocomplete="name" />
+            </div>
+            <div>
+              <label for="property" class="block text-[13px] font-semibold mb-1.5">Property name</label>
+              <input id="property" name="property" type="text" required class="field" />
+            </div>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="email" class="block text-[13px] font-semibold mb-1.5">Email</label>
+              <input id="email" name="email" type="email" required class="field" autocomplete="email" />
+            </div>
+            <div>
+              <label for="phone" class="block text-[13px] font-semibold mb-1.5">Phone <span class="text-[var(--color-grey)] font-normal">(optional)</span></label>
+              <input id="phone" name="phone" type="tel" class="field" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="location" class="block text-[13px] font-semibold mb-1.5">Location</label>
+              <input id="location" name="location" type="text" placeholder="Town / state" class="field" />
+            </div>
+            <div>
+              <label for="rooms" class="block text-[13px] font-semibold mb-1.5">Approx. rooms</label>
+              <select id="rooms" name="rooms" class="field">
+                <option value="">Select…</option>
+                <option>Under 20</option>
+                <option>20 to 50</option>
+                <option>50 to 100</option>
+                <option>100+</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="message" class="block text-[13px] font-semibold mb-1.5">What's prompting this? <span class="text-[var(--color-grey)] font-normal">(optional)</span></label>
+            <textarea id="message" name="message" rows="4" class="field resize-y" placeholder="Distribution, pricing, a new website, whatever's top of mind."></textarea>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn block w-full btn-azure justify-center text-[15px]">
+            Start my free discovery
+          </button>
+          <p id="form-status" class="text-[14px] text-center" role="status" aria-live="polite"></p>
+          <p class="text-[12px] text-[var(--color-grey)] text-center leading-relaxed">
+            No cost, no commitment. We'll only use your details to prepare and discuss your Commercial Discovery.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .field {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 11px 14px;
+    border: 1px solid var(--color-line);
+    border-radius: 9px;
+    background: var(--color-white);
+    color: var(--color-ink);
+    transition: border-color 0.16s ease, box-shadow 0.16s ease;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-azure);
+    box-shadow: 0 0 0 3px rgba(14, 79, 176, 0.14);
+  }
+  .field::placeholder { color: #9a9c9e; }
+</style>

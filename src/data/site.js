@@ -9,6 +9,16 @@ export const SITE = {
   description:
     'Indi is the expert commercial team behind independent hotels and motels in Australia. Distribution, revenue management and digital marketing, run as one team to grow your revenue, build direct market share and reduce your cost of guest acquisition.',
   email: 'revenue@indihotels.com.au',
+  phone: '+61 7 4599 9059',
+  whatsapp: '+61406999006',
+  address: {
+    street: '10 Thomas St',
+    suburb: 'Noosaville',
+    state: 'QLD',
+    postcode: '4566',
+    country: 'AU',
+  },
+  addressBali: 'Jl. Kayu Aya No.10, Seminyak, Kec. Kuta, Kabupaten Badung, Bali, Indonesia',
   locale: 'en-AU',
 };
 
@@ -43,13 +53,14 @@ export const NAV = [
   { label: 'How We Work', href: '/how-we-work' },
   { label: 'Our Work', href: '/our-work' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const CTA = {
   name: 'Commercial Discovery',
   label: 'Start your free discovery',
   short: 'Free discovery',
-  href: '/contact',
+  href: '/free-discovery',
 };
 
 export const SERVICES = [
