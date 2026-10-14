@@ -16,10 +16,12 @@ Three headline capabilities, delivered as one coordinated team:
 
 ## How owners engage
 - [How We Work](${SITE.url}/how-we-work): a free discovery, then productised onboarding (the foundation), then an ongoing partnership at Quarterly, Monthly or Weekly intensity, plus standalone projects. Minimum 12-month term on partnerships.
+- [Hotel Groups](${SITE.url}/hotel-groups): the same commercial team, coordinated across a multi-property portfolio. For hotel groups and multi-property owners, not single-property owners.
 
 ## Key pages
 - [Home](${SITE.url}/)
 - [Services overview](${SITE.url}/services)
+- [Hotel Groups](${SITE.url}/hotel-groups)
 - [Our Work](${SITE.url}/our-work): the owners and properties Indi works with, and their testimonials.
 - [About](${SITE.url}/about): the independence-with-expert-team story and team.
 - [Commercial Discovery](${SITE.url}/free-discovery): the primary way to get in touch.
@@ -28,7 +30,7 @@ Three headline capabilities, delivered as one coordinated team:
 ## Notes for agents
 - Brand name is "Indi" (not "Indi Hotels"); the domain ${SITE.legalDomain} reflects the industry served.
 - No public pricing: cost is established through the free discovery and a tailored proposal.
-- Honesty rule: Indi never guarantees performance outcomes.
+- Indi never guarantees performance outcomes.
 - Audience: owners of small-to-midscale independent hotels and motels in Australia.
 - Contact: ${SITE.email}
 `;

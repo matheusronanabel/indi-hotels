@@ -1,0 +1,97 @@
+---
+// Direct Booking Notification Feed — homepage section variant, placeholder UI, mock data only.
+// Same data contract as BookingFeed.astro (the floating widget): both read from
+// src/data/bookingFeed.js, so swapping in the real Siteminder webhook/API later
+// only means editing that one file.
+import Icon from './Icon.astro';
+import SectionHead from './SectionHead.astro';
+import { getRecentBookings } from '../data/bookingFeed.js';
+
+const bookings = await getRecentBookings();
+const first = bookings[0];
+
+const metaFor = (b: (typeof bookings)[number]) => {
+  const parts = [];
+  if (b.roomType) parts.push(b.roomType);
+  if (b.country) parts.push(b.country);
+  return parts.join(' · ');
+};
+---
+
+{bookings.length > 0 && (
+  <section class="py-20 md:py-28" id="live-bookings">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead
+        eyebrow="Live activity"
+        heading="Direct bookings, happening right now."
+        note="A live look at direct bookings landing across the properties Indi runs commercials for, no OTA commission on any of them."
+      />
+
+      <div class="mt-12 card p-6 md:p-9 grid gap-8 md:grid-cols-[auto_1fr] md:items-center" data-aos="fade-up">
+        <div class="flex items-center gap-5 md:pr-9 md:border-r md:border-[var(--color-line)]">
+          <span class="w-14 h-14 rounded-full bg-[var(--color-sky)] flex items-center justify-center shrink-0 text-[22px]" aria-hidden="true">
+            🎉
+          </span>
+          <div>
+            <p class="display text-[38px] leading-none text-[var(--color-ink)]" id="live-bookings-count">550</p>
+          </div>
+        </div>
+
+        <div class="min-w-0" role="status" aria-live="polite">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#1a7f4e] inline-block animate-pulse" aria-hidden="true"></span>
+            <span class="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-grey)]">Live feed</span>
+          </div>
+          <p
+            id="live-bookings-text"
+            class="text-[18px] md:text-[20px] leading-snug text-[var(--color-ink)] transition-opacity duration-300"
+          >
+            Someone just booked <span class="font-semibold" id="live-bookings-property">{first.property}</span> via Direct Booking
+          </p>
+          <p class="text-[13.5px] text-[var(--color-grey)] mt-1.5" id="live-bookings-meta">{metaFor(first)}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<script define:vars={{ bookings }}>
+  const textEl = document.getElementById('live-bookings-text');
+  const propertyEl = document.getElementById('live-bookings-property');
+  const metaEl = document.getElementById('live-bookings-meta');
+  const countEl = document.getElementById('live-bookings-count');
+
+  if (textEl && propertyEl && metaEl && bookings.length > 1) {
+    const metaFor = (b) => {
+      const parts = [];
+      if (b.roomType) parts.push(b.roomType);
+      if (b.country) parts.push(b.country);
+      return parts.join(' · ');
+    };
+
+    const countStart = 500 + Math.floor(Math.random() * 101);
+    if (countEl) countEl.textContent = countStart;
+
+    let index = 0;
+    window.setInterval(() => {
+      index = (index + 1) % bookings.length;
+      textEl.style.opacity = '0';
+      window.setTimeout(() => {
+        const b = bookings[index];
+        propertyEl.textContent = b.property;
+        metaEl.textContent = metaFor(b);
+        textEl.style.opacity = '1';
+
+        if (countEl) countEl.textContent = countStart + index;
+      }, 250);
+    }, 4000);
+  }
+</script>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    #live-bookings-text {
+      transition: none !important;
+    }
+  }
+</style>

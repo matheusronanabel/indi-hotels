@@ -8,7 +8,7 @@ export async function GET() {
   const services = SERVICE_ORDER.map((slug) => {
     const p = SERVICE_PAGES[slug];
     const work = p.work.map(([t, b]) => `- **${t}**: ${b}`).join('\n');
-    return `### ${p.label}\n${SITE.url}/services/${slug}\n\n**${p.h1}**\n${p.sub}\n\n*The problem: ${p.problemHeading}*\n${p.problemBody}\n\n*What Indi does:*\n${work}\n\n*How it's delivered:* ${p.delivery}${p.honest ? `\n\n*Honest note:* ${p.honest}` : ''}`;
+    return `### ${p.label}\n${SITE.url}/services/${slug}\n\n**${p.h1}**\n${p.sub}\n\n*The problem: ${p.problemHeading}*\n${p.problemBody}\n\n*What Indi does:*\n${work}\n\n*How it's delivered:* ${p.delivery}`;
   }).join('\n\n');
 
   const journey = JOURNEY.map((s) => `${s.n}. **${s.title}**: ${s.body}`).join('\n');
@@ -24,7 +24,7 @@ Indi is the expert commercial team behind independent hotels and motels in Austr
 ## Positioning
 - One integrated team, not a stitched-together supplier list.
 - We sell expertise (with technology as the toolkit), not software you self-serve.
-- Honesty rule: Indi never guarantees performance outcomes.
+- Indi never guarantees performance outcomes.
 - Brand: "Indi". Domain and email stay on ${SITE.legalDomain}, which reads as the industry served.
 
 ## Who it's for
@@ -53,13 +53,17 @@ About Quarterly: this is strategic oversight, not active yield management. In ma
 Projects (standalone, fixed-scope, quoted per property): ${SITE.url}/services/projects
 ${projects}
 
+## Hotel Groups
+${SITE.url}/hotel-groups
+For hotel groups and multi-property owners: one commercial team, coordinated across the whole portfolio, cheaper than building an in-house team and deeper than a generalist agency. Same three capabilities (distribution, revenue management, digital marketing) run at group level, with a bespoke per-property strategy and one consolidated view. No named client on this page.
+
 ## Our Work
 ${SITE.url}/our-work
 Real properties, real owners, real commercial outcomes, in their own words. Testimonials published with consent from named owners. Properties are presented as the independent owners and properties Indi works with, never an owned collection. No performance data or guaranteed outcomes are shown.
 
 ## About
 ${SITE.url}/about
-Indi gives independent hotel owners the commercial expertise and tools to compete, while the property stays entirely theirs. One team, not a stack of suppliers. Beliefs: independence is the point; honesty over hype; the work is the value. Team: Sonny (Founder & Revenue), Deby (Marketing), Yudi (Revenue), Abel (Developer), Yuka (Administrator). Based in Sunshine Coast, QLD, and Seminyak, Bali.
+Indi gives independent hotel owners the commercial expertise and tools to compete, while the property stays entirely theirs. One team, not a stack of suppliers. Beliefs: independence is the point; straight talk; the work is the value. Team: Sonny (Founder & Revenue), Deby (Marketing), Yudi (Revenue), Abel (Developer), Yuka (Administrator). Based in Sunshine Coast, QLD, and Seminyak, Bali.
 
 ## Pricing
 No public pricing. Cost is established through a free Commercial Discovery and a tailored proposal, the single front door to working with Indi.

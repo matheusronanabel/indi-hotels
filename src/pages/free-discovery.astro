@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import { SITE } from '../data/site.js';
+import { SITE, WEB3FORMS_ACCESS_KEY_FREE_DISCOVERY } from '../data/site.js';
 
 const what = [
   'A review of your current distribution and channel mix',
@@ -16,7 +16,7 @@ const what = [
   description="Start with a free commercial discovery of your independent hotel's distribution, revenue management and marketing. No cost, no commitment. Indi shows you where the upside is."
   path="/free-discovery"
 >
-  <section class="bg-[var(--color-paper)]">
+  <section class="bg-[var(--color-sand-1)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32">
       <span class="eyebrow block mb-4" data-aos="fade-up">Commercial Discovery</span>
       <h1 class="display text-[clamp(32px,5.6vw,56px)] max-w-[18ch]" data-aos="fade-up">
@@ -56,87 +56,69 @@ const what = [
 
       <!-- Form -->
       <div class="card p-7 md:p-9" data-aos="fade-up" data-aos-delay="80">
-        <!-- TODO: submission isn't wired up yet — pending a decision on how this
-             should submit (see conversation history: direct POST to Google Forms
-             proved unreliable, iframe embed was tried and reverted). Do not add
-             submission logic here without checking in first. -->
-        <form id="discovery-form" class="space-y-5">
-          <!-- honeypot: hidden from real users, bots that autofill every field trip it -->
-          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+        <h2 class="display text-[26px]">Start your free discovery.</h2>
+        <p class="text-[15px] text-[var(--color-grey)] mt-1.5 mb-7 leading-relaxed">
+          Tell us a little about your property. We'll come back to you within one business day.
+        </p>
 
-          <div class="grid gap-5 sm:grid-cols-2">
+        <form class="space-y-4" action="https://api.web3forms.com/submit" method="post" data-ajax-form>
+          <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY_FREE_DISCOVERY} />
+          <input type="hidden" name="subject" value="New free discovery request — Indi" />
+          <input type="hidden" name="from_name" value="Indi website" />
+          <input type="hidden" name="redirect" value={`${SITE.url}/free-discovery`} />
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" />
+          <div class="grid gap-4 sm:grid-cols-2">
             <div>
               <label for="name" class="block text-[13px] font-semibold mb-1.5">Your name</label>
-              <input id="name" name="name" type="text" required class="field" autocomplete="name" />
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required
+                class="w-full text-[15px] text-[var(--color-ink)] bg-[var(--color-white)] border border-[var(--color-sand-line)] rounded-[10px] px-3.5 py-3 outline-none transition-colors focus:border-[var(--color-azure)]" />
             </div>
             <div>
               <label for="property" class="block text-[13px] font-semibold mb-1.5">Property name</label>
-              <input id="property" name="property" type="text" required class="field" />
+              <input type="text" id="property" name="property" placeholder="The Harbour Motel" required
+                class="w-full text-[15px] text-[var(--color-ink)] bg-[var(--color-white)] border border-[var(--color-sand-line)] rounded-[10px] px-3.5 py-3 outline-none transition-colors focus:border-[var(--color-azure)]" />
             </div>
           </div>
-
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label for="email" class="block text-[13px] font-semibold mb-1.5">Email</label>
-              <input id="email" name="email" type="email" required class="field" autocomplete="email" />
-            </div>
-            <div>
-              <label for="phone" class="block text-[13px] font-semibold mb-1.5">Phone <span class="text-[var(--color-grey)] font-normal">(optional)</span></label>
-              <input id="phone" name="phone" type="tel" class="field" autocomplete="tel" />
-            </div>
-          </div>
-
-          <div class="grid gap-5 sm:grid-cols-2">
+          <div class="grid gap-4 sm:grid-cols-2">
             <div>
               <label for="location" class="block text-[13px] font-semibold mb-1.5">Location</label>
-              <input id="location" name="location" type="text" placeholder="Town / state" class="field" />
+              <input type="text" id="location" name="location" placeholder="Hobart, TAS" required
+                class="w-full text-[15px] text-[var(--color-ink)] bg-[var(--color-white)] border border-[var(--color-sand-line)] rounded-[10px] px-3.5 py-3 outline-none transition-colors focus:border-[var(--color-azure)]" />
             </div>
             <div>
               <label for="rooms" class="block text-[13px] font-semibold mb-1.5">Approx. rooms</label>
-              <select id="rooms" name="rooms" class="field">
-                <option value="">Select…</option>
-                <option>Under 20</option>
-                <option>20 to 50</option>
-                <option>50 to 100</option>
-                <option>100+</option>
+              <select id="rooms" name="rooms" required
+                class="w-full text-[15px] text-[var(--color-ink)] bg-[var(--color-white)] border border-[var(--color-sand-line)] rounded-[10px] px-3.5 py-3 outline-none transition-colors focus:border-[var(--color-azure)]">
+                <option value="" disabled selected>Select a range</option>
+                <option value="Under 20">Under 20</option>
+                <option value="20 to 50">20 to 50</option>
+                <option value="50 to 100">50 to 100</option>
+                <option value="100+">100+</option>
               </select>
             </div>
           </div>
-
-          <div>
-            <label for="message" class="block text-[13px] font-semibold mb-1.5">What's prompting this? <span class="text-[var(--color-grey)] font-normal">(optional)</span></label>
-            <textarea id="message" name="message" rows="4" class="field resize-y" placeholder="Distribution, pricing, a new website, whatever's top of mind."></textarea>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="email" class="block text-[13px] font-semibold mb-1.5">Email</label>
+              <input type="email" id="email" name="email" placeholder="jane@harbourmotel.com.au" required
+                class="w-full text-[15px] text-[var(--color-ink)] bg-[var(--color-white)] border border-[var(--color-sand-line)] rounded-[10px] px-3.5 py-3 outline-none transition-colors focus:border-[var(--color-azure)]" />
+            </div>
+            <div>
+              <label for="phone" class="block text-[13px] font-semibold mb-1.5">Phone <span class="text-[var(--color-grey)] font-normal">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="0400 000 000"
+                class="w-full text-[15px] text-[var(--color-ink)] bg-[var(--color-white)] border border-[var(--color-sand-line)] rounded-[10px] px-3.5 py-3 outline-none transition-colors focus:border-[var(--color-azure)]" />
+            </div>
           </div>
-
-          <button type="submit" id="submit-btn" class="btn block w-full btn-azure justify-center text-[15px]">
-            Start my free discovery
-          </button>
-          <p id="form-status" class="text-[14px] text-center" role="status" aria-live="polite"></p>
-          <p class="text-[12px] text-[var(--color-grey)] text-center leading-relaxed">
-            No cost, no commitment. We'll only use your details to prepare and discuss your Commercial Discovery.
-          </p>
+          <div>
+            <label for="message" class="block text-[13px] font-semibold mb-1.5">Tell us about your property</label>
+            <textarea id="message" name="message" placeholder="What can we help with?" required rows="5"
+              class="w-full text-[15px] text-[var(--color-ink)] bg-[var(--color-white)] border border-[var(--color-sand-line)] rounded-[10px] px-3.5 py-3 outline-none transition-colors focus:border-[var(--color-azure)] min-h-[120px] resize-y"></textarea>
+          </div>
+          <button type="submit" class="btn btn-azure">Start your free discovery</button>
+          <p class="text-[12.5px] text-[var(--color-grey)]">We'll only use your details to reply to your message.</p>
+          <p data-form-status class="form-status text-[13.5px] font-semibold" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .field {
-    width: 100%;
-    font-family: var(--font-body);
-    font-size: 15px;
-    padding: 11px 14px;
-    border: 1px solid var(--color-line);
-    border-radius: 9px;
-    background: var(--color-white);
-    color: var(--color-ink);
-    transition: border-color 0.16s ease, box-shadow 0.16s ease;
-  }
-  .field:focus {
-    outline: none;
-    border-color: var(--color-azure);
-    box-shadow: 0 0 0 3px rgba(14, 79, 176, 0.14);
-  }
-  .field::placeholder { color: #9a9c9e; }
-</style>

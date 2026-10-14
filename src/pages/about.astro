@@ -1,23 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
-import PhotoBlock from '../components/PhotoBlock.astro';
 import Icon from '../components/Icon.astro';
-import { CTA } from '../data/site.js';
 
 const beliefs = [
   ['Independence is the point', 'We make your property stronger without making it less yours.'],
-  ['Honesty over hype', "We tell you what's realistic for your property and market, not what sounds good."],
+  ['Straight talk', "We tell you what's realistic for your property and market, not what sounds good."],
   ['The work is the value', "Strategy that's actually implemented, not a deck that sits in a drawer."],
 ];
 
+const disciplines = [
+  { icon: 'lan', title: 'Distribution', body: 'Every channel and OTA, connected cleanly and optimised.' },
+  { icon: 'monitoring', title: 'Revenue management', body: 'Pricing and rate plans that move with demand.' },
+  { icon: 'campaign', title: 'Digital marketing', body: 'Direct-booking campaigns that turn lookers into guests.' },
+];
+
 const team = [
-  { name: 'Sonny', role: 'Co-Founder & Revenue', photo: '/teams/sonny.jpeg' },
-  { name: 'Deby', role: 'Co-Founder & Marketing', photo: '/teams/debby.jpeg' },
-  { name: 'Abel', role: 'Developer', photo: '/teams/abel.jpeg' },
-  { name: 'Yudi', role: 'Revenue' },
-  { name: 'Yuka', role: 'Administrator' },
+  { name: 'Sonny', role: 'Revenue', photo: '/teams/sonny.jpg' },
+  { name: 'Deby', role: 'Operations', photo: '/teams/deby.jpg' },
+  { name: 'Abel', role: 'Developer', photo: '/teams/abel.jpg' },
+  { name: 'Yudi', role: 'Revenue', photo: '/teams/yudi.jpg' },
+  { name: 'Yuka', role: 'Administrator', photo: '/teams/yuka.jpg' },
 ];
 ---
 
@@ -26,62 +31,35 @@ const team = [
   description="Indi is the expert commercial team behind independent hotels and motels: distribution, revenue management and marketing, run by people who do this for a living. We serve independents. We don't own or brand them."
   path="/about"
 >
-  <!-- HERO -->
-  <section class="bg-[var(--color-sand-1)]">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-6 pb-16 md:pt-20 md:pb-32 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
-      <div>
-        <span class="eyebrow block mb-4" data-aos="fade-up">About</span>
-        <h1 class="display text-[clamp(32px,5.6vw,58px)] max-w-[20ch]" data-aos="fade-up">
-          Independence, backed by real commercial expertise.
-        </h1>
-        <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
-          Indi is the expert commercial team behind independent hotels and motels: distribution, revenue management and marketing, run by people who do this for a living.
-        </p>
-        <a href={CTA.href} class="btn block w-fit btn-azure mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
-      </div>
-      <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="180">
-        <PhotoBlock
-          aspect="portrait"
-          label="Commercial team behind independent hotels"
-          alt="An independent hotel lobby"
-        />
-      </div>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="About"
+    heading="Independence, backed by real commercial expertise."
+    sub="Indi is the expert commercial team behind independent hotels and motels: distribution, revenue management and marketing, run by people who do this for a living."
+  />
 
-  <!-- WHY INDI EXISTS -->
-  <section class="py-24 md:py-32">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-16 lg:grid-cols-2 items-center">
-      <div>
-        <SectionHead human eyebrow="Why Indi exists" heading="Independent, with an expert team behind you." />
-        <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6" data-aos="fade-up">
-          Indi exists to give independent hotels the commercial firepower of a major group, while keeping everything that makes them independent. The autonomy to run your property your way. The freedom to be creative in how you do business. Lower costs, genuine direct bookings, and a lower cost of guest acquisition. Sophisticated strategies usually reserved for the big brands, delivered by a team with deep knowledge and real experience. You bring the hospitality. We bring the commercial expertise behind it.
-        </p>
-      </div>
-      <div data-aos="fade-left" data-aos-delay="100">
-        <PhotoBlock
-          aspect="landscape"
-          label="Independent hotel exterior"
-          alt="An independent hotel property exterior"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW WE'RE DIFFERENT -->
-  <section class="py-24 md:py-32 bg-[var(--color-sand-1)]">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-16 lg:grid-cols-2 items-center">
-      <div class="order-last lg:order-first" data-aos="fade-right" data-aos-delay="100">
-        <PhotoBlock
-          aspect="landscape"
-          label="One coordinated commercial team"
-          alt="Hotel commercial team coordination"
-        />
-      </div>
-      <div>
-        <SectionHead human eyebrow="How we're different" heading="One team, not a stack of suppliers." />
-        <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6" data-aos="fade-up">
-          Most owners end up juggling a revenue consultant, a distribution specialist, a marketing agency, a photographer and a web developer, none of them talking to each other. Indi brings all of it under one roof, coordinated, so your distribution, pricing and marketing pull in the same direction. We're not software you have to learn and run yourself; we're the people who run it for you, at the level of support you choose.
+  <!-- WHY INDI EXISTS -> HOW WE DELIVER IT (one narrative) -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 grid gap-12 lg:grid-cols-[1fr_1fr] items-start">
+      <SectionHead
+        human
+        eyebrow="Why Indi"
+        heading="Independent by design, backed by one expert team."
+        note="Indi exists to give independent hotels the commercial firepower of a major group, without giving up what makes them independent: the autonomy to run your property your way, and the freedom to be genuinely yours. Lower costs, more direct bookings, and sophisticated strategies usually reserved for the big brands, delivered by a team who does this for a living. You bring the hospitality. We bring the commercial expertise behind it."
+      />
+      <div class="space-y-4" data-aos="fade-up">
+        {disciplines.map((d) => (
+          <div class="card p-6 flex items-start gap-4">
+            <span class="w-11 h-11 rounded-full bg-[var(--color-sky)] flex items-center justify-center shrink-0">
+              <Icon name={d.icon} size={20} class="text-[var(--color-azure)]" />
+            </span>
+            <div>
+              <h3 class="font-semibold text-[17px]">{d.title}</h3>
+              <p class="text-[15px] text-[var(--color-grey)] mt-1 leading-relaxed">{d.body}</p>
+            </div>
+          </div>
+        ))}
+        <p class="text-[15px] text-[var(--color-grey)] leading-relaxed pt-2">
+          One team, coordinated under one roof, not a stack of consultants who don't talk to each other. We're not software you learn and run yourself. We're the people who run it for you, at the level of support you choose.
         </p>
       </div>
     </div>
@@ -130,7 +108,7 @@ const team = [
 
   <!-- WHY OWNERS CHOOSE INDI -->
   <section class="py-20 md:py-28">
-    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <SectionHead human eyebrow="Why owners choose Indi" heading="A partner whose only job is your commercial performance." />
       <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">
         No guesswork on where you stand. It starts with a free discovery that shows you the upside before you commit a cent. One team for everything that drives your revenue. And a partner whose only job is your commercial performance, not selling you software, not putting you in a uniform.
@@ -138,5 +116,10 @@ const team = [
     </div>
   </section>
 
-  <CtaBand heading="See what an expert commercial team could do for your property." sub="Start with a free commercial discovery. No cost, no commitment." />
+  <CtaBand
+    heading="See what an expert commercial team could do for your property."
+    sub="Have a question, or want to know more about how we work? Get in touch."
+    ctaLabel="Get in touch"
+    ctaHref="/contact"
+  />
 </BaseLayout>

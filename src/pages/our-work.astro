@@ -25,13 +25,15 @@ import { CASE_STUDIES } from '../data/caseStudies.js';
         <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[44ch] mt-7" data-aos="fade-up" data-aos-delay="80">
           Independent owners across Australia trust Indi with their commercials. Here's who they are, and what they say.
         </p>
-        <a href={CTA.href} class="btn block w-fit btn-azure mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
+        <a href={CTA.href} class="btn block w-full sm:w-fit text-center btn-azure mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
       </div>
-      <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="180">
+      <div data-aos="fade-up" data-aos-delay="180">
         <PhotoBlock
+          src="/static/our-work-cover.webp"
           aspect="wide"
-          label="Real outcomes, honestly presented"
-          alt="Hotel property performing well"
+          objectPosition="object-[58%_center]"
+          texture
+          alt="Reception at one of the independent properties Indi runs commercial services for"
         />
       </div>
     </div>
@@ -40,7 +42,7 @@ import { CASE_STUDIES } from '../data/caseStudies.js';
   <!-- A CLOSER LOOK (case studies) -->
   <section class="py-20 md:py-28 bg-[var(--color-sand-1)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead human eyebrow="A closer look" heading="Three properties, priced with intent." note="Real strategies, real properties, in the owners’ own words." />
+      <SectionHead human eyebrow="A closer look" heading="A closer look at three partnerships." note="Built around the strategy, and the owners’ own words." />
       <div class="grid gap-6 mt-12">
         {CASE_STUDIES.map((cs) => (
           <div data-aos="fade-up">
@@ -54,7 +56,7 @@ import { CASE_STUDIES } from '../data/caseStudies.js';
   <!-- PROPERTIES -->
   <section id="properties" class="py-20 md:py-28 bg-[var(--color-sand-1)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <SectionHead human eyebrow="Who we work with" heading="Hotels and motels that trust Indi with their commercials." note="Presented as the independent owners and properties Indi works with, never as an owned collection." />
+      <SectionHead human eyebrow="Who we work with" heading="Hotels and motels that trust Indi with their commercials." note="A few of the independent properties that choose Indi." />
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-12">
         {PROPERTIES.map((p, i) => (
           p.url ? (

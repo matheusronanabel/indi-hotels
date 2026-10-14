@@ -1,0 +1,120 @@
+---
+// Direct Booking Notification Feed — placeholder UI, mock data only.
+// Data comes from src/data/bookingFeed.js. When the real Siteminder
+// webhook/API is ready, only that file needs to change — this component
+// just renders whatever getRecentBookings()/getTodayBookingCount() resolve to.
+//
+// Fixed bottom-left, z-40: same layer as WhatsAppButton (bottom-right),
+// below the header/mobile-nav overlay (z-50/z-[60]) and the splash (z-[200]).
+import Icon from './Icon.astro';
+import { getRecentBookings, getTodayBookingCount } from '../data/bookingFeed.js';
+
+const bookings = await getRecentBookings();
+const todayCount = await getTodayBookingCount();
+const first = bookings[0];
+
+const metaFor = (b: (typeof bookings)[number]) => {
+  const parts = [];
+  if (b.roomType) parts.push(b.roomType);
+  parts.push(`${b.minutesAgo} min${b.minutesAgo === 1 ? '' : 's'} ago`);
+  if (b.country) parts.push(b.country);
+  return parts.join(' · ');
+};
+---
+
+{bookings.length > 0 && (
+  <div
+    id="booking-feed"
+    class="fixed bottom-5 left-5 sm:bottom-6 sm:left-6 z-40 w-[calc(100vw-2.5rem)] max-w-[340px] opacity-0 translate-y-3 pointer-events-none transition-all duration-500 ease-out"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="card p-4 pr-3 flex items-start gap-3 shadow-[0_18px_40px_-20px_rgba(0,0,0,0.3)]">
+      <span class="w-10 h-10 rounded-full bg-[var(--color-sky)] flex items-center justify-center shrink-0 text-[18px]" aria-hidden="true">
+        🎉
+      </span>
+      <div class="min-w-0 flex-1">
+        <p class="text-[14px] leading-snug text-[var(--color-ink)]">
+          Someone just booked <span id="booking-feed-property" class="font-semibold">{first.property}</span> via Direct Booking
+        </p>
+        <p class="text-[12.5px] text-[var(--color-grey)] mt-1">
+          <span id="booking-feed-meta">{metaFor(first)}</span>
+        </p>
+        <div class="h-px bg-[var(--color-line)] my-2.5"></div>
+        <p class="text-[11.5px] text-[var(--color-grey)] flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#1a7f4e] inline-block animate-pulse" aria-hidden="true"></span>
+          <span id="booking-feed-count">{todayCount}</span> direct bookings today
+        </p>
+      </div>
+      <button
+        type="button"
+        id="booking-feed-close"
+        aria-label="Dismiss booking notifications"
+        class="shrink-0 w-6 h-6 -mt-1 -mr-1 rounded-full flex items-center justify-center text-[var(--color-grey)] hover:text-[var(--color-ink)] hover:bg-[var(--color-ash)] transition-colors"
+      >
+        <Icon name="close" size={14} />
+      </button>
+    </div>
+  </div>
+)}
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    #booking-feed {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script define:vars={{ bookings }}>
+  const root = document.getElementById('booking-feed');
+  const propertyEl = document.getElementById('booking-feed-property');
+  const metaEl = document.getElementById('booking-feed-meta');
+  const closeBtn = document.getElementById('booking-feed-close');
+
+  if (root && bookings.length && !sessionStorage.getItem('booking-feed-dismissed')) {
+    const metaFor = (b) => {
+      const parts = [];
+      if (b.roomType) parts.push(b.roomType);
+      parts.push(`${b.minutesAgo} min${b.minutesAgo === 1 ? '' : 's'} ago`);
+      if (b.country) parts.push(b.country);
+      return parts.join(' · ');
+    };
+
+    let index = 0;
+    let rotateTimer;
+
+    const render = (i) => {
+      const b = bookings[i];
+      if (!propertyEl || !metaEl) return;
+      propertyEl.textContent = b.property;
+      metaEl.textContent = metaFor(b);
+    };
+
+    const next = () => {
+      index = (index + 1) % bookings.length;
+      root.classList.add('opacity-0');
+      window.setTimeout(() => {
+        render(index);
+        root.classList.remove('opacity-0');
+      }, 300);
+    };
+
+    const show = () => {
+      root.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
+      rotateTimer = window.setInterval(next, 6000);
+    };
+
+    // First card is already rendered server-side; hold briefly before it
+    // slides in, then rotate through the rest like a live ticker.
+    window.setTimeout(show, 2500);
+
+    closeBtn?.addEventListener('click', () => {
+      root.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
+      window.clearInterval(rotateTimer);
+      sessionStorage.setItem('booking-feed-dismissed', '1');
+    });
+  } else if (root) {
+    root.remove();
+  }
+</script>

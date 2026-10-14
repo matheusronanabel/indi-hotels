@@ -18,7 +18,7 @@ export const SITE = {
     postcode: '4566',
     country: 'AU',
   },
-  addressBali: 'Jl. Kayu Aya No.10, Seminyak, Kec. Kuta, Kabupaten Badung, Bali, Indonesia',
+  addressBali: 'Jl. Kayu Aya No.10, Seminyak, Kuta, Badung, Bali, Indonesia',
   locale: 'en-AU',
 };
 
@@ -50,11 +50,28 @@ export const NAV = [
       { label: 'Projects', href: '/services/projects' },
     ],
   },
+  { label: 'Hotel Groups', href: '/hotel-groups' },
   { label: 'How We Work', href: '/how-we-work' },
   { label: 'Our Work', href: '/our-work' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
+
+// Announcement bar above the nav. Edit here only — no code changes needed.
+// - enabled: set to false to pull the bar down site-wide.
+// - amount: the monthly savings figure. It's substituted wherever {amount}
+//   appears in the text fields below, so update it once here.
+// - textDesktop/textMobile: the message; ctaDesktop/ctaMobile is the link
+//   phrase shown bold/underlined at the end. Mobile copy shows under ~600px.
+export const ANNOUNCEMENT = {
+  enabled: true,
+  amount: '$70,000',
+  href: '/contact',
+  textDesktop: 'Our direct booking strategy saved our owners over {amount} in OTA commission last month.',
+  ctaDesktop: 'Talk to us about cutting your guest acquisition costs',
+  textMobile: '{amount}+ saved in OTA commission last month.',
+  ctaMobile: 'Cut your acquisition costs',
+};
 
 export const CTA = {
   name: 'Commercial Discovery',
@@ -62,6 +79,12 @@ export const CTA = {
   short: 'Free discovery',
   href: '/free-discovery',
 };
+
+// Contact + Free Discovery forms submit to Web3Forms (web3forms.com) — no backend of our own.
+// Get a free access key at https://web3forms.com (sign up with revenue@indihotels.com.au,
+// or whichever inbox should receive submissions) and paste it here.
+export const WEB3FORMS_ACCESS_KEY_CONTACT = '5609a1ca-d088-4ea3-9e24-510c695d31ea';
+export const WEB3FORMS_ACCESS_KEY_FREE_DISCOVERY = '550d0db3-012d-44b2-88e6-6d14b59c7c0b';
 
 export const SERVICES = [
   {
@@ -240,16 +263,20 @@ export const PULL_QUOTES = [
 
 // Properties that trust Indi with their commercials. url is null where not yet supplied.
 // image is null where no photo has been sourced yet (falls back to a placeholder).
+// Order and set are authoritative per indi-round8-handoff-for-abel.md §3.3 — do not
+// reorder or add/remove entries without a new instruction from Sonny.
 export const PROPERTIES = [
-  { name: 'Hobart City Apartments', location: 'Hobart TAS', url: 'https://www.hobartcityapartmenthotel.com/', image: '/properties/hobart-city-apartments.jpg' },
-  { name: 'The Carrington Hotel', location: 'Shepparton VIC', url: 'https://www.thecarrington.net.au/', image: '/properties/the-carrington-hotel.jpg' },
   { name: 'Melbourne City Apartment Hotel', location: 'West Melbourne VIC', url: 'https://www.melbournecityapartmenthotel.com', image: '/properties/melbourne-city-apartment-hotel.jpg' },
   { name: 'Beechworth Motor Inn', location: 'Beechworth VIC', url: 'https://www.beechworthmotorinn.com.au/', image: '/properties/beechworth-motor-inn.jpg' },
-  { name: 'Sanctuary Inn on Westernport', location: 'Hastings VIC', url: 'https://www.sanctuaryinnonwesternport.com.au/', image: '/properties/sanctuary-inn-on-westernport.jpg' },
   { name: 'Hotel Nelson', location: 'Nelson Bay NSW', url: 'http://www.hotelnelson.com.au/', image: '/properties/hotel-nelson.jpg' },
-  { name: 'Albany Motel & Apartments', location: 'Albany WA', url: 'https://www.albanymotel.com.au', image: '/properties/albany-motel-apartments.jpg' },
-  { name: 'Sherbourne Terrace Hotel', location: 'Shepparton VIC', url: 'https://sherbournehotel.com.au/', image: '/properties/sherbourne-terrace-hotel.jpg' },
-  { name: 'The Observatory', location: 'Coffs Harbour NSW', url: 'https://www.theobservatory.com.au/', image: '/properties/the-observatory.jpg' },
+  { name: 'The Carrington Hotel', location: 'Shepparton VIC', url: 'https://www.thecarrington.net.au/', image: '/properties/the-carrington-hotel.jpg' },
+  { name: 'Hobart City Apartments', location: 'Hobart TAS', url: 'https://www.hobartcityapartmenthotel.com/', image: '/properties/hobart-city-apartments.jpg' },
+  { name: 'The Clifton Motel', location: 'Bunbury WA', url: null, image: '/properties/the-clifton-motel.webp' },
   { name: 'Platinum International', location: 'Toowoomba QLD', url: 'https://www.platinuminternational.com.au/', image: '/properties/platinum-international.jpg' },
+  { name: 'Albany Motel & Apartments', location: 'Albany WA', url: 'https://www.albanymotel.com.au', image: '/properties/albany-motel-apartments.jpg' },
+  // Consent to feature still pending from Sonny — see indi-round8-handoff-for-abel.md §3.3.
+  { name: 'New Crossing Place Motel & Apartments', location: 'Seymour VIC', url: 'https://newcrossingplace.com.au/', image: '/properties/new-crossing-place-motel.jpg' },
+  { name: 'The Observatory', location: 'Coffs Harbour NSW', url: 'https://www.theobservatory.com.au/', image: '/properties/the-observatory.jpg' },
   { name: 'Country Motel Ipswich', location: 'Brisbane QLD', url: 'https://www.countrymotelipswich.com/', image: '/properties/country-motel-ipswich.jpg' },
+  { name: 'Sherbourne Terrace Hotel', location: 'Shepparton VIC', url: 'https://sherbournehotel.com.au/', image: '/properties/sherbourne-terrace-hotel.jpg' },
 ];

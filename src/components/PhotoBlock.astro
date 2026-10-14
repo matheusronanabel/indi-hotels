@@ -4,6 +4,14 @@ interface Props {
   alt?: string;
   label?: string;
   aspect?: 'landscape' | 'portrait' | 'wide';
+  /** Overrides the aspect prop with a raw (optionally responsive) Tailwind class string, e.g. "aspect-[3/2] lg:aspect-[3/4]". */
+  aspectClass?: string;
+  /** Tailwind object-position class(es) for the <img>, e.g. "object-[47%_50%]". */
+  objectPosition?: string;
+  /** Overlays `label` as a photo credit/caption on top of a real photo, over a bottom scrim (ignored for placeholders). */
+  caption?: boolean;
+  /** Adds a subtle brand-colour radial gradient texture over a real photo. */
+  texture?: boolean;
   dark?: boolean;
   class?: string;
 }
@@ -12,23 +20,50 @@ const {
   alt = 'Hotel property',
   label = 'Property photography',
   aspect = 'landscape',
+  aspectClass: aspectClassProp,
+  objectPosition = 'object-center',
+  caption = false,
+  texture = false,
   dark = false,
   class: cls,
 } = Astro.props;
 
 const aspectClass =
-  aspect === 'portrait' ? 'aspect-[3/4]' : aspect === 'wide' ? 'aspect-[16/9]' : 'aspect-[4/3]';
+  aspectClassProp ??
+  (aspect === 'portrait' ? 'aspect-[3/4]' : aspect === 'wide' ? 'aspect-[16/9]' : 'aspect-[4/3]');
 ---
 
 {src && (
-  <figure class:list={['overflow-hidden rounded-2xl', cls]}>
+  <figure class:list={['relative overflow-hidden rounded-2xl', cls]}>
     <img
       src={src}
       alt={alt}
-      class:list={['w-full h-full object-cover', aspectClass]}
+      class:list={['w-full h-full object-cover', aspectClass, objectPosition]}
       loading="lazy"
       decoding="async"
     />
+
+    {texture && (
+      <div class="absolute inset-0 pointer-events-none mix-blend-overlay" aria-hidden="true">
+        <div
+          class="absolute -top-1/4 -right-1/4 w-3/4 h-3/4 rounded-full"
+          style="background: radial-gradient(circle, rgba(14,79,176,0.55) 0%, transparent 65%)"
+        ></div>
+        <div
+          class="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 rounded-full"
+          style="background: radial-gradient(circle, rgba(10,60,138,0.35) 0%, transparent 70%)"
+        ></div>
+      </div>
+    )}
+
+    {caption && (
+      <figcaption
+        class="absolute inset-x-0 bottom-0 px-5 pb-4 pt-12 text-[12px] font-semibold text-white"
+        style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent)"
+      >
+        {label}
+      </figcaption>
+    )}
   </figure>
 )}
 

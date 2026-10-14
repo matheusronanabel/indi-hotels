@@ -3,7 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
-import { CTA, PULL_QUOTES } from '../../data/site.js';
+// import BookingFeedSection from '../../components/BookingFeedSection.astro';
+import { CTA } from '../../data/site.js';
 import { SERVICE_PAGES, SERVICE_ORDER } from '../../data/services.js';
 
 export function getStaticPaths() {
@@ -26,18 +27,19 @@ interface ServicePage {
   work: string[][];
   delivery: string;
   crossLink?: { label: string; href: string };
+  pullQuote: { text: string; name: string; roleLine: string };
   closing: string;
+  endCtaLabel: string;
 }
 const pages = SERVICE_PAGES as Record<string, ServicePage>;
 const p = pages[slug];
 
-// next service for cross-link
+// next service for cross-link; Digital Marketing (the last in the chain) hands off to Projects instead of wrapping
 const idx = SERVICE_ORDER.indexOf(slug);
-const nextSlug = SERVICE_ORDER[(idx + 1) % SERVICE_ORDER.length];
-const next = pages[nextSlug];
-
-// rotate a different owner pull-quote per capability page
-const pullQuote = PULL_QUOTES[idx % PULL_QUOTES.length];
+const isLast = idx === SERVICE_ORDER.length - 1;
+const next = isLast
+  ? { label: 'Projects', href: '/services/projects' }
+  : { label: pages[SERVICE_ORDER[idx + 1]].label, href: `/services/${SERVICE_ORDER[idx + 1]}` };
 ---
 
 <BaseLayout
@@ -59,7 +61,7 @@ const pullQuote = PULL_QUOTES[idx % PULL_QUOTES.length];
       <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[46ch] mt-7" data-aos="fade-up" data-aos-delay="80">
         {p.sub}
       </p>
-      <a href={CTA.href} class="btn block w-fit btn-azure mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
+      <a href={CTA.href} class="btn block w-full sm:w-fit text-center btn-azure mt-10" data-aos="fade-up" data-aos-delay="140">{CTA.label}</a>
     </div>
   </section>
 
@@ -106,6 +108,8 @@ const pullQuote = PULL_QUOTES[idx % PULL_QUOTES.length];
     </div>
   </section>
 
+  {/* {slug === 'digital-marketing' && <BookingFeedSection />} */}
+
   <!-- HOW IT'S DELIVERED -->
   <section class="py-20 md:py-28">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
@@ -125,10 +129,10 @@ const pullQuote = PULL_QUOTES[idx % PULL_QUOTES.length];
   <section class="py-20 md:py-28 bg-[var(--color-sand)]">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
       <p class="serif-italic text-[clamp(20px,2.4vw,26px)] text-[var(--color-ink)] leading-snug max-w-[46ch]" data-aos="fade-up">
-        "{pullQuote.quote}"
+        "{p.pullQuote.text}"
       </p>
       <p class="font-semibold text-[13px] text-[var(--color-clay)] mt-5" data-aos="fade-up">
-        {pullQuote.name} · {pullQuote.role} · {pullQuote.property}
+        {p.pullQuote.name} · {p.pullQuote.roleLine}
       </p>
       <div class="mt-6" data-aos="fade-up">
         <a href="/our-work" class="tlink">Read what owners say<Icon name="arrow_forward" size={16} /></a>
@@ -139,7 +143,7 @@ const pullQuote = PULL_QUOTES[idx % PULL_QUOTES.length];
   <!-- NEXT SERVICE -->
   <section class="py-16">
     <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
-      <a href={`/services/${nextSlug}`} class="card p-7 flex items-center justify-between group hover:-translate-y-1 transition-all" data-aos="fade-up">
+      <a href={next.href} class="card p-7 flex items-center justify-between group hover:-translate-y-1 transition-all" data-aos="fade-up">
         <div>
           <span class="font-semibold text-[12px] text-[var(--color-grey)]">Next capability</span>
           <h3 class="display text-[24px] mt-1">{next.label}</h3>
@@ -149,5 +153,10 @@ const pullQuote = PULL_QUOTES[idx % PULL_QUOTES.length];
     </div>
   </section>
 
-  <CtaBand heading={p.closing} sub="A free discovery across your distribution, revenue and marketing. No cost, no commitment." />
+  <CtaBand
+    heading={p.closing}
+    sub="Tell us about your property, and we'll show you where the opportunity is."
+    ctaLabel={p.endCtaLabel}
+    ctaHref="/contact"
+  />
 </BaseLayout>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indi — Hotel Groups additions</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1116; --grey:#6B7280; --line:#EAE7E1; --white:#fff;
+    --blue:#0E4FB0; --blue-deep:#0A3C8A;
+    --paper:#FCFBF9; --sand-1:#FAF6EF; --sand-2:#F3EBE3; --sand-line:#E8DDD2;
+    --disp:"Fraunces",Georgia,serif; --body:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#E9ECF1;color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;line-height:1.6;}
+  .page{max-width:1000px;margin:0 auto;padding:34px 20px 60px;}
+  .intro h1{font-family:var(--disp);font-weight:500;font-size:28px;letter-spacing:-.015em;margin:0 0 8px;}
+  .intro p{color:#475062;max-width:72ch;margin:0 0 14px;font-size:15px;line-height:1.6;}
+  .flag{background:#fff;border-left:3px solid var(--blue);border-radius:0 12px 12px 0;padding:14px 18px;font-size:14px;color:#38414f;margin:0 0 26px;line-height:1.6;}
+  .flag b{color:var(--ink);}
+  .lab{font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#5b6577;margin:30px 0 12px;}
+  code{background:#F1EEE9;padding:1px 5px;border-radius:4px;font-size:12.5px;}
+
+  /* ===== group testimonial (feature) ===== */
+  .gt{background:var(--sand-2);border-radius:20px;padding:40px 38px;}
+  .gt .k{font-weight:600;font-size:12px;color:#8A5A3A;margin:0 0 16px;}
+  .gt blockquote{font-family:var(--disp);font-style:italic;font-weight:400;font-size:23px;line-height:1.5;color:#3B2F28;margin:0;max-width:64ch;}
+  .gt .who{margin-top:22px;}
+  .gt .n{font-weight:700;font-size:15px;color:#3B2F28;}
+  .gt .r{font-size:13.5px;color:#8A6A54;margin-top:2px;}
+
+  /* ===== case study block ===== */
+  .cs{background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:22px;}
+  .cs-head{padding:32px 34px 0;}
+  .eyebrow{font-weight:600;font-size:12px;color:var(--blue);display:block;margin-bottom:12px;}
+  .cs-head h2{font-family:var(--disp);font-weight:500;font-size:30px;line-height:1.14;letter-spacing:-.015em;margin:0 0 8px;}
+  .lede{font-size:16px;color:var(--grey);line-height:1.6;margin:0 0 16px;max-width:60ch;}
+  .meta{font-size:14px;color:var(--grey);margin:0 0 24px;} .meta b{color:var(--ink);font-weight:600;}
+  .photos{display:grid;grid-template-columns:1.6fr 1fr;gap:12px;padding:0 34px 28px;}
+  .ph{border-radius:14px;background:#F7F8FA;border:1px dashed #C7CDD6;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px;color:#98A0AC;text-align:center;padding:16px;}
+  .ph svg{opacity:.5;margin-bottom:8px;} .ph span{font-size:12px;font-weight:600;} .ph small{font-size:11px;margin-top:3px;color:#AEB5BF;}
+  .stats{background:#F7F8FA;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 34px;}
+  .stats .lead{font-weight:600;font-size:12px;color:var(--blue);margin:0 0 20px;}
+  .hero-stat{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .big{font-family:var(--disp);font-weight:600;font-size:70px;line-height:.9;letter-spacing:-.03em;color:var(--blue);}
+  .big .pct{font-size:42px;}
+  .sk{font-family:var(--disp);font-weight:500;font-size:22px;color:var(--ink);}
+  .caption{font-size:11.5px;color:var(--grey);margin-top:18px;line-height:1.5;max-width:70ch;}
+  .cs-foot{padding:22px 34px 28px;}
+  .btn{display:inline-block;background:var(--blue);color:#fff;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:10px;text-decoration:none;}
+  @media(max-width:720px){ .photos{grid-template-columns:1fr;} .gt{padding:30px 24px;} .gt blockquote{font-size:19px;} .big{font-size:56px;} .cs-head,.stats,.cs-foot,.photos{padding-left:22px;padding-right:22px;} }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="intro">
+    <h1>Hotel Groups page — two additions</h1>
+    <p>Michael Jones' testimonial and the New Crossing Place case study, featured toward the top of the Hotel Groups page. The emphasis is on the partnership and Michael's goodwill, not on the fund or its investment performance. Lawrence Heasman's quote is removed from this page (it appears elsewhere on the site).</p>
+    <div class="flag"><b>Placement &amp; tone:</b> Michael's testimonial as the proof beat after the hero or opening section, with the New Crossing Place case study just below as concrete evidence. Keep the tone conservative: this is about the partnership and Michael's goodwill, <b>not</b> about the fund's investment returns or investor story. RevPAR percentage only, no other figures.</div>
+  </div>
+
+  <!-- GROUP TESTIMONIAL -->
+  <div class="lab">Group testimonial (feature near top)</div>
+  <div class="gt">
+    <p class="k">In their words</p>
+    <blockquote>"Indi has been a genuine partner from day one. Their support goes well beyond the usual services: the team's knowledge and hands-on approach have made a real difference to how we run our properties. They're always available when we need them, and the results speak for themselves. I'd recommend Indi to any owner or group looking for serious commercial support."</blockquote>
+    <div class="who">
+      <div class="n">Michael Jones</div>
+      <div class="r">Chief Operating Officer, Deltine Capital Motel Investment Fund</div>
+    </div>
+  </div>
+
+  <!-- CASE STUDY -->
+  <div class="lab">Case study (feature near top)</div>
+  <div class="cs">
+    <div class="cs-head">
+      <span class="eyebrow">Case study</span>
+      <h2>A strong first full year, in partnership from day one.</h2>
+      <p class="lede">Indi partnered with New Crossing Place right from the start of the ownership, shaping the commercial strategy from the outset. Over the year that followed, that partnership delivered steady, meaningful RevPAR growth, a strong first full year for the property.</p>
+      <p class="meta"><b>New Crossing Place Motel &amp; Apartments</b> · Seymour, Victoria</p>
+    </div>
+    <div class="photos">
+      <div class="ph"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Property photo, hero</span><small>Landscape. Exterior or a room, natural light.</small></div>
+      <div class="ph"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Property photo, detail</span><small>Portrait or square.</small></div>
+    </div>
+    <div class="stats">
+      <p class="lead">RevPAR growth · FY 2025/26</p>
+      <div class="hero-stat">
+        <div class="big">+12.8<span class="pct">%</span></div>
+        <div class="sk">RevPAR growth</div>
+      </div>
+      <p class="caption">Full financial year. Every property and market is different, and individual results vary.</p>
+    </div>
+    <div class="cs-foot">
+      <a class="btn" href="#">Start your free discovery</a>
+    </div>
+  </div>
+
+  <div class="flag" style="margin-top:26px;"><b>Dev notes for Abel.</b> Remove the Lawrence Heasman pull-quote from the Hotel Groups page only (it stays on Our Work, Digital Marketing and the Hobart case study). Deltine quote in Fraunces italic on <code>--sand-2</code>. Case study: RevPAR percentage only, <b>no room count, occupancy, ADR or revenue</b>. Photo placeholders swap for real images when supplied.</div>
+</div>
+</body>
+</html>

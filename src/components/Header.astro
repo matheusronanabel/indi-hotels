@@ -1,7 +1,7 @@
 ---
 import LogoAnimated from './LogoAnimated.astro';
 import Icon from './Icon.astro';
-import { NAV, CTA } from '../data/site.js';
+import { NAV, CTA, ANNOUNCEMENT } from '../data/site.js';
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
   href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
@@ -12,7 +12,7 @@ const isActive = (href: string) =>
 const subGroups = NAV.filter((item) => item.children);
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-sand-1)]/85 backdrop-blur-md">
+<header id="site-header" class:list={['fixed left-0 right-0 z-50 border-b border-[var(--color-line)] bg-[var(--color-sand-1)]/85 backdrop-blur-md', ANNOUNCEMENT.enabled ? 'top-9' : 'top-0']}>
   <div class="w-full px-4 sm:px-0 max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto flex items-center justify-between h-[68px] gap-6">
     <a href="/" class="shrink-0 h-auto flex items-center" aria-label="Indi home">
       <LogoAnimated size={26} />

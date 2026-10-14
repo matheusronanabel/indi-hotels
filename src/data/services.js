@@ -22,7 +22,13 @@ export const SERVICE_PAGES = {
     ],
     delivery:
       'Your distribution strategy is built and implemented during onboarding, then kept running and optimised through your ongoing partnership, at the intensity you choose. Need a specific piece done on its own, a GDS activation, a channel manager or PMS setup? We run those as standalone projects too.',
+    pullQuote: {
+      text: 'I love being independent, but with the support of Indi Hotels in the background.',
+      name: 'Andrew Macdonald',
+      roleLine: 'Owner · Hotel Nelson',
+    },
     closing: 'Find out where your distribution has the most upside.',
+    endCtaLabel: 'Talk to us about distribution',
   },
   'revenue-management': {
     label: 'Revenue Management',
@@ -46,7 +52,13 @@ export const SERVICE_PAGES = {
     delivery:
       'Your revenue management strategy is built in onboarding. How actively it\u2019s then run depends on your tier: Monthly and Weekly partnerships actively manage your pricing as the market moves, where the most upside lives, while Quarterly provides strategic oversight and course-correction rather than active yield management. Need only the system set up? We run RMS / dynamic pricing implementation as a standalone project.',
     crossLink: { label: 'Works hand in hand with digital marketing', href: '/services/digital-marketing' },
+    pullQuote: {
+      text: "The knowledge they've shared has shaped how we run the whole business.",
+      name: 'Michael Stephens',
+      roleLine: 'Owner \u00b7 Albany Motel & Apartments',
+    },
     closing: 'See where your pricing has room to move.',
+    endCtaLabel: 'Talk to us about revenue',
   },
   'digital-marketing': {
     label: 'Digital Marketing',
@@ -74,8 +86,16 @@ export const SERVICE_PAGES = {
     delivery:
       'Your marketing strategy is built and launched in onboarding, then driven and refined through your ongoing partnership. Two of the highest-impact pieces, a new website + booking engine and professional photography, are also available as standalone projects, and both are built to hand off into ongoing marketing if you want it.',
     crossLink: { label: 'Works hand in hand with revenue management', href: '/services/revenue-management' },
+    pullQuote: {
+      text: 'The website Indi Hotels provided is brilliant. It delivers two bookings for every OTA booking.',
+      name: 'Lawrence Heasman',
+      roleLine: 'General Manager, Hobart City Apartments',
+    },
     closing: 'See how much of your demand you could be owning.',
+    endCtaLabel: 'Talk to us about your marketing',
   },
 };
 
+// Chain for the "Next capability" link at the bottom of each service page:
+// Distribution -> Revenue Management -> Digital Marketing -> Projects (not a service, so handled separately in the template).
 export const SERVICE_ORDER = ['distribution', 'revenue-management', 'digital-marketing'];

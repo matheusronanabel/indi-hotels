@@ -1,31 +1,50 @@
 ---
 import { CTA } from '../data/site.js';
 import Icon from './Icon.astro';
+import PhotoBlock from './PhotoBlock.astro';
 interface Props {
   eyebrow?: string;
   heading: string; // may contain <br>
   sub: string;
   secondary?: { label: string; href: string };
+  image?: { src?: string; alt?: string };
 }
-const { eyebrow, heading, sub, secondary } = Astro.props;
+const { eyebrow, heading, sub, secondary, image } = Astro.props;
 ---
 <section class="bg-[var(--color-sand-1)]">
-  <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32">
-    {eyebrow && <span class="eyebrow block mb-4" data-aos="fade-up">{eyebrow}</span>}
-    <h1 class="display text-[clamp(34px,6vw,62px)] max-w-[18ch]" data-aos="fade-up">
-      <Fragment set:html={heading} />
-    </h1>
-    <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[44ch] mt-7" data-aos="fade-up" data-aos-delay="80">
-      {sub}
-    </p>
-    <div class="flex flex-w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto items-center gap-x-7 gap-y-4 mt-10" data-aos="fade-up" data-aos-delay="140">
-      <a href={CTA.href} class="btn block w-fit btn-azure">{CTA.label}</a>
-      {secondary && (
-        <a href={secondary.href} class="tlink">
-          {secondary.label}
-          <Icon name="arrow_forward" size={17} />
-        </a>
-      )}
+  <div
+    class:list={[
+      'w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 pt-28 pb-24 md:pt-36 md:pb-32',
+      image && 'grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center',
+    ]}
+  >
+    <div>
+      {eyebrow && <span class="eyebrow block mb-4" data-aos="fade-up">{eyebrow}</span>}
+      <h1 class="display text-[clamp(34px,6vw,62px)] max-w-[18ch]" data-aos="fade-up">
+        <Fragment set:html={heading} />
+      </h1>
+      <p class="subhead text-[clamp(19px,2.4vw,24px)] text-[var(--color-grey)] max-w-[44ch] mt-7" data-aos="fade-up" data-aos-delay="80">
+        {sub}
+      </p>
+      <div class="flex flex-col sm:flex-row flex-w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto items-center gap-x-7 gap-y-4 mt-10" data-aos="fade-up" data-aos-delay="140">
+        <a href={CTA.href} class="btn block w-full sm:w-fit text-center btn-azure">{CTA.label}</a>
+        {secondary && (
+          <a href={secondary.href} class="tlink">
+            {secondary.label}
+            <Icon name="arrow_forward" size={17} />
+          </a>
+        )}
+      </div>
     </div>
+    {image && (
+      <div data-aos="fade-up" data-aos-delay="180">
+        <PhotoBlock
+          src={image.src}
+          alt={image.alt ?? 'Hotel property'}
+          aspectClass="aspect-[16/9]"
+          texture={!!image.src}
+        />
+      </div>
+    )}
   </div>
 </section>

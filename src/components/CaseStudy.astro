@@ -3,11 +3,14 @@
 // or total revenue (RevPAR × rooms × days = revenue, so pairing RevPAR with
 // a room count would let anyone reverse the owner's turnover).
 import Icon from './Icon.astro';
+import PhotoBlock from './PhotoBlock.astro';
 import { CTA } from '../data/site.js';
 
 interface Photo {
   label: string;
   note: string;
+  src?: string;
+  alt?: string;
 }
 
 interface Stat {
@@ -22,20 +25,41 @@ interface Quote {
   role: string;
 }
 
+interface Pillar {
+  title: string;
+  items: string[];
+}
+
+interface Narrative {
+  pillars: Pillar[];
+  outcomes: string[]; // qualitative only — no figures
+  templateLine?: string;
+}
+
 interface Props {
   headline: string;
   lede?: string | null;
   property: string;
   location: string;
   photos: [Photo, Photo];
-  stat: Stat;
+  stat?: Stat | null; // omit entirely when no figures may be published — pair with `narrative` instead
   quote?: Quote | null; // omit entirely rather than ship a placeholder quote
+  /** Qualitative alternative to `stat`, for case studies where no figures can be published. */
+  narrative?: Narrative | null;
+  /** Featured treatment: blue band + shadow + two-column stat/quote footer (stacks on mobile). */
+  featured?: boolean;
+  featuredLabel?: string;
 }
 
-const { headline, lede, property, location, photos, stat, quote } = Astro.props;
+const { headline, lede, property, location, photos, stat, quote, narrative, featured = false, featuredLabel = 'Featured' } = Astro.props;
 ---
 
-<div class="cs bg-[var(--color-white)] border border-[var(--color-line)] rounded-[20px] overflow-hidden">
+<div class:list={['cs bg-[var(--color-white)] border border-[var(--color-line)] rounded-[20px] overflow-hidden', featured && 'shadow-feat']}>
+  {featured && (
+    <div class="feat-band flex items-center gap-2 bg-[var(--color-azure)] text-white font-semibold text-[12px] tracking-[0.04em] px-8 py-2.5">
+      <span class="dot"></span> {featuredLabel}
+    </div>
+  )}
   <div class="cs-pad pt-8">
     <span class="eyebrow block mb-3">Case study</span>
     <h3 class="display cs-h text-[clamp(27px,3.4vw,34px)] max-w-[22ch]">{headline}</h3>
@@ -46,38 +70,123 @@ const { headline, lede, property, location, photos, stat, quote } = Astro.props;
   </div>
 
   <div class="cs-pad photos grid gap-3 grid-cols-1 sm:grid-cols-[1.6fr_1fr] pb-7">
-    {photos.map((p) => (
-      <div class="ph rounded-[14px] bg-[var(--color-mist-grey)] border border-dashed border-[#C7CDD6] flex flex-col items-center justify-center text-center px-4 py-5 min-h-[220px] text-[#98A0AC]">
-        <Icon name="photo_camera" size={26} class="opacity-50 mb-2" />
-        <span class="text-[12px] font-semibold">{p.label}</span>
-        <small class="text-[11px] mt-1 text-[#AEB5BF]">{p.note}</small>
-      </div>
-    ))}
+    {photos.map((p) =>
+      p.src ? (
+        <PhotoBlock src={p.src} alt={p.alt ?? p.label} aspectClass="aspect-[3/2]" class="rounded-[14px]" />
+      ) : (
+        <div class="ph rounded-[14px] bg-[var(--color-mist-grey)] border border-dashed border-[#C7CDD6] flex flex-col items-center justify-center text-center px-4 py-5 min-h-[220px] text-[#98A0AC]">
+          <Icon name="photo_camera" size={26} class="opacity-50 mb-2" />
+          <span class="text-[12px] font-semibold">{p.label}</span>
+          <small class="text-[11px] mt-1 text-[#AEB5BF]">{p.note}</small>
+        </div>
+      )
+    )}
   </div>
 
-  <div class="cs-pad stats bg-[var(--color-mist-grey)] border-y border-[var(--color-line)] py-8">
-    <div class="big display text-[var(--color-azure)]">
-      {stat.pct}<span class="pct">%</span>
-    </div>
-    <p class="font-semibold text-[15px] text-[var(--color-ink)] mt-2">{stat.label}</p>
-    <p class="text-[11.5px] text-[var(--color-grey)] leading-relaxed max-w-[70ch] mt-6">{stat.caption}</p>
-  </div>
-
-  {quote && (
-    <div class="cs-pad py-8 bg-[var(--color-sand)]">
-      <p class="serif-italic text-[clamp(17px,2vw,19px)] leading-[1.55] max-w-[62ch]" style="color:#3B2F28">
-        "{quote.text}"
-      </p>
-      <div class="mt-4 flex items-center gap-2.5 flex-wrap">
-        <span class="font-bold text-[14px]" style="color:#3B2F28">{quote.name}</span>
-        <span class="text-[13px]" style="color:#8A6A54">{quote.role}</span>
+  {narrative ? (
+    <>
+      <div class="cs-pad bg-[var(--color-mist-grey)] border-y border-[var(--color-line)] py-9">
+        <p class="eyebrow block mb-5">What we put in place</p>
+        <div class="grid gap-7 sm:grid-cols-3">
+          {narrative.pillars.map((pillar) => (
+            <div>
+              <h4 class="font-semibold text-[15px] text-[var(--color-ink)] mb-2.5">{pillar.title}</h4>
+              <ul class="space-y-2">
+                {pillar.items.map((item) => (
+                  <li class="flex gap-2 text-[13.5px] text-[var(--color-grey)] leading-relaxed">
+                    <span aria-hidden="true" class="text-[var(--color-azure)] font-bold shrink-0">·</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
+
+      <div class="cs-pad py-9">
+        <p class="eyebrow block mb-4">The outcome</p>
+        <div class="flex flex-wrap gap-2.5">
+          {narrative.outcomes.map((outcome) => (
+            <span
+              class="inline-flex items-center rounded-full px-4 py-2 text-[13.5px] font-semibold"
+              style="background:var(--color-sky);color:var(--color-azure)"
+            >
+              {outcome}
+            </span>
+          ))}
+        </div>
+        {narrative.templateLine && (
+          <p class="serif-italic text-[16px] text-[var(--color-ink)] leading-relaxed mt-6 max-w-[60ch]">
+            {narrative.templateLine}
+          </p>
+        )}
+      </div>
+
+      {quote && (
+        <div class="cs-pad py-8 bg-[var(--color-sand)]">
+          <p class="serif-italic text-[clamp(17px,2vw,19px)] leading-[1.55] max-w-[62ch]" style="color:#3B2F28">
+            "{quote.text}"
+          </p>
+          <div class="mt-4 flex items-center gap-2.5 flex-wrap">
+            <span class="font-bold text-[14px]" style="color:#3B2F28">{quote.name}</span>
+            <span class="text-[13px]" style="color:#8A6A54">{quote.role}</span>
+          </div>
+        </div>
+      )}
+    </>
+  ) : featured ? (
+    <div class="grid grid-cols-1 sm:grid-cols-[0.85fr_1.15fr] border-y border-[var(--color-line)]">
+      {stat && (
+        <div class="cs-pad bg-[var(--color-mist-grey)] py-8 sm:border-r sm:border-[var(--color-line)]">
+          <div class="big display text-[var(--color-azure)]">
+            {stat.pct}<span class="pct">%</span>
+          </div>
+          <p class="font-semibold text-[15px] text-[var(--color-ink)] mt-2">{stat.label}</p>
+          <p class="text-[11.5px] text-[var(--color-grey)] leading-relaxed mt-6">{stat.caption}</p>
+        </div>
+      )}
+      {quote && (
+        <div class="cs-pad bg-[var(--color-sand)] py-8 flex flex-col justify-center">
+          <p class="serif-italic text-[clamp(17px,2vw,19px)] leading-[1.55]" style="color:#3B2F28">
+            "{quote.text}"
+          </p>
+          <div class="mt-4 flex items-center gap-2.5 flex-wrap">
+            <span class="font-bold text-[14px]" style="color:#3B2F28">{quote.name}</span>
+            <span class="text-[13px]" style="color:#8A6A54">{quote.role}</span>
+          </div>
+        </div>
+      )}
     </div>
+  ) : (
+    <>
+      {stat && (
+        <div class="cs-pad stats bg-[var(--color-mist-grey)] border-y border-[var(--color-line)] py-8">
+          <div class="big display text-[var(--color-azure)]">
+            {stat.pct}<span class="pct">%</span>
+          </div>
+          <p class="font-semibold text-[15px] text-[var(--color-ink)] mt-2">{stat.label}</p>
+          <p class="text-[11.5px] text-[var(--color-grey)] leading-relaxed max-w-[70ch] mt-6">{stat.caption}</p>
+        </div>
+      )}
+
+      {quote && (
+        <div class="cs-pad py-8 bg-[var(--color-sand)]">
+          <p class="serif-italic text-[clamp(17px,2vw,19px)] leading-[1.55] max-w-[62ch]" style="color:#3B2F28">
+            "{quote.text}"
+          </p>
+          <div class="mt-4 flex items-center gap-2.5 flex-wrap">
+            <span class="font-bold text-[14px]" style="color:#3B2F28">{quote.name}</span>
+            <span class="text-[13px]" style="color:#8A6A54">{quote.role}</span>
+          </div>
+        </div>
+      )}
+    </>
   )}
 
   <div class="cs-pad py-6 flex items-center gap-3.5 flex-wrap">
     <a href={CTA.href} class="btn btn-azure text-[14.5px]">{CTA.label}</a>
-    <a href="#properties" class="btn btn-ghost text-[14.5px]">See who else we work with</a>
+    <a href="/our-work" class="btn btn-ghost text-[14.5px]">See who else we work with</a>
   </div>
 </div>
 
@@ -88,6 +197,15 @@ const { headline, lede, property, location, photos, stat, quote } = Astro.props;
   }
   .cs-h {
     margin-top: 0;
+  }
+  .shadow-feat {
+    box-shadow: 0 24px 60px -32px rgba(14, 17, 22, 0.35);
+  }
+  .feat-band .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #8fc0ff;
   }
   .big {
     font-weight: 600;

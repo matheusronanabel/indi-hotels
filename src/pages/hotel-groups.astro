@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import Icon from '../components/Icon.astro';
+import { CTA } from '../data/site.js';
+import { NEW_CROSSING_PLACE_CASE_STUDY } from '../data/caseStudies.js';
+
+const groupGets = [
+  { icon: 'corporate_fare', title: 'A strategy for each property, coordinated across the group', body: 'Every property positioned on its own merits, informed by what we see across the whole portfolio.' },
+  { icon: 'lan', title: 'Custom channel positioning at scale', body: 'Each property priced with intent across the right channels, with direct always the best offer, connected cleanly to your systems.' },
+  { icon: 'monitoring', title: 'Revenue management, everywhere at once', body: 'Bespoke pricing that moves with demand for every property, not a one-size rule applied across the group.' },
+  { icon: 'campaign', title: 'Group marketing and direct growth', body: 'A coordinated approach to websites, photography and direct booking, so the whole portfolio drives more of its own demand.' },
+  { icon: 'clarity', title: 'One clear view', body: 'Consolidated, group-level reporting, with a single team accountable across every property.' },
+  { icon: 'check_circle', title: 'Consistency, delivered', body: "Best practice applied evenly, so standards don't rise and fall with whoever runs each property." },
+];
+
+const whyIndi = [
+  ['Cheaper than in-house, deeper than an agency.', 'A full commercial team is a major payroll commitment. A generalist agency doesn’t know hotels. Indi is a specialist hotel commercial team you can plug in immediately, and scale as the portfolio grows.'],
+  ['We see across your portfolio.', 'Patterns in one property inform decisions in another. A single property working alone never gets that advantage. A group with Indi does.'],
+  ['One accountable team.', 'Not five suppliers and a spreadsheet. One team, one point of contact, one clear line of accountability for how the whole portfolio performs.'],
+];
+---
+
+<BaseLayout
+  title="Commercial services for hotel groups & multi-property owners"
+  description="One commercial team, across your whole portfolio. Indi runs distribution, revenue management and marketing for hotel groups and multi-property owners, coordinated at the group level."
+  path="/hotel-groups"
+>
+  <PageHero
+    eyebrow="For hotel groups & multi-property owners"
+    heading="One commercial team, across your whole portfolio."
+    sub="Running the commercials for several properties is a full-time discipline in itself. Indi is the expert team that does it, so every property performs at its best and you keep one clear view of it all."
+    secondary={{ label: 'See how we work', href: '/how-we-work' }}
+    image={{ src: '/melbourne-city-apartments/melbourne-city-apartments-hotel-25.webp', alt: 'Portfolio of hotel groups Indi runs commercial services for' }}
+  />
+
+  <!-- PROOF: featured case study (quote + NCP combined) -->
+  <section class="py-20 md:py-28 bg-[var(--color-sand-1)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <div data-aos="fade-up">
+        <CaseStudy {...NEW_CROSSING_PLACE_CASE_STUDY} featured featuredLabel="Featured · Hotel groups" />
+      </div>
+    </div>
+  </section>
+
+  <!-- THE CASE -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0-narrow">
+      <SectionHead eyebrow="The opportunity" heading="Scale the commercial expertise, not the overheads." />
+      <p class="text-[18px] leading-relaxed tracking-[-0.01em] text-[#3a3b3d] mt-6 max-w-[64ch]" data-aos="fade-up">
+        Running one property well takes real commercial skill. Running several multiplies it: different markets, different demand patterns, different systems, all needing expert attention at once. Most groups solve this by building an in-house commercial team, which is expensive, hard to hire, and harder to keep. Indi is that team, on demand. Specialists in distribution, revenue and marketing working your entire portfolio as one, for less than the cost of building it yourself.
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT A GROUP GETS -->
+  <section class="py-20 md:py-28 bg-[var(--color-sand-1)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="What we do" heading="Portfolio-wide, property-deep." />
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-12">
+        {groupGets.map((g, i) => (
+          <div class="card p-7" data-aos="fade-up" data-aos-delay={(i % 3) * 70}>
+            <span class="w-11 h-11 rounded-[10px] flex items-center justify-center" style="background:var(--color-sky)">
+              <Icon name={g.icon} size={22} class="text-[var(--color-azure)]" />
+            </span>
+            <h3 class="font-semibold text-[17px] mt-5">{g.title}</h3>
+            <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed">{g.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY INDI FOR A GROUP -->
+  <section class="py-20 md:py-28">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0">
+      <SectionHead eyebrow="Why Indi" heading="The team you'd build, without building it." />
+      <div class="grid gap-4 md:grid-cols-3 mt-12">
+        {whyIndi.map(([t, b], i) => (
+          <div class="card p-7" data-aos="fade-up" data-aos-delay={i * 80}>
+            <span class="font-semibold text-[13px] text-[var(--color-azure)]">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="display text-[21px] mt-3">{t}</h3>
+            <p class="text-[15px] text-[var(--color-grey)] mt-2.5 leading-relaxed">{b}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Let's talk about your portfolio."
+    sub="A free commercial discovery across your group's distribution, revenue and marketing, with clear, practical ideas to lift performance portfolio-wide. No cost, no commitment."
+    ctaLabel={CTA.label}
+    ctaHref={CTA.href}
+  />
+</BaseLayout>

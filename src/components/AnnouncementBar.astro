@@ -1,0 +1,25 @@
+---
+import { ANNOUNCEMENT } from '../data/site.js';
+
+const fill = (s: string) => s.replace('{amount}', ANNOUNCEMENT.amount);
+---
+
+{ANNOUNCEMENT.enabled && (
+  <div id="announcement-bar" class="fixed top-0 left-0 right-0 z-[60] h-9">
+    <a
+      href={ANNOUNCEMENT.href}
+      class="flex h-full items-center justify-center gap-1 bg-[var(--color-azure)] px-4 text-center hover:bg-[var(--color-azure-deep)] transition-colors"
+    >
+      <p class="text-[13px] font-medium text-white truncate">
+        <span class="hidden sm:inline">
+          {fill(ANNOUNCEMENT.textDesktop)}{' '}
+          <span class="font-semibold underline underline-offset-2">{ANNOUNCEMENT.ctaDesktop} →</span>
+        </span>
+        <span class="sm:hidden">
+          {fill(ANNOUNCEMENT.textMobile)}{' '}
+          <span class="font-semibold underline underline-offset-2">{ANNOUNCEMENT.ctaMobile} →</span>
+        </span>
+      </p>
+    </a>
+  </div>
+)}

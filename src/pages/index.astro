@@ -4,6 +4,7 @@ import Icon from '../components/Icon.astro';
 import SectionHead from '../components/SectionHead.astro';
 import CtaBand from '../components/CtaBand.astro';
 import PhotoBlock from '../components/PhotoBlock.astro';
+// import BookingFeedSection from '../components/BookingFeedSection.astro';
 import { CTA, SERVICES, JOURNEY, TIERS, SITE, PULL_QUOTES } from '../data/site.js';
 
 const opportunities = [
@@ -34,18 +35,20 @@ const opportunities = [
           You stay focused on your guests. We run your distribution, revenue management and digital marketing, growing your revenue and your direct bookings.
         </p>
         <div class="flex flex-col sm:flex-row flex-w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto items-center gap-x-7 gap-y-4 mt-9" data-aos="fade-up" data-aos-delay="140">
-          <a href={CTA.href} class="btn block w-fit btn-azure text-[15px]">{CTA.label}</a>
+          <a href={CTA.href} class="btn block w-full sm:w-fit text-center btn-azure text-[15px]">{CTA.label}</a>
           <a href="/how-we-work" class="link text-[var(--color-ink)] hover:text-[var(--color-azure)]">
             See how we work
             <Icon name="arrow_forward" size={17} />
           </a>
         </div>
       </div>
-      <div class="hidden lg:block" data-aos="fade-left" data-aos-delay="180">
+      <div data-aos="fade-up" data-aos-delay="180">
         <PhotoBlock
-          aspect="portrait"
-          label="Independent hotels, performing better"
-          alt="An independent hotel property"
+          src="/static/homepage-cover.jpg"
+          aspectClass="aspect-[3/2] lg:aspect-[3/4]"
+          objectPosition="object-[center_38%] lg:object-[47%_center]"
+          texture
+          alt="Hotel lobby lounge at Melbourne City Apartment Hotel in West Melbourne, one of the independent hotels Indi runs commercial services for"
         />
       </div>
     </div>
@@ -61,8 +64,14 @@ const opportunities = [
       />
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mt-12">
         {opportunities.map((o, i) => (
-          <div class="card p-6" data-aos="fade-up" data-aos-delay={i * 70}>
-            <Icon name={o.icon} size={26} class="text-[var(--color-grey)]" />
+          <div
+            class="card p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-azure)] hover:shadow-[0_14px_30px_-18px_rgba(14,17,22,.28)]"
+            data-aos="fade-up"
+            data-aos-delay={i * 70}
+          >
+            <span class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:var(--color-sky)">
+              <Icon name={o.icon} size={22} class="text-[var(--color-azure)]" />
+            </span>
             <h3 class="font-semibold text-[17px] mt-4">{o.title}</h3>
             <p class="text-[14.5px] text-[var(--color-grey)] mt-1.5 leading-relaxed">{o.body}</p>
           </div>
@@ -79,7 +88,7 @@ const opportunities = [
         heading="One team for everything that drives your revenue."
         note="Indi brings your distribution, revenue management and marketing under one roof, coordinated, not stitched together. And when you need just one thing done, we take on standalone projects too."
       />
-      <div class="grid gap-4 md:grid-cols-3 mt-12">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-12">
         {SERVICES.map((s, i) => (
           <a
             href={`/services/${s.slug}`}
@@ -101,21 +110,38 @@ const opportunities = [
             </span>
           </a>
         ))}
+        <a
+          href="/services/projects"
+          class="card p-7 group flex flex-col transition-all hover:-translate-y-1 hover:shadow-[0_22px_44px_-26px_rgba(0,0,0,0.32)] bg-[var(--color-sky)] border-[var(--color-mist-line)]"
+          data-aos="fade-up"
+          data-aos-delay={SERVICES.length * 80}
+        >
+          <span class="text-[10px] font-bold uppercase tracking-wide text-[var(--color-azure-deep)] mb-2">One-off · standalone</span>
+          <span
+            class="w-11 h-11 rounded-[10px] flex items-center justify-center bg-white border border-[var(--color-mist-line)]"
+          >
+            <Icon name="sparkle" size={22} class="text-[var(--color-azure)]" />
+          </span>
+          <h3 class="display text-[23px] mt-5">Projects</h3>
+          <p class="text-[15px] text-[var(--color-grey)] mt-3 leading-relaxed flex-1">A website, GDS activation, a PMS setup or dynamic pricing. Fixed scope, same expert team.</p>
+          <span class="tlink mt-6">
+            Explore
+            <Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" />
+          </span>
+        </a>
       </div>
-      <a
-        href="/services/projects"
-        class="card p-7 group flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mt-4 border-dashed bg-transparent shadow-none hover:-translate-y-1 transition-all"
-        data-aos="fade-up"
-      >
-        <div>
-          <span class="eyebrow">Projects</span>
-          <h3 class="display text-[21px] mt-2">A different way to buy: standalone projects.</h3>
-          <p class="text-[15px] text-[var(--color-grey)] mt-2 leading-relaxed max-w-[52ch]">A new website, GDS activation, a PMS setup or dynamic pricing. One-off, fixed scope, delivered by the same expert team.</p>
-        </div>
-        <span class="tlink shrink-0">
-          Explore
-          <Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" />
-        </span>
+    </div>
+  </section>
+
+  {/* <BookingFeedSection /> */}
+
+  <!-- HOTEL GROUPS ENTRY POINT -->
+  <section class="py-8 border-t border-b border-[var(--color-line)] bg-[var(--color-sand-1)]">
+    <div class="w-full max-w-full md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto px-6 sm:px-0 flex flex-wrap items-center justify-between gap-4" data-aos="fade-up">
+      <p class="text-[15px] text-[var(--color-grey)]">Own more than one property?</p>
+      <a href="/hotel-groups" class="tlink">
+        See how Indi works with hotel groups
+        <Icon name="arrow_forward" size={16} class="transition-transform group-hover:translate-x-1" />
       </a>
     </div>
   </section>
